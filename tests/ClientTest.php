@@ -29,5 +29,10 @@ final class ClientTest extends TestCase
 
         $docker = Client::create($httpSocketClient);
         $this->assertTrue($docker instanceof Client);
+
+        $helloWorldImage = array_filter($docker->imageList(), function ($image) {
+            return ($image->getRepoTags())[0] === "hello-world:latest";
+        });
+        $this->assertCount(1, $helloWorldImage, "Pulled hello-world image found.");
     }
 }

@@ -17,8 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: check docker version
-      run: docker -v
+    - name: check docker version && pull hello-world image.
+      run: docker -v && docker pull hello-world
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
