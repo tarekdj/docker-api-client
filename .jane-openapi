@@ -5,4 +5,5 @@ return [
     'namespace' => 'TestContainersPHP\\Docker\\ApiClient',
     'openapi-file' => 'https://docs.docker.com/engine/api/v1.41.yaml',
     'strict' => false,
+    'use-fixer' => true,
 ];
