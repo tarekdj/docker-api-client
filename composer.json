@@ -20,6 +20,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit -c phpunit.xml.dist"
+        "test": "vendor/bin/phpunit -c phpunit.xml.dist",
+        "generate": "vendor/bin/jane-openapi generate"
     }
 }
