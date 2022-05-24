@@ -1,0 +1,25 @@
+{
+    "name": "testcontainers-php/docker-api-client",
+    "license": "MIT",
+    "type": "library",
+    "description": "A Docker API PHP client",
+    "require": {
+        "jane-php/open-api-runtime": "^7.2"
+    },
+    "require-dev": {
+        "jane-php/open-api-2": "^7.2",
+        "phpunit/phpunit": "^9.5",
+        "php-http/socket-client": "^2.1",
+        "php-http/message": "^1.13",
+        "php-http/client-common": "^2.5",
+        "php-http/message-factory": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TestContainersPHP\\Docker\\ApiClient\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit -c phpunit.xml.dist"
+    }
+}

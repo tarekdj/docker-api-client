@@ -1,0 +1,34 @@
+<?php
+
+namespace TestContainersPHP\Docker\ApiClient\Model;
+
+class TaskSpecPlacementPreferencesItem
+{
+    /**
+     * 
+     *
+     * @var TaskSpecPlacementPreferencesItemSpread|null
+     */
+    protected $spread;
+    /**
+     * 
+     *
+     * @return TaskSpecPlacementPreferencesItemSpread|null
+     */
+    public function getSpread() : ?TaskSpecPlacementPreferencesItemSpread
+    {
+        return $this->spread;
+    }
+    /**
+     * 
+     *
+     * @param TaskSpecPlacementPreferencesItemSpread|null $spread
+     *
+     * @return self
+     */
+    public function setSpread(?TaskSpecPlacementPreferencesItemSpread $spread) : self
+    {
+        $this->spread = $spread;
+        return $this;
+    }
+}
