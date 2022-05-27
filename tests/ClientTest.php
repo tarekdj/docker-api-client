@@ -8,6 +8,14 @@ use TestContainersPHP\Docker\ApiClient\Client;
 final class ClientTest extends TestCase
 {
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        echo "\n";
+        echo "🐋 Pull hello-world:latest ";
+        shell_exec('docker pull hello-world:latest');
+    }
+
     public function testClientCreated(): void
     {
         $socketClient = new FakeDockerUnixSocketClient();
