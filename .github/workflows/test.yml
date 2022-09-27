@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: check docker version && pull hello-world image.
       run: docker -v && docker pull hello-world
 
@@ -34,6 +34,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
+    -name: Install guzzlehttp/psr7
+     run: composer require guzzlehttp/psr7
 
     - name: Run test suite
       run: composer run-script test
