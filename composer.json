@@ -1,5 +1,5 @@
 {
-    "name": "testcontainers-php/docker-api-client",
+    "name": "tarekdj/docker-api-client",
     "license": "MIT",
     "type": "library",
     "description": "A Docker API PHP client",
