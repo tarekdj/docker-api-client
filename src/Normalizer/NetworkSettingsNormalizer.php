@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkSettings';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkSettings';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkSettings';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkSettings';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\NetworkSettings();
+        $object = new \Tarekdj\Docker\ApiClient\Model\NetworkSettings();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -77,7 +77,7 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
             foreach ($data['Ports'] as $key => $value) {
                 $values_1 = array();
                 foreach ($value as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\PortBinding', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\PortBinding', 'json', $context);
                 }
                 $values[$key] = $values_1;
             }
@@ -95,7 +95,7 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
         if (\array_key_exists('SecondaryIPAddresses', $data) && $data['SecondaryIPAddresses'] !== null) {
             $values_2 = array();
             foreach ($data['SecondaryIPAddresses'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Address', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\Address', 'json', $context);
             }
             $object->setSecondaryIPAddresses($values_2);
         }
@@ -105,7 +105,7 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
         if (\array_key_exists('SecondaryIPv6Addresses', $data) && $data['SecondaryIPv6Addresses'] !== null) {
             $values_3 = array();
             foreach ($data['SecondaryIPv6Addresses'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Address', 'json', $context);
+                $values_3[] = $this->denormalizer->denormalize($value_3, 'Tarekdj\\Docker\\ApiClient\\Model\\Address', 'json', $context);
             }
             $object->setSecondaryIPv6Addresses($values_3);
         }
@@ -163,7 +163,7 @@ class NetworkSettingsNormalizer implements DenormalizerInterface, NormalizerInte
         if (\array_key_exists('Networks', $data) && $data['Networks'] !== null) {
             $values_4 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['Networks'] as $key_1 => $value_4) {
-                $values_4[$key_1] = $this->denormalizer->denormalize($value_4, 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSettings', 'json', $context);
+                $values_4[$key_1] = $this->denormalizer->denormalize($value_4, 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSettings', 'json', $context);
             }
             $object->setNetworks($values_4);
         }

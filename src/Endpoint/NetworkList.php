@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NetworkList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NetworkList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Returns a list of networks. For details on the format, see the
@@ -36,7 +36,7 @@ class NetworkList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     {
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -65,17 +65,17 @@ class NetworkList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkListInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkListInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Network[]
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Network[]
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Network[]', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\Network[]', 'json');
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkListInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkListInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

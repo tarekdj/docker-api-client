@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ConfigSpecNormalizer implements DenormalizerInterface, NormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ConfigSpec';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ConfigSpec';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ConfigSpec';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ConfigSpec';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ConfigSpecNormalizer implements DenormalizerInterface, NormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ConfigSpec();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ConfigSpec();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -65,7 +65,7 @@ class ConfigSpecNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setData(null);
         }
         if (\array_key_exists('Templating', $data) && $data['Templating'] !== null) {
-            $object->setTemplating($this->denormalizer->denormalize($data['Templating'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
+            $object->setTemplating($this->denormalizer->denormalize($data['Templating'], 'Tarekdj\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
         }
         elseif (\array_key_exists('Templating', $data) && $data['Templating'] === null) {
             $object->setTemplating(null);

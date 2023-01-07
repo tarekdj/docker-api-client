@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecContainerSpecConfigsItemFileNormalizer implements DenormalizerInte
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItemFile';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItemFile';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItemFile';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItemFile';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskSpecContainerSpecConfigsItemFileNormalizer implements DenormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecContainerSpecConfigsItemFile();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecContainerSpecConfigsItemFile();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }

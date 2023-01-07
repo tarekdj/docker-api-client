@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecContainerSpecSecretsItemNormalizer implements DenormalizerInterfac
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class TaskSpecContainerSpecSecretsItemNormalizer implements DenormalizerInterfac
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecContainerSpecSecretsItem();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecContainerSpecSecretsItem();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('File', $data) && $data['File'] !== null) {
-            $object->setFile($this->denormalizer->denormalize($data['File'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItemFile', 'json', $context));
+            $object->setFile($this->denormalizer->denormalize($data['File'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItemFile', 'json', $context));
         }
         elseif (\array_key_exists('File', $data) && $data['File'] === null) {
             $object->setFile(null);

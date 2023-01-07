@@ -1,19 +1,19 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SwarmJoin extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SwarmJoin extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmJoinPostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SwarmJoinPostBody $body 
      */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\SwarmJoinPostBody $body)
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\SwarmJoinPostBody $body)
     {
         $this->body = $body;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -33,9 +33,9 @@ class SwarmJoin extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException
      *
      * @return null
      */
@@ -45,13 +45,13 @@ class SwarmJoin extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmJoinBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

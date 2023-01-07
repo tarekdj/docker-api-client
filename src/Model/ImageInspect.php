@@ -1,13 +1,13 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Model;
+namespace Tarekdj\Docker\ApiClient\Model;
 
 class ImageInspect
 {
     /**
     * ID is the content-addressable ID of an image.
     
-    This identified is a content-addressable digest calculated from the
+    This identifier is a content-addressable digest calculated from the
     image's configuration (which includes the digests of layers used by
     the image).
     
@@ -78,10 +78,18 @@ class ImageInspect
     */
     protected $container;
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @var ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @var ContainerConfig|null
+    */
     protected $containerConfig;
     /**
     * The version of Docker that was used to build the image.
@@ -101,10 +109,18 @@ class ImageInspect
     */
     protected $author;
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @var ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @var ContainerConfig|null
+    */
     protected $config;
     /**
      * Hardware CPU architecture that the image runs on.
@@ -178,7 +194,7 @@ class ImageInspect
     /**
     * ID is the content-addressable ID of an image.
     
-    This identified is a content-addressable digest calculated from the
+    This identifier is a content-addressable digest calculated from the
     image's configuration (which includes the digests of layers used by
     the image).
     
@@ -195,7 +211,7 @@ class ImageInspect
     /**
     * ID is the content-addressable ID of an image.
     
-    This identified is a content-addressable digest calculated from the
+    This identifier is a content-addressable digest calculated from the
     image's configuration (which includes the digests of layers used by
     the image).
     
@@ -385,21 +401,37 @@ class ImageInspect
         return $this;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @return ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @return ContainerConfig|null
+    */
     public function getContainerConfig() : ?ContainerConfig
     {
         return $this->containerConfig;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @param ContainerConfig|null $containerConfig
-     *
-     * @return self
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @param ContainerConfig|null $containerConfig
+    *
+    * @return self
+    */
     public function setContainerConfig(?ContainerConfig $containerConfig) : self
     {
         $this->containerConfig = $containerConfig;
@@ -458,21 +490,37 @@ class ImageInspect
         return $this;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @return ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @return ContainerConfig|null
+    */
     public function getConfig() : ?ContainerConfig
     {
         return $this->config;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @param ContainerConfig|null $config
-     *
-     * @return self
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @param ContainerConfig|null $config
+    *
+    * @return self
+    */
     public function setConfig(?ContainerConfig $config) : self
     {
         $this->config = $config;

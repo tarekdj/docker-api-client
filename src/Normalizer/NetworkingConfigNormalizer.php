@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NetworkingConfigNormalizer implements DenormalizerInterface, NormalizerInt
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkingConfig';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkingConfig';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkingConfig';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkingConfig';
     }
     /**
      * @return mixed
@@ -38,14 +38,14 @@ class NetworkingConfigNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\NetworkingConfig();
+        $object = new \Tarekdj\Docker\ApiClient\Model\NetworkingConfig();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('EndpointsConfig', $data) && $data['EndpointsConfig'] !== null) {
             $values = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['EndpointsConfig'] as $key => $value) {
-                $values[$key] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSettings', 'json', $context);
+                $values[$key] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSettings', 'json', $context);
             }
             $object->setEndpointsConfig($values);
         }

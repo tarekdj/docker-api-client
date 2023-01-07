@@ -1,10 +1,10 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class Session extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class Session extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -24,8 +24,8 @@ class Session extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEnd
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SessionBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SessionInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SessionBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SessionInternalServerErrorException
      *
      * @return null
      */
@@ -35,10 +35,10 @@ class Session extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEnd
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SessionBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SessionBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SessionInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SessionInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NodeDescriptionNormalizer implements DenormalizerInterface, NormalizerInte
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NodeDescription';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NodeDescription';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NodeDescription';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NodeDescription';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class NodeDescriptionNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\NodeDescription();
+        $object = new \Tarekdj\Docker\ApiClient\Model\NodeDescription();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,25 +49,25 @@ class NodeDescriptionNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setHostname(null);
         }
         if (\array_key_exists('Platform', $data) && $data['Platform'] !== null) {
-            $object->setPlatform($this->denormalizer->denormalize($data['Platform'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Platform', 'json', $context));
+            $object->setPlatform($this->denormalizer->denormalize($data['Platform'], 'Tarekdj\\Docker\\ApiClient\\Model\\Platform', 'json', $context));
         }
         elseif (\array_key_exists('Platform', $data) && $data['Platform'] === null) {
             $object->setPlatform(null);
         }
         if (\array_key_exists('Resources', $data) && $data['Resources'] !== null) {
-            $object->setResources($this->denormalizer->denormalize($data['Resources'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourceObject', 'json', $context));
+            $object->setResources($this->denormalizer->denormalize($data['Resources'], 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject', 'json', $context));
         }
         elseif (\array_key_exists('Resources', $data) && $data['Resources'] === null) {
             $object->setResources(null);
         }
         if (\array_key_exists('Engine', $data) && $data['Engine'] !== null) {
-            $object->setEngine($this->denormalizer->denormalize($data['Engine'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\EngineDescription', 'json', $context));
+            $object->setEngine($this->denormalizer->denormalize($data['Engine'], 'Tarekdj\\Docker\\ApiClient\\Model\\EngineDescription', 'json', $context));
         }
         elseif (\array_key_exists('Engine', $data) && $data['Engine'] === null) {
             $object->setEngine(null);
         }
         if (\array_key_exists('TLSInfo', $data) && $data['TLSInfo'] !== null) {
-            $object->setTLSInfo($this->denormalizer->denormalize($data['TLSInfo'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TLSInfo', 'json', $context));
+            $object->setTLSInfo($this->denormalizer->denormalize($data['TLSInfo'], 'Tarekdj\\Docker\\ApiClient\\Model\\TLSInfo', 'json', $context));
         }
         elseif (\array_key_exists('TLSInfo', $data) && $data['TLSInfo'] === null) {
             $object->setTLSInfo(null);

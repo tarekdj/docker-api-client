@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerUnpause extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerUnpause extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -14,7 +14,7 @@ class ContainerUnpause extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
     {
         $this->id = $id;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -34,8 +34,8 @@ class ContainerUnpause extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException
      *
      * @return null
      */
@@ -45,10 +45,10 @@ class ContainerUnpause extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

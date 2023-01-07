@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SystemEvents extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SystemEvents extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Stream real-time events from the server.
@@ -56,7 +56,7 @@ class SystemEvents extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     {
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -87,21 +87,21 @@ class SystemEvents extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemEventsBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\EventMessage
+     * @return null|\Tarekdj\Docker\ApiClient\Model\EventMessage
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\EventMessage', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\EventMessage', 'json');
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SystemEventsBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

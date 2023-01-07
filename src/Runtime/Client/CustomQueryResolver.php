@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Runtime\Client;
+namespace Tarekdj\Docker\ApiClient\Runtime\Client;
 
 use Symfony\Component\OptionsResolver\Options;
 interface CustomQueryResolver

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SwarmInitPostBodyNormalizer implements DenormalizerInterface, NormalizerIn
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmInitPostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInitPostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmInitPostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInitPostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SwarmInitPostBodyNormalizer implements DenormalizerInterface, NormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SwarmInitPostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SwarmInitPostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -89,7 +89,7 @@ class SwarmInitPostBodyNormalizer implements DenormalizerInterface, NormalizerIn
             $object->setSubnetSize(null);
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);

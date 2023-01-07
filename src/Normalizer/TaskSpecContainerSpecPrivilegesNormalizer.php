@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecContainerSpecPrivilegesNormalizer implements DenormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
     }
     /**
      * @return mixed
@@ -38,18 +38,18 @@ class TaskSpecContainerSpecPrivilegesNormalizer implements DenormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecContainerSpecPrivileges();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecContainerSpecPrivileges();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('CredentialSpec', $data) && $data['CredentialSpec'] !== null) {
-            $object->setCredentialSpec($this->denormalizer->denormalize($data['CredentialSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesCredentialSpec', 'json', $context));
+            $object->setCredentialSpec($this->denormalizer->denormalize($data['CredentialSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesCredentialSpec', 'json', $context));
         }
         elseif (\array_key_exists('CredentialSpec', $data) && $data['CredentialSpec'] === null) {
             $object->setCredentialSpec(null);
         }
         if (\array_key_exists('SELinuxContext', $data) && $data['SELinuxContext'] !== null) {
-            $object->setSELinuxContext($this->denormalizer->denormalize($data['SELinuxContext'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesSELinuxContext', 'json', $context));
+            $object->setSELinuxContext($this->denormalizer->denormalize($data['SELinuxContext'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesSELinuxContext', 'json', $context));
         }
         elseif (\array_key_exists('SELinuxContext', $data) && $data['SELinuxContext'] === null) {
             $object->setSELinuxContext(null);

@@ -1,10 +1,10 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SystemPingHead extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SystemPingHead extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'HEAD';
@@ -24,7 +24,7 @@ class SystemPingHead extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException
      *
      * @return null
      */
@@ -34,7 +34,7 @@ class SystemPingHead extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
             return json_decode($body);
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

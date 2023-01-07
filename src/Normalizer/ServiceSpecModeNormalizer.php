@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ServiceSpecModeNormalizer implements DenormalizerInterface, NormalizerInte
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecMode';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecMode';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecMode';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecMode';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class ServiceSpecModeNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ServiceSpecMode();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ServiceSpecMode();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('Replicated', $data) && $data['Replicated'] !== null) {
-            $object->setReplicated($this->denormalizer->denormalize($data['Replicated'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecModeReplicated', 'json', $context));
+            $object->setReplicated($this->denormalizer->denormalize($data['Replicated'], 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecModeReplicated', 'json', $context));
         }
         elseif (\array_key_exists('Replicated', $data) && $data['Replicated'] === null) {
             $object->setReplicated(null);
@@ -55,7 +55,7 @@ class ServiceSpecModeNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setGlobal(null);
         }
         if (\array_key_exists('ReplicatedJob', $data) && $data['ReplicatedJob'] !== null) {
-            $object->setReplicatedJob($this->denormalizer->denormalize($data['ReplicatedJob'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecModeReplicatedJob', 'json', $context));
+            $object->setReplicatedJob($this->denormalizer->denormalize($data['ReplicatedJob'], 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecModeReplicatedJob', 'json', $context));
         }
         elseif (\array_key_exists('ReplicatedJob', $data) && $data['ReplicatedJob'] === null) {
             $object->setReplicatedJob(null);

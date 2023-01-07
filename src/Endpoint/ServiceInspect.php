@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ServiceInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ServiceInspect extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -18,7 +18,7 @@ class ServiceInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -47,25 +47,25 @@ class ServiceInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Service
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Service
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Service', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\Service', 'json');
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceInspectNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

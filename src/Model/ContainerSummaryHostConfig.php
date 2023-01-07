@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Model;
+namespace Tarekdj\Docker\ApiClient\Model;
 
 class ContainerSummaryHostConfig
 {

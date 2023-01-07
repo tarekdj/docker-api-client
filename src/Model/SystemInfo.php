@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Model;
+namespace Tarekdj\Docker\ApiClient\Model;
 
 class SystemInfo
 {
@@ -406,7 +406,7 @@ class SystemInfo
     /**
     * Version string of the daemon.
     
-    > **Note**: the [standalone Swarm API](swarm/swarm-api/)
+    > **Note**: the [standalone Swarm API](/swarm/swarm-api/)
     > returns the Swarm version instead of the daemon  version, for example
     > `swarm/1.2.8`.
     
@@ -1806,7 +1806,7 @@ class SystemInfo
     /**
     * Version string of the daemon.
     
-    > **Note**: the [standalone Swarm API](swarm/swarm-api/)
+    > **Note**: the [standalone Swarm API](/swarm/swarm-api/)
     > returns the Swarm version instead of the daemon  version, for example
     > `swarm/1.2.8`.
     
@@ -1820,7 +1820,7 @@ class SystemInfo
     /**
     * Version string of the daemon.
     
-    > **Note**: the [standalone Swarm API](swarm/swarm-api/)
+    > **Note**: the [standalone Swarm API](/swarm/swarm-api/)
     > returns the Swarm version instead of the daemon  version, for example
     > `swarm/1.2.8`.
     

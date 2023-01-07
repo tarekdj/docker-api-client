@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerWait extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerWait extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -21,7 +21,7 @@ class ContainerWait extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -50,25 +50,25 @@ class ContainerWait extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainerWaitResponse
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ContainerWaitResponse
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerWaitResponse', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerWaitResponse', 'json');
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerWaitBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerWaitNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

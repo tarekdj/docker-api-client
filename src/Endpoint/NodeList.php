@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NodeList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NodeList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * 
@@ -24,7 +24,7 @@ class NodeList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
     {
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -53,21 +53,21 @@ class NodeList extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeListInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeListServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeListInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeListServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Node[]
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Node[]
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Node[]', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\Node[]', 'json');
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeListInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeListInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeListServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeListServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

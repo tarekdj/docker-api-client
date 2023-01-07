@@ -1,13 +1,13 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImageBuild extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImageBuild extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Build an image from a tar archive with a `Dockerfile` in it.
     
-    The `Dockerfile` specifies how the image is built from the tar archive. It is typically in the archive's root, but can be at a different path or have a different name by specifying the `dockerfile` parameter. [See the `Dockerfile` reference for more information](engine/reference/builder/).
+    The `Dockerfile` specifies how the image is built from the tar archive. It is typically in the archive's root, but can be at a different path or have a different name by specifying the `dockerfile` parameter. [See the `Dockerfile` reference for more information](/engine/reference/builder/).
     
     The Docker daemon performs a preliminary validation of the `Dockerfile` before starting the build, and returns an error if the syntax is incorrect. After that, each instruction is run one-by-one until the ID of the new image is output.
     
@@ -36,7 +36,7 @@ class ImageBuild extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     
     For example, the build arg `FOO=bar` would become `{"FOO":"bar"}` in JSON. This would result in the query parameter `buildargs={"FOO":"bar"}`. Note that `{"FOO":"bar"}` should be URI component encoded.
     
-    [Read more about the buildargs instruction.](engine/reference/builder/#arg)
+    [Read more about the buildargs instruction.](/engine/reference/builder/#arg)
     
     *     @var int $shmsize Size of `/dev/shm` in bytes. The size must be greater than 0. If omitted the system uses 64MB.
     *     @var bool $squash Squash the resulting images layers into a single layer. *(Experimental release only.)*
@@ -79,7 +79,7 @@ class ImageBuild extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -141,8 +141,8 @@ class ImageBuild extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageBuildBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException
      *
      * @return null
      */
@@ -152,10 +152,10 @@ class ImageBuild extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageBuildBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

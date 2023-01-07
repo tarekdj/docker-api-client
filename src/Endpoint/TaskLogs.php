@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class TaskLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class TaskLogs extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -31,7 +31,7 @@ class TaskLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -66,9 +66,9 @@ class TaskLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException
      *
      * @return null
      */
@@ -78,13 +78,13 @@ class TaskLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
             return json_decode($body);
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\TaskLogsNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

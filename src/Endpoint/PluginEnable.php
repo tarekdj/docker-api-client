@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class PluginEnable extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class PluginEnable extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $name;
     /**
@@ -20,7 +20,7 @@ class PluginEnable extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
         $this->name = $name;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -49,8 +49,8 @@ class PluginEnable extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PluginEnableNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException
      *
      * @return null
      */
@@ -60,10 +60,10 @@ class PluginEnable extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PluginEnableNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

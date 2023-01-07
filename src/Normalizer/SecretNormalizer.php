@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SecretNormalizer implements DenormalizerInterface, NormalizerInterface, De
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Secret';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Secret';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Secret';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Secret';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SecretNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Secret();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Secret();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,7 +49,7 @@ class SecretNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setID(null);
         }
         if (\array_key_exists('Version', $data) && $data['Version'] !== null) {
-            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('Version', $data) && $data['Version'] === null) {
             $object->setVersion(null);
@@ -67,7 +67,7 @@ class SecretNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setUpdatedAt(null);
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SecretSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\SecretSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);

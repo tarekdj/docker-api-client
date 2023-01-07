@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\BuildInfo';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\BuildInfo';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\BuildInfo';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\BuildInfo';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\BuildInfo();
+        $object = new \Tarekdj\Docker\ApiClient\Model\BuildInfo();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -61,7 +61,7 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
             $object->setError(null);
         }
         if (\array_key_exists('errorDetail', $data) && $data['errorDetail'] !== null) {
-            $object->setErrorDetail($this->denormalizer->denormalize($data['errorDetail'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorDetail', 'json', $context));
+            $object->setErrorDetail($this->denormalizer->denormalize($data['errorDetail'], 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorDetail', 'json', $context));
         }
         elseif (\array_key_exists('errorDetail', $data) && $data['errorDetail'] === null) {
             $object->setErrorDetail(null);
@@ -79,13 +79,13 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
             $object->setProgress(null);
         }
         if (\array_key_exists('progressDetail', $data) && $data['progressDetail'] !== null) {
-            $object->setProgressDetail($this->denormalizer->denormalize($data['progressDetail'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ProgressDetail', 'json', $context));
+            $object->setProgressDetail($this->denormalizer->denormalize($data['progressDetail'], 'Tarekdj\\Docker\\ApiClient\\Model\\ProgressDetail', 'json', $context));
         }
         elseif (\array_key_exists('progressDetail', $data) && $data['progressDetail'] === null) {
             $object->setProgressDetail(null);
         }
         if (\array_key_exists('aux', $data) && $data['aux'] !== null) {
-            $object->setAux($this->denormalizer->denormalize($data['aux'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageID', 'json', $context));
+            $object->setAux($this->denormalizer->denormalize($data['aux'], 'Tarekdj\\Docker\\ApiClient\\Model\\ImageID', 'json', $context));
         }
         elseif (\array_key_exists('aux', $data) && $data['aux'] === null) {
             $object->setAux(null);

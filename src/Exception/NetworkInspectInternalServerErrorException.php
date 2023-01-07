@@ -1,19 +1,19 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Exception;
+namespace Tarekdj\Docker\ApiClient\Exception;
 
 class NetworkInspectInternalServerErrorException extends InternalServerErrorException
 {
     /**
-     * @var \TestContainersPHP\Docker\ApiClient\Model\ErrorResponse
+     * @var \Tarekdj\Docker\ApiClient\Model\ErrorResponse
      */
     private $errorResponse;
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\ErrorResponse $errorResponse)
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\ErrorResponse $errorResponse)
     {
         parent::__construct('Server error');
         $this->errorResponse = $errorResponse;
     }
-    public function getErrorResponse() : \TestContainersPHP\Docker\ApiClient\Model\ErrorResponse
+    public function getErrorResponse() : \Tarekdj\Docker\ApiClient\Model\ErrorResponse
     {
         return $this->errorResponse;
     }

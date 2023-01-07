@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SwarmSpecNormalizer implements DenormalizerInterface, NormalizerInterface,
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpec';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpec';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SwarmSpecNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SwarmSpec();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SwarmSpec();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -59,37 +59,37 @@ class SwarmSpecNormalizer implements DenormalizerInterface, NormalizerInterface,
             $object->setLabels(null);
         }
         if (\array_key_exists('Orchestration', $data) && $data['Orchestration'] !== null) {
-            $object->setOrchestration($this->denormalizer->denormalize($data['Orchestration'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecOrchestration', 'json', $context));
+            $object->setOrchestration($this->denormalizer->denormalize($data['Orchestration'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecOrchestration', 'json', $context));
         }
         elseif (\array_key_exists('Orchestration', $data) && $data['Orchestration'] === null) {
             $object->setOrchestration(null);
         }
         if (\array_key_exists('Raft', $data) && $data['Raft'] !== null) {
-            $object->setRaft($this->denormalizer->denormalize($data['Raft'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecRaft', 'json', $context));
+            $object->setRaft($this->denormalizer->denormalize($data['Raft'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecRaft', 'json', $context));
         }
         elseif (\array_key_exists('Raft', $data) && $data['Raft'] === null) {
             $object->setRaft(null);
         }
         if (\array_key_exists('Dispatcher', $data) && $data['Dispatcher'] !== null) {
-            $object->setDispatcher($this->denormalizer->denormalize($data['Dispatcher'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecDispatcher', 'json', $context));
+            $object->setDispatcher($this->denormalizer->denormalize($data['Dispatcher'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecDispatcher', 'json', $context));
         }
         elseif (\array_key_exists('Dispatcher', $data) && $data['Dispatcher'] === null) {
             $object->setDispatcher(null);
         }
         if (\array_key_exists('CAConfig', $data) && $data['CAConfig'] !== null) {
-            $object->setCAConfig($this->denormalizer->denormalize($data['CAConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecCAConfig', 'json', $context));
+            $object->setCAConfig($this->denormalizer->denormalize($data['CAConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecCAConfig', 'json', $context));
         }
         elseif (\array_key_exists('CAConfig', $data) && $data['CAConfig'] === null) {
             $object->setCAConfig(null);
         }
         if (\array_key_exists('EncryptionConfig', $data) && $data['EncryptionConfig'] !== null) {
-            $object->setEncryptionConfig($this->denormalizer->denormalize($data['EncryptionConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecEncryptionConfig', 'json', $context));
+            $object->setEncryptionConfig($this->denormalizer->denormalize($data['EncryptionConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecEncryptionConfig', 'json', $context));
         }
         elseif (\array_key_exists('EncryptionConfig', $data) && $data['EncryptionConfig'] === null) {
             $object->setEncryptionConfig(null);
         }
         if (\array_key_exists('TaskDefaults', $data) && $data['TaskDefaults'] !== null) {
-            $object->setTaskDefaults($this->denormalizer->denormalize($data['TaskDefaults'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults', 'json', $context));
+            $object->setTaskDefaults($this->denormalizer->denormalize($data['TaskDefaults'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults', 'json', $context));
         }
         elseif (\array_key_exists('TaskDefaults', $data) && $data['TaskDefaults'] === null) {
             $object->setTaskDefaults(null);

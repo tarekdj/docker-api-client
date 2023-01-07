@@ -1,13 +1,13 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SwarmUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SwarmUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * 
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmSpec $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\SwarmSpec $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the swarm object being updated. This is
     required to avoid conflicting writes.
@@ -17,12 +17,12 @@ class SwarmUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     *     @var bool $rotateManagerUnlockKey Rotate the manager unlock key.
     * }
     */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\SwarmSpec $body, array $queryParameters = array())
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\SwarmSpec $body, array $queryParameters = array())
     {
         $this->body = $body;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -54,9 +54,9 @@ class SwarmUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException
      *
      * @return null
      */
@@ -66,13 +66,13 @@ class SwarmUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

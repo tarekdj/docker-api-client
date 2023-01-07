@@ -1,15 +1,15 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ConfigUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ConfigUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
     * 
     *
     * @param string $id The ID or name of the config
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ConfigSpec $body The spec of the config to update. Currently, only the Labels field
+    * @param \Tarekdj\Docker\ApiClient\Model\ConfigSpec $body The spec of the config to update. Currently, only the Labels field
     can be updated. All other fields must remain unchanged from the
     [ConfigInspect endpoint](#operation/ConfigInspect) response values.
     
@@ -19,13 +19,13 @@ class ConfigUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     
     * }
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\ConfigSpec $body, array $queryParameters = array())
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\ConfigSpec $body, array $queryParameters = array())
     {
         $this->id = $id;
         $this->body = $body;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -54,10 +54,10 @@ class ConfigUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException
      *
      * @return null
      */
@@ -67,16 +67,16 @@ class ConfigUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ContainerWaitResponseNormalizer implements DenormalizerInterface, Normaliz
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerWaitResponse';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerWaitResponse';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerWaitResponse';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerWaitResponse';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ContainerWaitResponseNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ContainerWaitResponse();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ContainerWaitResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,7 +49,7 @@ class ContainerWaitResponseNormalizer implements DenormalizerInterface, Normaliz
             $object->setStatusCode(null);
         }
         if (\array_key_exists('Error', $data) && $data['Error'] !== null) {
-            $object->setError($this->denormalizer->denormalize($data['Error'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerWaitExitError', 'json', $context));
+            $object->setError($this->denormalizer->denormalize($data['Error'], 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerWaitExitError', 'json', $context));
         }
         elseif (\array_key_exists('Error', $data) && $data['Error'] === null) {
             $object->setError(null);
@@ -63,7 +63,9 @@ class ContainerWaitResponseNormalizer implements DenormalizerInterface, Normaliz
     {
         $data = array();
         $data['StatusCode'] = $object->getStatusCode();
-        $data['Error'] = $this->normalizer->normalize($object->getError(), 'json', $context);
+        if (null !== $object->getError()) {
+            $data['Error'] = $this->normalizer->normalize($object->getError(), 'json', $context);
+        }
         return $data;
     }
 }

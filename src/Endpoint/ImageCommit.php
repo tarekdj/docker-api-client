@@ -1,13 +1,13 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImageCommit extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImageCommit extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\ContainerConfig $containerConfig The container configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\ContainerConfig $containerConfig The container configuration
      * @param array $queryParameters {
      *     @var string $container The ID or name of the container to commit
      *     @var string $repo Repository name for the created image
@@ -18,12 +18,12 @@ class ImageCommit extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
      *     @var string $changes `Dockerfile` instructions to apply while committing
      * }
      */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\ContainerConfig $containerConfig, array $queryParameters = array())
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\ContainerConfig $containerConfig, array $queryParameters = array())
     {
         $this->body = $containerConfig;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -58,21 +58,21 @@ class ImageCommit extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCommitNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (201 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\IdResponse', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\IdResponse', 'json');
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageCommitNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

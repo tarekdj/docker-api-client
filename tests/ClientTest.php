@@ -3,7 +3,7 @@
 require_once __DIR__ . '/FakeDockerUnixSocketClient.php';
 
 use PHPUnit\Framework\TestCase;
-use TestContainersPHP\Docker\ApiClient\Client;
+use Tarekdj\Docker\ApiClient\Client;
 
 final class ClientTest extends TestCase
 {

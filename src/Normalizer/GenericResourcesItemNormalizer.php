@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class GenericResourcesItemNormalizer implements DenormalizerInterface, Normalize
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItem';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItem';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItem';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItem';
     }
     /**
      * @return mixed
@@ -38,18 +38,18 @@ class GenericResourcesItemNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\GenericResourcesItem();
+        $object = new \Tarekdj\Docker\ApiClient\Model\GenericResourcesItem();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('NamedResourceSpec', $data) && $data['NamedResourceSpec'] !== null) {
-            $object->setNamedResourceSpec($this->denormalizer->denormalize($data['NamedResourceSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItemNamedResourceSpec', 'json', $context));
+            $object->setNamedResourceSpec($this->denormalizer->denormalize($data['NamedResourceSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItemNamedResourceSpec', 'json', $context));
         }
         elseif (\array_key_exists('NamedResourceSpec', $data) && $data['NamedResourceSpec'] === null) {
             $object->setNamedResourceSpec(null);
         }
         if (\array_key_exists('DiscreteResourceSpec', $data) && $data['DiscreteResourceSpec'] !== null) {
-            $object->setDiscreteResourceSpec($this->denormalizer->denormalize($data['DiscreteResourceSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItemDiscreteResourceSpec', 'json', $context));
+            $object->setDiscreteResourceSpec($this->denormalizer->denormalize($data['DiscreteResourceSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItemDiscreteResourceSpec', 'json', $context));
         }
         elseif (\array_key_exists('DiscreteResourceSpec', $data) && $data['DiscreteResourceSpec'] === null) {
             $object->setDiscreteResourceSpec(null);

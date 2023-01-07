@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class PluginUpgrade extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class PluginUpgrade extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $name;
     /**
@@ -11,7 +11,7 @@ class PluginUpgrade extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     * @param string $name The name of the plugin. The `:latest` tag is optional, and is the
     default if omitted.
     
-    * @param \TestContainersPHP\Docker\ApiClient\Model\PluginPrivilege[] $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\PluginPrivilege[] $body 
     * @param array $queryParameters {
     *     @var string $remote Remote reference to upgrade to.
     
@@ -34,7 +34,7 @@ class PluginUpgrade extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -72,8 +72,8 @@ class PluginUpgrade extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException
      *
      * @return null
      */
@@ -83,10 +83,10 @@ class PluginUpgrade extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

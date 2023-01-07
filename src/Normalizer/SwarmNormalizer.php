@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SwarmNormalizer implements DenormalizerInterface, NormalizerInterface, Den
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Swarm';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Swarm';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Swarm';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Swarm';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SwarmNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Swarm();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Swarm();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,7 +49,7 @@ class SwarmNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setID(null);
         }
         if (\array_key_exists('Version', $data) && $data['Version'] !== null) {
-            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('Version', $data) && $data['Version'] === null) {
             $object->setVersion(null);
@@ -67,13 +67,13 @@ class SwarmNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setUpdatedAt(null);
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);
         }
         if (\array_key_exists('TLSInfo', $data) && $data['TLSInfo'] !== null) {
-            $object->setTLSInfo($this->denormalizer->denormalize($data['TLSInfo'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TLSInfo', 'json', $context));
+            $object->setTLSInfo($this->denormalizer->denormalize($data['TLSInfo'], 'Tarekdj\\Docker\\ApiClient\\Model\\TLSInfo', 'json', $context));
         }
         elseif (\array_key_exists('TLSInfo', $data) && $data['TLSInfo'] === null) {
             $object->setTLSInfo(null);
@@ -107,7 +107,7 @@ class SwarmNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setSubnetSize(null);
         }
         if (\array_key_exists('JoinTokens', $data) && $data['JoinTokens'] !== null) {
-            $object->setJoinTokens($this->denormalizer->denormalize($data['JoinTokens'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\JoinTokens', 'json', $context));
+            $object->setJoinTokens($this->denormalizer->denormalize($data['JoinTokens'], 'Tarekdj\\Docker\\ApiClient\\Model\\JoinTokens', 'json', $context));
         }
         elseif (\array_key_exists('JoinTokens', $data) && $data['JoinTokens'] === null) {
             $object->setJoinTokens(null);

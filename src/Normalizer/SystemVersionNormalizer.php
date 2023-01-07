@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SystemVersionNormalizer implements DenormalizerInterface, NormalizerInterf
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemVersion';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemVersion';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemVersion';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemVersion';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class SystemVersionNormalizer implements DenormalizerInterface, NormalizerInterf
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SystemVersion();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SystemVersion();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('Platform', $data) && $data['Platform'] !== null) {
-            $object->setPlatform($this->denormalizer->denormalize($data['Platform'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemVersionPlatform', 'json', $context));
+            $object->setPlatform($this->denormalizer->denormalize($data['Platform'], 'Tarekdj\\Docker\\ApiClient\\Model\\SystemVersionPlatform', 'json', $context));
         }
         elseif (\array_key_exists('Platform', $data) && $data['Platform'] === null) {
             $object->setPlatform(null);
@@ -51,7 +51,7 @@ class SystemVersionNormalizer implements DenormalizerInterface, NormalizerInterf
         if (\array_key_exists('Components', $data) && $data['Components'] !== null) {
             $values = array();
             foreach ($data['Components'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemVersionComponentsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\SystemVersionComponentsItem', 'json', $context);
             }
             $object->setComponents($values);
         }

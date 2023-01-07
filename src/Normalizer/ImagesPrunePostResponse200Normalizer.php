@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ImagesPrunePostResponse200Normalizer implements DenormalizerInterface, Nor
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImagesPrunePostResponse200';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ImagesPrunePostResponse200';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImagesPrunePostResponse200';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ImagesPrunePostResponse200';
     }
     /**
      * @return mixed
@@ -38,14 +38,14 @@ class ImagesPrunePostResponse200Normalizer implements DenormalizerInterface, Nor
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ImagesPrunePostResponse200();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ImagesPrunePostResponse200();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('ImagesDeleted', $data) && $data['ImagesDeleted'] !== null) {
             $values = array();
             foreach ($data['ImagesDeleted'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageDeleteResponseItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\ImageDeleteResponseItem', 'json', $context);
             }
             $object->setImagesDeleted($values);
         }

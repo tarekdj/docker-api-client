@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ExecStart extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ExecStart extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -12,14 +12,14 @@ class ExecStart extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
     
     *
     * @param string $id Exec instance ID
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig 
+    * @param \Tarekdj\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig 
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig)
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig)
     {
         $this->id = $id;
         $this->body = $execStartConfig;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -39,8 +39,8 @@ class ExecStart extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecStartNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecStartConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ExecStartNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ExecStartConflictException
      *
      * @return null
      */
@@ -50,10 +50,10 @@ class ExecStart extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ExecStartNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ExecStartNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (409 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ExecStartConflictException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ExecStartConflictException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

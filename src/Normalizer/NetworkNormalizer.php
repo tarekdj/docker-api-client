@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NetworkNormalizer implements DenormalizerInterface, NormalizerInterface, D
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Network';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Network';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Network';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Network';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class NetworkNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Network();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Network();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -79,7 +79,7 @@ class NetworkNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setEnableIPv6(null);
         }
         if (\array_key_exists('IPAM', $data) && $data['IPAM'] !== null) {
-            $object->setIPAM($this->denormalizer->denormalize($data['IPAM'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\IPAM', 'json', $context));
+            $object->setIPAM($this->denormalizer->denormalize($data['IPAM'], 'Tarekdj\\Docker\\ApiClient\\Model\\IPAM', 'json', $context));
         }
         elseif (\array_key_exists('IPAM', $data) && $data['IPAM'] === null) {
             $object->setIPAM(null);
@@ -105,7 +105,7 @@ class NetworkNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (\array_key_exists('Containers', $data) && $data['Containers'] !== null) {
             $values = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['Containers'] as $key => $value) {
-                $values[$key] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkContainer', 'json', $context);
+                $values[$key] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkContainer', 'json', $context);
             }
             $object->setContainers($values);
         }

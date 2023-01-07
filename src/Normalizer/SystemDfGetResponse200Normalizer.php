@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SystemDfGetResponse200();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SystemDfGetResponse200();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -51,7 +51,7 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('Images', $data) && $data['Images'] !== null) {
             $values = array();
             foreach ($data['Images'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageSummary', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\ImageSummary', 'json', $context);
             }
             $object->setImages($values);
         }
@@ -61,7 +61,7 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('Containers', $data) && $data['Containers'] !== null) {
             $values_1 = array();
             foreach ($data['Containers'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerSummary', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerSummary', 'json', $context);
             }
             $object->setContainers($values_1);
         }
@@ -71,7 +71,7 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('Volumes', $data) && $data['Volumes'] !== null) {
             $values_2 = array();
             foreach ($data['Volumes'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Volume', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\Volume', 'json', $context);
             }
             $object->setVolumes($values_2);
         }
@@ -81,7 +81,7 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('BuildCache', $data) && $data['BuildCache'] !== null) {
             $values_3 = array();
             foreach ($data['BuildCache'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, 'TestContainersPHP\\Docker\\ApiClient\\Model\\BuildCache', 'json', $context);
+                $values_3[] = $this->denormalizer->denormalize($value_3, 'Tarekdj\\Docker\\ApiClient\\Model\\BuildCache', 'json', $context);
             }
             $object->setBuildCache($values_3);
         }

@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerLogs extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -30,7 +30,7 @@ class ContainerLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -65,8 +65,8 @@ class ContainerLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerLogsNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException
      *
      * @return null
      */
@@ -76,10 +76,10 @@ class ContainerLogs extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
             return json_decode($body);
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerLogsNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

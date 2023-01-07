@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -69,7 +69,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('BlkioWeightDevice', $data) && $data['BlkioWeightDevice'] !== null) {
             $values = array();
             foreach ($data['BlkioWeightDevice'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourcesBlkioWeightDeviceItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\ResourcesBlkioWeightDeviceItem', 'json', $context);
             }
             $object->setBlkioWeightDevice($values);
         }
@@ -79,7 +79,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('BlkioDeviceReadBps', $data) && $data['BlkioDeviceReadBps'] !== null) {
             $values_1 = array();
             foreach ($data['BlkioDeviceReadBps'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
             }
             $object->setBlkioDeviceReadBps($values_1);
         }
@@ -89,7 +89,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('BlkioDeviceWriteBps', $data) && $data['BlkioDeviceWriteBps'] !== null) {
             $values_2 = array();
             foreach ($data['BlkioDeviceWriteBps'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
             }
             $object->setBlkioDeviceWriteBps($values_2);
         }
@@ -99,7 +99,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('BlkioDeviceReadIOps', $data) && $data['BlkioDeviceReadIOps'] !== null) {
             $values_3 = array();
             foreach ($data['BlkioDeviceReadIOps'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
+                $values_3[] = $this->denormalizer->denormalize($value_3, 'Tarekdj\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
             }
             $object->setBlkioDeviceReadIOps($values_3);
         }
@@ -109,7 +109,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('BlkioDeviceWriteIOps', $data) && $data['BlkioDeviceWriteIOps'] !== null) {
             $values_4 = array();
             foreach ($data['BlkioDeviceWriteIOps'] as $value_4) {
-                $values_4[] = $this->denormalizer->denormalize($value_4, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
+                $values_4[] = $this->denormalizer->denormalize($value_4, 'Tarekdj\\Docker\\ApiClient\\Model\\ThrottleDevice', 'json', $context);
             }
             $object->setBlkioDeviceWriteIOps($values_4);
         }
@@ -155,7 +155,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('Devices', $data) && $data['Devices'] !== null) {
             $values_5 = array();
             foreach ($data['Devices'] as $value_5) {
-                $values_5[] = $this->denormalizer->denormalize($value_5, 'TestContainersPHP\\Docker\\ApiClient\\Model\\DeviceMapping', 'json', $context);
+                $values_5[] = $this->denormalizer->denormalize($value_5, 'Tarekdj\\Docker\\ApiClient\\Model\\DeviceMapping', 'json', $context);
             }
             $object->setDevices($values_5);
         }
@@ -175,7 +175,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('DeviceRequests', $data) && $data['DeviceRequests'] !== null) {
             $values_7 = array();
             foreach ($data['DeviceRequests'] as $value_7) {
-                $values_7[] = $this->denormalizer->denormalize($value_7, 'TestContainersPHP\\Docker\\ApiClient\\Model\\DeviceRequest', 'json', $context);
+                $values_7[] = $this->denormalizer->denormalize($value_7, 'Tarekdj\\Docker\\ApiClient\\Model\\DeviceRequest', 'json', $context);
             }
             $object->setDeviceRequests($values_7);
         }
@@ -239,7 +239,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('Ulimits', $data) && $data['Ulimits'] !== null) {
             $values_8 = array();
             foreach ($data['Ulimits'] as $value_8) {
-                $values_8[] = $this->denormalizer->denormalize($value_8, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourcesUlimitsItem', 'json', $context);
+                $values_8[] = $this->denormalizer->denormalize($value_8, 'Tarekdj\\Docker\\ApiClient\\Model\\ResourcesUlimitsItem', 'json', $context);
             }
             $object->setUlimits($values_8);
         }
@@ -271,7 +271,7 @@ class ContainersIdUpdatePostBodyNormalizer implements DenormalizerInterface, Nor
             $object->setIOMaximumBandwidth(null);
         }
         if (\array_key_exists('RestartPolicy', $data) && $data['RestartPolicy'] !== null) {
-            $object->setRestartPolicy($this->denormalizer->denormalize($data['RestartPolicy'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\RestartPolicy', 'json', $context));
+            $object->setRestartPolicy($this->denormalizer->denormalize($data['RestartPolicy'], 'Tarekdj\\Docker\\ApiClient\\Model\\RestartPolicy', 'json', $context));
         }
         elseif (\array_key_exists('RestartPolicy', $data) && $data['RestartPolicy'] === null) {
             $object->setRestartPolicy(null);

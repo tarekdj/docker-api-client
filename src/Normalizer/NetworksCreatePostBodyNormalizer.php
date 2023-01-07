@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NetworksCreatePostBodyNormalizer implements DenormalizerInterface, Normali
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworksCreatePostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworksCreatePostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworksCreatePostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworksCreatePostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class NetworksCreatePostBodyNormalizer implements DenormalizerInterface, Normali
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\NetworksCreatePostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\NetworksCreatePostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -79,7 +79,7 @@ class NetworksCreatePostBodyNormalizer implements DenormalizerInterface, Normali
             $object->setIngress(null);
         }
         if (\array_key_exists('IPAM', $data) && $data['IPAM'] !== null) {
-            $object->setIPAM($this->denormalizer->denormalize($data['IPAM'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\IPAM', 'json', $context));
+            $object->setIPAM($this->denormalizer->denormalize($data['IPAM'], 'Tarekdj\\Docker\\ApiClient\\Model\\IPAM', 'json', $context));
         }
         elseif (\array_key_exists('IPAM', $data) && $data['IPAM'] === null) {
             $object->setIPAM(null);

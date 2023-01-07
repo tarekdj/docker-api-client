@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfig';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfig';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfig';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfig';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\PluginConfig();
+        $object = new \Tarekdj\Docker\ApiClient\Model\PluginConfig();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -61,7 +61,7 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setDocumentation(null);
         }
         if (\array_key_exists('Interface', $data) && $data['Interface'] !== null) {
-            $object->setInterface($this->denormalizer->denormalize($data['Interface'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigInterface', 'json', $context));
+            $object->setInterface($this->denormalizer->denormalize($data['Interface'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigInterface', 'json', $context));
         }
         elseif (\array_key_exists('Interface', $data) && $data['Interface'] === null) {
             $object->setInterface(null);
@@ -83,19 +83,19 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setWorkDir(null);
         }
         if (\array_key_exists('User', $data) && $data['User'] !== null) {
-            $object->setUser($this->denormalizer->denormalize($data['User'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigUser', 'json', $context));
+            $object->setUser($this->denormalizer->denormalize($data['User'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigUser', 'json', $context));
         }
         elseif (\array_key_exists('User', $data) && $data['User'] === null) {
             $object->setUser(null);
         }
         if (\array_key_exists('Network', $data) && $data['Network'] !== null) {
-            $object->setNetwork($this->denormalizer->denormalize($data['Network'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigNetwork', 'json', $context));
+            $object->setNetwork($this->denormalizer->denormalize($data['Network'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigNetwork', 'json', $context));
         }
         elseif (\array_key_exists('Network', $data) && $data['Network'] === null) {
             $object->setNetwork(null);
         }
         if (\array_key_exists('Linux', $data) && $data['Linux'] !== null) {
-            $object->setLinux($this->denormalizer->denormalize($data['Linux'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigLinux', 'json', $context));
+            $object->setLinux($this->denormalizer->denormalize($data['Linux'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigLinux', 'json', $context));
         }
         elseif (\array_key_exists('Linux', $data) && $data['Linux'] === null) {
             $object->setLinux(null);
@@ -121,7 +121,7 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (\array_key_exists('Mounts', $data) && $data['Mounts'] !== null) {
             $values_1 = array();
             foreach ($data['Mounts'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginMount', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\PluginMount', 'json', $context);
             }
             $object->setMounts($values_1);
         }
@@ -131,7 +131,7 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (\array_key_exists('Env', $data) && $data['Env'] !== null) {
             $values_2 = array();
             foreach ($data['Env'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginEnv', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\PluginEnv', 'json', $context);
             }
             $object->setEnv($values_2);
         }
@@ -139,13 +139,13 @@ class PluginConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setEnv(null);
         }
         if (\array_key_exists('Args', $data) && $data['Args'] !== null) {
-            $object->setArgs($this->denormalizer->denormalize($data['Args'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigArgs', 'json', $context));
+            $object->setArgs($this->denormalizer->denormalize($data['Args'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigArgs', 'json', $context));
         }
         elseif (\array_key_exists('Args', $data) && $data['Args'] === null) {
             $object->setArgs(null);
         }
         if (\array_key_exists('rootfs', $data) && $data['rootfs'] !== null) {
-            $object->setRootfs($this->denormalizer->denormalize($data['rootfs'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfigRootfs', 'json', $context));
+            $object->setRootfs($this->denormalizer->denormalize($data['rootfs'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfigRootfs', 'json', $context));
         }
         elseif (\array_key_exists('rootfs', $data) && $data['rootfs'] === null) {
             $object->setRootfs(null);

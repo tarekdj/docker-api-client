@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SwarmLeave extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SwarmLeave extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * 
@@ -17,7 +17,7 @@ class SwarmLeave extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     {
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -46,8 +46,8 @@ class SwarmLeave extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException
      *
      * @return null
      */
@@ -57,10 +57,10 @@ class SwarmLeave extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
             return null;
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

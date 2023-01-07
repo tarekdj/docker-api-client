@@ -1,22 +1,22 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NetworkConnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NetworkConnect extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
      * 
      *
      * @param string $id Network ID or name
-     * @param \TestContainersPHP\Docker\ApiClient\Model\NetworksIdConnectPostBody $container 
+     * @param \Tarekdj\Docker\ApiClient\Model\NetworksIdConnectPostBody $container 
      */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\NetworksIdConnectPostBody $container)
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\NetworksIdConnectPostBody $container)
     {
         $this->id = $id;
         $this->body = $container;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -36,9 +36,9 @@ class NetworkConnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException
      *
      * @return null
      */
@@ -48,13 +48,13 @@ class NetworkConnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\
             return null;
         }
         if (403 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectForbiddenException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkConnectForbiddenException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkConnectNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

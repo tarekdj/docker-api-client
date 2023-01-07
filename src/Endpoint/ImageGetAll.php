@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImageGetAll extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImageGetAll extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Get a tarball containing all images and metadata for several image
@@ -25,7 +25,7 @@ class ImageGetAll extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     {
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -54,7 +54,7 @@ class ImageGetAll extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException
      *
      * @return null
      */
@@ -64,7 +64,7 @@ class ImageGetAll extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
             return json_decode($body);
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

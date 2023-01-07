@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Volume';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Volume';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Volume';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Volume';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Volume();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Volume();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -103,7 +103,7 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setOptions(null);
         }
         if (\array_key_exists('UsageData', $data) && $data['UsageData'] !== null) {
-            $object->setUsageData($this->denormalizer->denormalize($data['UsageData'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\VolumeUsageData', 'json', $context));
+            $object->setUsageData($this->denormalizer->denormalize($data['UsageData'], 'Tarekdj\\Docker\\ApiClient\\Model\\VolumeUsageData', 'json', $context));
         }
         elseif (\array_key_exists('UsageData', $data) && $data['UsageData'] === null) {
             $object->setUsageData(null);

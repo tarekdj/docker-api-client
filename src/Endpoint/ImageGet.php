@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImageGet extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImageGet extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $name;
     /**
@@ -37,7 +37,7 @@ class ImageGet extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
     {
         $this->name = $name;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -57,7 +57,7 @@ class ImageGet extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageGetInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageGetInternalServerErrorException
      *
      * @return null
      */
@@ -67,7 +67,7 @@ class ImageGet extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEn
             return json_decode($body);
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageGetInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageGetInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

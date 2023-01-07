@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ServicesCreatePostBodyNormalizer implements DenormalizerInterface, Normali
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServicesCreatePostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServicesCreatePostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServicesCreatePostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServicesCreatePostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ServicesCreatePostBodyNormalizer implements DenormalizerInterface, Normali
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ServicesCreatePostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ServicesCreatePostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -59,25 +59,25 @@ class ServicesCreatePostBodyNormalizer implements DenormalizerInterface, Normali
             $object->setLabels(null);
         }
         if (\array_key_exists('TaskTemplate', $data) && $data['TaskTemplate'] !== null) {
-            $object->setTaskTemplate($this->denormalizer->denormalize($data['TaskTemplate'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpec', 'json', $context));
+            $object->setTaskTemplate($this->denormalizer->denormalize($data['TaskTemplate'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpec', 'json', $context));
         }
         elseif (\array_key_exists('TaskTemplate', $data) && $data['TaskTemplate'] === null) {
             $object->setTaskTemplate(null);
         }
         if (\array_key_exists('Mode', $data) && $data['Mode'] !== null) {
-            $object->setMode($this->denormalizer->denormalize($data['Mode'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecMode', 'json', $context));
+            $object->setMode($this->denormalizer->denormalize($data['Mode'], 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecMode', 'json', $context));
         }
         elseif (\array_key_exists('Mode', $data) && $data['Mode'] === null) {
             $object->setMode(null);
         }
         if (\array_key_exists('UpdateConfig', $data) && $data['UpdateConfig'] !== null) {
-            $object->setUpdateConfig($this->denormalizer->denormalize($data['UpdateConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecUpdateConfig', 'json', $context));
+            $object->setUpdateConfig($this->denormalizer->denormalize($data['UpdateConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecUpdateConfig', 'json', $context));
         }
         elseif (\array_key_exists('UpdateConfig', $data) && $data['UpdateConfig'] === null) {
             $object->setUpdateConfig(null);
         }
         if (\array_key_exists('RollbackConfig', $data) && $data['RollbackConfig'] !== null) {
-            $object->setRollbackConfig($this->denormalizer->denormalize($data['RollbackConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceSpecRollbackConfig', 'json', $context));
+            $object->setRollbackConfig($this->denormalizer->denormalize($data['RollbackConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecRollbackConfig', 'json', $context));
         }
         elseif (\array_key_exists('RollbackConfig', $data) && $data['RollbackConfig'] === null) {
             $object->setRollbackConfig(null);
@@ -85,7 +85,7 @@ class ServicesCreatePostBodyNormalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('Networks', $data) && $data['Networks'] !== null) {
             $values_1 = array();
             foreach ($data['Networks'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig', 'json', $context);
             }
             $object->setNetworks($values_1);
         }
@@ -93,7 +93,7 @@ class ServicesCreatePostBodyNormalizer implements DenormalizerInterface, Normali
             $object->setNetworks(null);
         }
         if (\array_key_exists('EndpointSpec', $data) && $data['EndpointSpec'] !== null) {
-            $object->setEndpointSpec($this->denormalizer->denormalize($data['EndpointSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSpec', 'json', $context));
+            $object->setEndpointSpec($this->denormalizer->denormalize($data['EndpointSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSpec', 'json', $context));
         }
         elseif (\array_key_exists('EndpointSpec', $data) && $data['EndpointSpec'] === null) {
             $object->setEndpointSpec(null);

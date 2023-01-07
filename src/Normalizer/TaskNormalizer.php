@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Task';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Task';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Task';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Task';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Task();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Task();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,7 +49,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setID(null);
         }
         if (\array_key_exists('Version', $data) && $data['Version'] !== null) {
-            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('Version', $data) && $data['Version'] === null) {
             $object->setVersion(null);
@@ -83,7 +83,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setLabels(null);
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);
@@ -109,7 +109,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (\array_key_exists('AssignedGenericResources', $data) && $data['AssignedGenericResources'] !== null) {
             $values_1 = array();
             foreach ($data['AssignedGenericResources'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
             }
             $object->setAssignedGenericResources($values_1);
         }
@@ -117,7 +117,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setAssignedGenericResources(null);
         }
         if (\array_key_exists('Status', $data) && $data['Status'] !== null) {
-            $object->setStatus($this->denormalizer->denormalize($data['Status'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskStatus', 'json', $context));
+            $object->setStatus($this->denormalizer->denormalize($data['Status'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatus', 'json', $context));
         }
         elseif (\array_key_exists('Status', $data) && $data['Status'] === null) {
             $object->setStatus(null);
@@ -129,7 +129,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setDesiredState(null);
         }
         if (\array_key_exists('JobIteration', $data) && $data['JobIteration'] !== null) {
-            $object->setJobIteration($this->denormalizer->denormalize($data['JobIteration'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setJobIteration($this->denormalizer->denormalize($data['JobIteration'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('JobIteration', $data) && $data['JobIteration'] === null) {
             $object->setJobIteration(null);

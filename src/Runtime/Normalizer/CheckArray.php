@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Runtime\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Runtime\Normalizer;
 
 trait CheckArray
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class EndpointSettingsNormalizer implements DenormalizerInterface, NormalizerInt
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSettings';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSettings';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSettings';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSettings';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class EndpointSettingsNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\EndpointSettings();
+        $object = new \Tarekdj\Docker\ApiClient\Model\EndpointSettings();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('IPAMConfig', $data) && $data['IPAMConfig'] !== null) {
-            $object->setIPAMConfig($this->denormalizer->denormalize($data['IPAMConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointIPAMConfig', 'json', $context));
+            $object->setIPAMConfig($this->denormalizer->denormalize($data['IPAMConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointIPAMConfig', 'json', $context));
         }
         elseif (\array_key_exists('IPAMConfig', $data) && $data['IPAMConfig'] === null) {
             $object->setIPAMConfig(null);

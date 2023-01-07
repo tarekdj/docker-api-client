@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class EventMessageNormalizer implements DenormalizerInterface, NormalizerInterfa
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\EventMessage';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\EventMessage';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\EventMessage';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\EventMessage';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class EventMessageNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\EventMessage();
+        $object = new \Tarekdj\Docker\ApiClient\Model\EventMessage();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -55,7 +55,7 @@ class EventMessageNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setAction(null);
         }
         if (\array_key_exists('Actor', $data) && $data['Actor'] !== null) {
-            $object->setActor($this->denormalizer->denormalize($data['Actor'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\EventActor', 'json', $context));
+            $object->setActor($this->denormalizer->denormalize($data['Actor'], 'Tarekdj\\Docker\\ApiClient\\Model\\EventActor', 'json', $context));
         }
         elseif (\array_key_exists('Actor', $data) && $data['Actor'] === null) {
             $object->setActor(null);

@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerArchive extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -18,7 +18,7 @@ class ContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -47,9 +47,9 @@ class ContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException
      *
      * @return null
      */
@@ -59,13 +59,13 @@ class ContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Clien
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array
