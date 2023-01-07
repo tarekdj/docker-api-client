@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecContainerSpec();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecContainerSpec();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -117,7 +117,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
             $object->setGroups(null);
         }
         if (\array_key_exists('Privileges', $data) && $data['Privileges'] !== null) {
-            $object->setPrivileges($this->denormalizer->denormalize($data['Privileges'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges', 'json', $context));
+            $object->setPrivileges($this->denormalizer->denormalize($data['Privileges'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges', 'json', $context));
         }
         elseif (\array_key_exists('Privileges', $data) && $data['Privileges'] === null) {
             $object->setPrivileges(null);
@@ -143,7 +143,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('Mounts', $data) && $data['Mounts'] !== null) {
             $values_5 = array();
             foreach ($data['Mounts'] as $value_5) {
-                $values_5[] = $this->denormalizer->denormalize($value_5, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Mount', 'json', $context);
+                $values_5[] = $this->denormalizer->denormalize($value_5, 'Tarekdj\\Docker\\ApiClient\\Model\\Mount', 'json', $context);
             }
             $object->setMounts($values_5);
         }
@@ -163,7 +163,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
             $object->setStopGracePeriod(null);
         }
         if (\array_key_exists('HealthCheck', $data) && $data['HealthCheck'] !== null) {
-            $object->setHealthCheck($this->denormalizer->denormalize($data['HealthCheck'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\HealthConfig', 'json', $context));
+            $object->setHealthCheck($this->denormalizer->denormalize($data['HealthCheck'], 'Tarekdj\\Docker\\ApiClient\\Model\\HealthConfig', 'json', $context));
         }
         elseif (\array_key_exists('HealthCheck', $data) && $data['HealthCheck'] === null) {
             $object->setHealthCheck(null);
@@ -179,7 +179,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
             $object->setHosts(null);
         }
         if (\array_key_exists('DNSConfig', $data) && $data['DNSConfig'] !== null) {
-            $object->setDNSConfig($this->denormalizer->denormalize($data['DNSConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecDNSConfig', 'json', $context));
+            $object->setDNSConfig($this->denormalizer->denormalize($data['DNSConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecDNSConfig', 'json', $context));
         }
         elseif (\array_key_exists('DNSConfig', $data) && $data['DNSConfig'] === null) {
             $object->setDNSConfig(null);
@@ -187,7 +187,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('Secrets', $data) && $data['Secrets'] !== null) {
             $values_7 = array();
             foreach ($data['Secrets'] as $value_7) {
-                $values_7[] = $this->denormalizer->denormalize($value_7, 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem', 'json', $context);
+                $values_7[] = $this->denormalizer->denormalize($value_7, 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecSecretsItem', 'json', $context);
             }
             $object->setSecrets($values_7);
         }
@@ -197,7 +197,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('Configs', $data) && $data['Configs'] !== null) {
             $values_8 = array();
             foreach ($data['Configs'] as $value_8) {
-                $values_8[] = $this->denormalizer->denormalize($value_8, 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItem', 'json', $context);
+                $values_8[] = $this->denormalizer->denormalize($value_8, 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItem', 'json', $context);
             }
             $object->setConfigs($values_8);
         }
@@ -249,7 +249,7 @@ class TaskSpecContainerSpecNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('Ulimits', $data) && $data['Ulimits'] !== null) {
             $values_12 = array();
             foreach ($data['Ulimits'] as $value_12) {
-                $values_12[] = $this->denormalizer->denormalize($value_12, 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecUlimitsItem', 'json', $context);
+                $values_12[] = $this->denormalizer->denormalize($value_12, 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecUlimitsItem', 'json', $context);
             }
             $object->setUlimits($values_12);
         }

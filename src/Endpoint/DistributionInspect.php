@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class DistributionInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class DistributionInspect extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $name;
     /**
@@ -14,7 +14,7 @@ class DistributionInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Cl
     {
         $this->name = $name;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -34,21 +34,21 @@ class DistributionInspect extends \TestContainersPHP\Docker\ApiClient\Runtime\Cl
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\DistributionInspect
+     * @return null|\Tarekdj\Docker\ApiClient\Model\DistributionInspect
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\DistributionInspect', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\DistributionInspect', 'json');
         }
         if (401 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

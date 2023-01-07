@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ExecIdJsonGetResponse200Normalizer implements DenormalizerInterface, Norma
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ExecIdJsonGetResponse200Normalizer implements DenormalizerInterface, Norma
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ExecIdJsonGetResponse200();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ExecIdJsonGetResponse200();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -73,7 +73,7 @@ class ExecIdJsonGetResponse200Normalizer implements DenormalizerInterface, Norma
             $object->setExitCode(null);
         }
         if (\array_key_exists('ProcessConfig', $data) && $data['ProcessConfig'] !== null) {
-            $object->setProcessConfig($this->denormalizer->denormalize($data['ProcessConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ProcessConfig', 'json', $context));
+            $object->setProcessConfig($this->denormalizer->denormalize($data['ProcessConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\ProcessConfig', 'json', $context));
         }
         elseif (\array_key_exists('ProcessConfig', $data) && $data['ProcessConfig'] === null) {
             $object->setProcessConfig(null);

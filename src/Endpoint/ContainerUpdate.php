@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -11,14 +11,14 @@ class ContainerUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     
     *
     * @param string $id ID or name of the container
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update 
+    * @param \Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update 
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update)
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update)
     {
         $this->id = $id;
         $this->body = $update;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -38,21 +38,21 @@ class ContainerUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostResponse200
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostResponse200
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostResponse200', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersIdUpdatePostResponse200', 'json');
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

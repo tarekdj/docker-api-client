@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerKill extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerKill extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -20,7 +20,7 @@ class ContainerKill extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -49,9 +49,9 @@ class ContainerKill extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException
      *
      * @return null
      */
@@ -61,13 +61,13 @@ class ContainerKill extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerKillNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (409 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillConflictException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerKillConflictException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

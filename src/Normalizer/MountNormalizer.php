@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class MountNormalizer implements DenormalizerInterface, NormalizerInterface, Den
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Mount';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Mount';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Mount';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Mount';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class MountNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Mount();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Mount();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -73,19 +73,19 @@ class MountNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setConsistency(null);
         }
         if (\array_key_exists('BindOptions', $data) && $data['BindOptions'] !== null) {
-            $object->setBindOptions($this->denormalizer->denormalize($data['BindOptions'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountBindOptions', 'json', $context));
+            $object->setBindOptions($this->denormalizer->denormalize($data['BindOptions'], 'Tarekdj\\Docker\\ApiClient\\Model\\MountBindOptions', 'json', $context));
         }
         elseif (\array_key_exists('BindOptions', $data) && $data['BindOptions'] === null) {
             $object->setBindOptions(null);
         }
         if (\array_key_exists('VolumeOptions', $data) && $data['VolumeOptions'] !== null) {
-            $object->setVolumeOptions($this->denormalizer->denormalize($data['VolumeOptions'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountVolumeOptions', 'json', $context));
+            $object->setVolumeOptions($this->denormalizer->denormalize($data['VolumeOptions'], 'Tarekdj\\Docker\\ApiClient\\Model\\MountVolumeOptions', 'json', $context));
         }
         elseif (\array_key_exists('VolumeOptions', $data) && $data['VolumeOptions'] === null) {
             $object->setVolumeOptions(null);
         }
         if (\array_key_exists('TmpfsOptions', $data) && $data['TmpfsOptions'] !== null) {
-            $object->setTmpfsOptions($this->denormalizer->denormalize($data['TmpfsOptions'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountTmpfsOptions', 'json', $context));
+            $object->setTmpfsOptions($this->denormalizer->denormalize($data['TmpfsOptions'], 'Tarekdj\\Docker\\ApiClient\\Model\\MountTmpfsOptions', 'json', $context));
         }
         elseif (\array_key_exists('TmpfsOptions', $data) && $data['TmpfsOptions'] === null) {
             $object->setTmpfsOptions(null);

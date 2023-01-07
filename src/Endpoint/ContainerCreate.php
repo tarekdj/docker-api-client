@@ -1,25 +1,42 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerCreate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerCreate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * 
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostBody $body Container to create
+    * @param \Tarekdj\Docker\ApiClient\Model\ContainersCreatePostBody $body Container to create
     * @param array $queryParameters {
     *     @var string $name Assign the specified name to the container. Must match
     `/?[a-zA-Z0-9][a-zA-Z0-9_.-]+`.
     
+    *     @var string $platform Platform in the format `os[/arch[/variant]]` used for image lookup.
+    
+    When specified, the daemon checks if the requested image is present
+    in the local image cache with the given OS and Architecture, and
+    otherwise returns a `404` status.
+    
+    If the option is not set, the host's native OS and Architecture are
+    used to look up the image in the image cache. However, if no platform
+    is passed and the given image does exist in the local image cache,
+    but its OS or architecture does not match, the container is created
+    with the available image, and a warning is added to the `Warnings`
+    field in the response, for example;
+    
+       WARNING: The requested image's platform (linux/arm64/v8) does not
+                match the detected host platform (linux/amd64) and no
+                specific platform was requested
+    
     * }
     */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostBody $body, array $queryParameters = array())
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\ContainersCreatePostBody $body, array $queryParameters = array())
     {
         $this->body = $body;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -39,38 +56,39 @@ class ContainerCreate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('name'));
+        $optionsResolver->setDefined(array('name', 'platform'));
         $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
+        $optionsResolver->setDefaults(array('platform' => ''));
         $optionsResolver->setAllowedTypes('name', array('string'));
+        $optionsResolver->setAllowedTypes('platform', array('string'));
         return $optionsResolver;
     }
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostResponse201
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersCreatePostResponse201
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (201 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersCreatePostResponse201', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersCreatePostResponse201', 'json');
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerCreateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerCreateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (409 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateConflictException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerCreateConflictException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

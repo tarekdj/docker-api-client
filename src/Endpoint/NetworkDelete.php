@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NetworkDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NetworkDelete extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -14,7 +14,7 @@ class NetworkDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     {
         $this->id = $id;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -34,9 +34,9 @@ class NetworkDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException
      *
      * @return null
      */
@@ -46,13 +46,13 @@ class NetworkDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
             return null;
         }
         if (403 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteForbiddenException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteForbiddenException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

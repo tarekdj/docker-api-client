@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class NodeNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Node';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Node';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Node';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Node';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class NodeNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Node();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Node();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,7 +49,7 @@ class NodeNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setID(null);
         }
         if (\array_key_exists('Version', $data) && $data['Version'] !== null) {
-            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setVersion($this->denormalizer->denormalize($data['Version'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('Version', $data) && $data['Version'] === null) {
             $object->setVersion(null);
@@ -67,25 +67,25 @@ class NodeNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setUpdatedAt(null);
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\NodeSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\NodeSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);
         }
         if (\array_key_exists('Description', $data) && $data['Description'] !== null) {
-            $object->setDescription($this->denormalizer->denormalize($data['Description'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\NodeDescription', 'json', $context));
+            $object->setDescription($this->denormalizer->denormalize($data['Description'], 'Tarekdj\\Docker\\ApiClient\\Model\\NodeDescription', 'json', $context));
         }
         elseif (\array_key_exists('Description', $data) && $data['Description'] === null) {
             $object->setDescription(null);
         }
         if (\array_key_exists('Status', $data) && $data['Status'] !== null) {
-            $object->setStatus($this->denormalizer->denormalize($data['Status'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\NodeStatus', 'json', $context));
+            $object->setStatus($this->denormalizer->denormalize($data['Status'], 'Tarekdj\\Docker\\ApiClient\\Model\\NodeStatus', 'json', $context));
         }
         elseif (\array_key_exists('Status', $data) && $data['Status'] === null) {
             $object->setStatus(null);
         }
         if (\array_key_exists('ManagerStatus', $data) && $data['ManagerStatus'] !== null) {
-            $object->setManagerStatus($this->denormalizer->denormalize($data['ManagerStatus'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ManagerStatus', 'json', $context));
+            $object->setManagerStatus($this->denormalizer->denormalize($data['ManagerStatus'], 'Tarekdj\\Docker\\ApiClient\\Model\\ManagerStatus', 'json', $context));
         }
         elseif (\array_key_exists('ManagerStatus', $data) && $data['ManagerStatus'] === null) {
             $object->setManagerStatus(null);

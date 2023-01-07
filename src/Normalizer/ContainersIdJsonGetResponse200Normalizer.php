@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersIdJsonGetResponse200';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersIdJsonGetResponse200';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersIdJsonGetResponse200';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersIdJsonGetResponse200';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ContainersIdJsonGetResponse200();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ContainersIdJsonGetResponse200();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -71,7 +71,7 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
             $object->setArgs(null);
         }
         if (\array_key_exists('State', $data) && $data['State'] !== null) {
-            $object->setState($this->denormalizer->denormalize($data['State'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerState', 'json', $context));
+            $object->setState($this->denormalizer->denormalize($data['State'], 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerState', 'json', $context));
         }
         elseif (\array_key_exists('State', $data) && $data['State'] === null) {
             $object->setState(null);
@@ -159,13 +159,13 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
             $object->setExecIDs(null);
         }
         if (\array_key_exists('HostConfig', $data) && $data['HostConfig'] !== null) {
-            $object->setHostConfig($this->denormalizer->denormalize($data['HostConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\HostConfig', 'json', $context));
+            $object->setHostConfig($this->denormalizer->denormalize($data['HostConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\HostConfig', 'json', $context));
         }
         elseif (\array_key_exists('HostConfig', $data) && $data['HostConfig'] === null) {
             $object->setHostConfig(null);
         }
         if (\array_key_exists('GraphDriver', $data) && $data['GraphDriver'] !== null) {
-            $object->setGraphDriver($this->denormalizer->denormalize($data['GraphDriver'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\GraphDriverData', 'json', $context));
+            $object->setGraphDriver($this->denormalizer->denormalize($data['GraphDriver'], 'Tarekdj\\Docker\\ApiClient\\Model\\GraphDriverData', 'json', $context));
         }
         elseif (\array_key_exists('GraphDriver', $data) && $data['GraphDriver'] === null) {
             $object->setGraphDriver(null);
@@ -185,7 +185,7 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
         if (\array_key_exists('Mounts', $data) && $data['Mounts'] !== null) {
             $values_2 = array();
             foreach ($data['Mounts'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountPoint', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\MountPoint', 'json', $context);
             }
             $object->setMounts($values_2);
         }
@@ -193,13 +193,13 @@ class ContainersIdJsonGetResponse200Normalizer implements DenormalizerInterface,
             $object->setMounts(null);
         }
         if (\array_key_exists('Config', $data) && $data['Config'] !== null) {
-            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
+            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
         }
         elseif (\array_key_exists('Config', $data) && $data['Config'] === null) {
             $object->setConfig(null);
         }
         if (\array_key_exists('NetworkSettings', $data) && $data['NetworkSettings'] !== null) {
-            $object->setNetworkSettings($this->denormalizer->denormalize($data['NetworkSettings'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkSettings', 'json', $context));
+            $object->setNetworkSettings($this->denormalizer->denormalize($data['NetworkSettings'], 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkSettings', 'json', $context));
         }
         elseif (\array_key_exists('NetworkSettings', $data) && $data['NetworkSettings'] === null) {
             $object->setNetworkSettings(null);

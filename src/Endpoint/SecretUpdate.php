@@ -1,15 +1,15 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SecretUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SecretUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
     * 
     *
     * @param string $id The ID or name of the secret
-    * @param \TestContainersPHP\Docker\ApiClient\Model\SecretSpec $body The spec of the secret to update. Currently, only the Labels field
+    * @param \Tarekdj\Docker\ApiClient\Model\SecretSpec $body The spec of the secret to update. Currently, only the Labels field
     can be updated. All other fields must remain unchanged from the
     [SecretInspect endpoint](#operation/SecretInspect) response values.
     
@@ -19,13 +19,13 @@ class SecretUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     
     * }
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\SecretSpec $body, array $queryParameters = array())
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\SecretSpec $body, array $queryParameters = array())
     {
         $this->id = $id;
         $this->body = $body;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -54,10 +54,10 @@ class SecretUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException
      *
      * @return null
      */
@@ -67,16 +67,16 @@ class SecretUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SecretUpdateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SecretUpdateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

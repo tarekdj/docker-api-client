@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ServiceEndpointNormalizer implements DenormalizerInterface, NormalizerInte
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceEndpoint';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceEndpoint';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceEndpoint';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceEndpoint';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class ServiceEndpointNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ServiceEndpoint();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ServiceEndpoint();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('Spec', $data) && $data['Spec'] !== null) {
-            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointSpec', 'json', $context));
+            $object->setSpec($this->denormalizer->denormalize($data['Spec'], 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointSpec', 'json', $context));
         }
         elseif (\array_key_exists('Spec', $data) && $data['Spec'] === null) {
             $object->setSpec(null);
@@ -51,7 +51,7 @@ class ServiceEndpointNormalizer implements DenormalizerInterface, NormalizerInte
         if (\array_key_exists('Ports', $data) && $data['Ports'] !== null) {
             $values = array();
             foreach ($data['Ports'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\EndpointPortConfig', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointPortConfig', 'json', $context);
             }
             $object->setPorts($values);
         }
@@ -61,7 +61,7 @@ class ServiceEndpointNormalizer implements DenormalizerInterface, NormalizerInte
         if (\array_key_exists('VirtualIPs', $data) && $data['VirtualIPs'] !== null) {
             $values_1 = array();
             foreach ($data['VirtualIPs'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceEndpointVirtualIPsItem', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceEndpointVirtualIPsItem', 'json', $context);
             }
             $object->setVirtualIPs($values_1);
         }

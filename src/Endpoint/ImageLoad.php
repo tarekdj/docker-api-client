@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImageLoad extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImageLoad extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Load a set of images and tags into a repository.
@@ -20,7 +20,7 @@ class ImageLoad extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
         $this->body = $imagesTarball;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -49,7 +49,7 @@ class ImageLoad extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException
      *
      * @return null
      */
@@ -59,7 +59,7 @@ class ImageLoad extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
             return null;
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

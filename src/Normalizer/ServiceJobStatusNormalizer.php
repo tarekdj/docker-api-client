@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ServiceJobStatusNormalizer implements DenormalizerInterface, NormalizerInt
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceJobStatus';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceJobStatus';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceJobStatus';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceJobStatus';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class ServiceJobStatusNormalizer implements DenormalizerInterface, NormalizerInt
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ServiceJobStatus();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ServiceJobStatus();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('JobIteration', $data) && $data['JobIteration'] !== null) {
-            $object->setJobIteration($this->denormalizer->denormalize($data['JobIteration'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
+            $object->setJobIteration($this->denormalizer->denormalize($data['JobIteration'], 'Tarekdj\\Docker\\ApiClient\\Model\\ObjectVersion', 'json', $context));
         }
         elseif (\array_key_exists('JobIteration', $data) && $data['JobIteration'] === null) {
             $object->setJobIteration(null);

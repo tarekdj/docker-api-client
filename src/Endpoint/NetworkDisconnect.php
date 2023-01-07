@@ -1,22 +1,22 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NetworkDisconnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NetworkDisconnect extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
      * 
      *
      * @param string $id Network ID or name
-     * @param \TestContainersPHP\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container 
+     * @param \Tarekdj\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container 
      */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container)
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container)
     {
         $this->id = $id;
         $this->body = $container;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -36,9 +36,9 @@ class NetworkDisconnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Clie
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException
      *
      * @return null
      */
@@ -48,13 +48,13 @@ class NetworkDisconnect extends \TestContainersPHP\Docker\ApiClient\Runtime\Clie
             return null;
         }
         if (403 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

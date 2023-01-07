@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmInfo';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInfo';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmInfo';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInfo';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SwarmInfo();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SwarmInfo();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -75,7 +75,7 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (\array_key_exists('RemoteManagers', $data) && $data['RemoteManagers'] !== null) {
             $values = array();
             foreach ($data['RemoteManagers'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\PeerNode', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\PeerNode', 'json', $context);
             }
             $object->setRemoteManagers($values);
         }
@@ -95,7 +95,7 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
             $object->setManagers(null);
         }
         if (\array_key_exists('Cluster', $data) && $data['Cluster'] !== null) {
-            $object->setCluster($this->denormalizer->denormalize($data['Cluster'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ClusterInfo', 'json', $context));
+            $object->setCluster($this->denormalizer->denormalize($data['Cluster'], 'Tarekdj\\Docker\\ApiClient\\Model\\ClusterInfo', 'json', $context));
         }
         elseif (\array_key_exists('Cluster', $data) && $data['Cluster'] === null) {
             $object->setCluster(null);

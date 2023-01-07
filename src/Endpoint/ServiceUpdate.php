@@ -1,15 +1,15 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ServiceUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ServiceUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
     * 
     *
     * @param string $id ID or name of service.
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the service object being updated. This is
     required to avoid conflicting writes.
@@ -34,14 +34,14 @@ class ServiceUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     
     * }
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body, array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body, array $queryParameters = array(), array $headerParameters = array())
     {
         $this->id = $id;
         $this->body = $body;
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -81,29 +81,29 @@ class ServiceUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ServiceUpdateResponse
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ServiceUpdateResponse
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ServiceUpdateResponse', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceUpdateResponse', 'json');
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

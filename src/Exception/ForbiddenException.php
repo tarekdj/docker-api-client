@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Exception;
+namespace Tarekdj\Docker\ApiClient\Exception;
 
 class ForbiddenException extends \RuntimeException implements ClientException
 {

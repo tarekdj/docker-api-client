@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerAttach extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerAttach extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -13,7 +13,7 @@ class ContainerAttach extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     Either the `stream` or `logs` parameter must be `true` for this endpoint
     to do anything.
     
-    See the [documentation for the `docker attach` command](engine/reference/commandline/attach/)
+    See the [documentation for the `docker attach` command](/engine/reference/commandline/attach/)
     for more details.
     
     ### Hijacking
@@ -128,7 +128,7 @@ class ContainerAttach extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -162,9 +162,9 @@ class ContainerAttach extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException
      *
      * @return null
      */
@@ -177,13 +177,13 @@ class ContainerAttach extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

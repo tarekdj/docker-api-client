@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecResourcesNormalizer implements DenormalizerInterface, NormalizerIn
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecResources';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecResources';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecResources';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecResources';
     }
     /**
      * @return mixed
@@ -38,18 +38,18 @@ class TaskSpecResourcesNormalizer implements DenormalizerInterface, NormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecResources();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecResources();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('Limits', $data) && $data['Limits'] !== null) {
-            $object->setLimits($this->denormalizer->denormalize($data['Limits'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Limit', 'json', $context));
+            $object->setLimits($this->denormalizer->denormalize($data['Limits'], 'Tarekdj\\Docker\\ApiClient\\Model\\Limit', 'json', $context));
         }
         elseif (\array_key_exists('Limits', $data) && $data['Limits'] === null) {
             $object->setLimits(null);
         }
         if (\array_key_exists('Reservations', $data) && $data['Reservations'] !== null) {
-            $object->setReservations($this->denormalizer->denormalize($data['Reservations'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourceObject', 'json', $context));
+            $object->setReservations($this->denormalizer->denormalize($data['Reservations'], 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject', 'json', $context));
         }
         elseif (\array_key_exists('Reservations', $data) && $data['Reservations'] === null) {
             $object->setReservations(null);

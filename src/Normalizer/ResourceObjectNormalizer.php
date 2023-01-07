@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ResourceObjectNormalizer implements DenormalizerInterface, NormalizerInter
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourceObject';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ResourceObject';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ResourceObjectNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ResourceObject();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ResourceObject();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -57,7 +57,7 @@ class ResourceObjectNormalizer implements DenormalizerInterface, NormalizerInter
         if (\array_key_exists('GenericResources', $data) && $data['GenericResources'] !== null) {
             $values = array();
             foreach ($data['GenericResources'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
             }
             $object->setGenericResources($values);
         }

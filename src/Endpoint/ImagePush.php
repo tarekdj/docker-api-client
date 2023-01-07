@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ImagePush extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ImagePush extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $name;
     /**
@@ -33,7 +33,7 @@ class ImagePush extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -71,8 +71,8 @@ class ImagePush extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImagePushNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImagePushInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImagePushNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImagePushInternalServerErrorException
      *
      * @return null
      */
@@ -82,10 +82,10 @@ class ImagePush extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseE
             return null;
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImagePushNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImagePushNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ImagePushInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ImagePushInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

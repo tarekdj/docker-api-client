@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecPlacementNormalizer implements DenormalizerInterface, NormalizerIn
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPlacement';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPlacement';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPlacement';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPlacement';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskSpecPlacementNormalizer implements DenormalizerInterface, NormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecPlacement();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecPlacement();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -55,7 +55,7 @@ class TaskSpecPlacementNormalizer implements DenormalizerInterface, NormalizerIn
         if (\array_key_exists('Preferences', $data) && $data['Preferences'] !== null) {
             $values_1 = array();
             foreach ($data['Preferences'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPlacementPreferencesItem', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPlacementPreferencesItem', 'json', $context);
             }
             $object->setPreferences($values_1);
         }
@@ -71,7 +71,7 @@ class TaskSpecPlacementNormalizer implements DenormalizerInterface, NormalizerIn
         if (\array_key_exists('Platforms', $data) && $data['Platforms'] !== null) {
             $values_2 = array();
             foreach ($data['Platforms'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Platform', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\Platform', 'json', $context);
             }
             $object->setPlatforms($values_2);
         }

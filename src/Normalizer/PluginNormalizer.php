@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class PluginNormalizer implements DenormalizerInterface, NormalizerInterface, De
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Plugin';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Plugin';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\Plugin';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Plugin';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class PluginNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\Plugin();
+        $object = new \Tarekdj\Docker\ApiClient\Model\Plugin();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -61,7 +61,7 @@ class PluginNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setEnabled(null);
         }
         if (\array_key_exists('Settings', $data) && $data['Settings'] !== null) {
-            $object->setSettings($this->denormalizer->denormalize($data['Settings'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginSettings', 'json', $context));
+            $object->setSettings($this->denormalizer->denormalize($data['Settings'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginSettings', 'json', $context));
         }
         elseif (\array_key_exists('Settings', $data) && $data['Settings'] === null) {
             $object->setSettings(null);
@@ -73,7 +73,7 @@ class PluginNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setPluginReference(null);
         }
         if (\array_key_exists('Config', $data) && $data['Config'] !== null) {
-            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginConfig', 'json', $context));
+            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginConfig', 'json', $context));
         }
         elseif (\array_key_exists('Config', $data) && $data['Config'] === null) {
             $object->setConfig(null);

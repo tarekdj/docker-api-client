@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerDelete extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -20,7 +20,7 @@ class ContainerDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -51,10 +51,10 @@ class ContainerDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException
      *
      * @return null
      */
@@ -64,16 +64,16 @@ class ContainerDelete extends \TestContainersPHP\Docker\ApiClient\Runtime\Client
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (409 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteConflictException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteConflictException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

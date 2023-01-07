@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageInspect';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspect';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageInspect';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspect';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ImageInspect();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ImageInspect();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -93,7 +93,7 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setContainer(null);
         }
         if (\array_key_exists('ContainerConfig', $data) && $data['ContainerConfig'] !== null) {
-            $object->setContainerConfig($this->denormalizer->denormalize($data['ContainerConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
+            $object->setContainerConfig($this->denormalizer->denormalize($data['ContainerConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
         }
         elseif (\array_key_exists('ContainerConfig', $data) && $data['ContainerConfig'] === null) {
             $object->setContainerConfig(null);
@@ -111,7 +111,7 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setAuthor(null);
         }
         if (\array_key_exists('Config', $data) && $data['Config'] !== null) {
-            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
+            $object->setConfig($this->denormalizer->denormalize($data['Config'], 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerConfig', 'json', $context));
         }
         elseif (\array_key_exists('Config', $data) && $data['Config'] === null) {
             $object->setConfig(null);
@@ -153,19 +153,19 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setVirtualSize(null);
         }
         if (\array_key_exists('GraphDriver', $data) && $data['GraphDriver'] !== null) {
-            $object->setGraphDriver($this->denormalizer->denormalize($data['GraphDriver'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\GraphDriverData', 'json', $context));
+            $object->setGraphDriver($this->denormalizer->denormalize($data['GraphDriver'], 'Tarekdj\\Docker\\ApiClient\\Model\\GraphDriverData', 'json', $context));
         }
         elseif (\array_key_exists('GraphDriver', $data) && $data['GraphDriver'] === null) {
             $object->setGraphDriver(null);
         }
         if (\array_key_exists('RootFS', $data) && $data['RootFS'] !== null) {
-            $object->setRootFS($this->denormalizer->denormalize($data['RootFS'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageInspectRootFS', 'json', $context));
+            $object->setRootFS($this->denormalizer->denormalize($data['RootFS'], 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspectRootFS', 'json', $context));
         }
         elseif (\array_key_exists('RootFS', $data) && $data['RootFS'] === null) {
             $object->setRootFS(null);
         }
         if (\array_key_exists('Metadata', $data) && $data['Metadata'] !== null) {
-            $object->setMetadata($this->denormalizer->denormalize($data['Metadata'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\ImageInspectMetadata', 'json', $context));
+            $object->setMetadata($this->denormalizer->denormalize($data['Metadata'], 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspectMetadata', 'json', $context));
         }
         elseif (\array_key_exists('Metadata', $data) && $data['Metadata'] === null) {
             $object->setMetadata(null);

@@ -1,28 +1,28 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class NodeUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class NodeUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
     * 
     *
     * @param string $id The ID of the node
-    * @param \TestContainersPHP\Docker\ApiClient\Model\NodeSpec $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\NodeSpec $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the node object being updated. This is required
     to avoid conflicting writes.
     
     * }
     */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\NodeSpec $body, array $queryParameters = array())
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\NodeSpec $body, array $queryParameters = array())
     {
         $this->id = $id;
         $this->body = $body;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -51,10 +51,10 @@ class NodeUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException
      *
      * @return null
      */
@@ -64,16 +64,16 @@ class NodeUpdate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeUpdateBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeUpdateNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

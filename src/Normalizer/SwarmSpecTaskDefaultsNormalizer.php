@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SwarmSpecTaskDefaultsNormalizer implements DenormalizerInterface, Normaliz
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaults';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class SwarmSpecTaskDefaultsNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SwarmSpecTaskDefaults();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SwarmSpecTaskDefaults();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('LogDriver', $data) && $data['LogDriver'] !== null) {
-            $object->setLogDriver($this->denormalizer->denormalize($data['LogDriver'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaultsLogDriver', 'json', $context));
+            $object->setLogDriver($this->denormalizer->denormalize($data['LogDriver'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecTaskDefaultsLogDriver', 'json', $context));
         }
         elseif (\array_key_exists('LogDriver', $data) && $data['LogDriver'] === null) {
             $object->setLogDriver(null);

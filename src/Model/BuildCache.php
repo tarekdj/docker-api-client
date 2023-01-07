@@ -1,41 +1,41 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Model;
+namespace Tarekdj\Docker\ApiClient\Model;
 
 class BuildCache
 {
     /**
-     * 
+     * Unique ID of the build cache record.
      *
      * @var string|null
      */
     protected $iD;
     /**
-     * 
+     * ID of the parent build cache record.
      *
      * @var string|null
      */
     protected $parent;
     /**
-     * 
+     * Cache record type.
      *
      * @var string|null
      */
     protected $type;
     /**
-     * 
+     * Description of the build-step that produced the build cache.
      *
      * @var string|null
      */
     protected $description;
     /**
-     * 
+     * Indicates if the build cache is in use.
      *
      * @var bool|null
      */
     protected $inUse;
     /**
-     * 
+     * Indicates if the build cache is shared.
      *
      * @var bool|null
      */
@@ -69,7 +69,7 @@ class BuildCache
      */
     protected $usageCount;
     /**
-     * 
+     * Unique ID of the build cache record.
      *
      * @return string|null
      */
@@ -78,7 +78,7 @@ class BuildCache
         return $this->iD;
     }
     /**
-     * 
+     * Unique ID of the build cache record.
      *
      * @param string|null $iD
      *
@@ -90,7 +90,7 @@ class BuildCache
         return $this;
     }
     /**
-     * 
+     * ID of the parent build cache record.
      *
      * @return string|null
      */
@@ -99,7 +99,7 @@ class BuildCache
         return $this->parent;
     }
     /**
-     * 
+     * ID of the parent build cache record.
      *
      * @param string|null $parent
      *
@@ -111,7 +111,7 @@ class BuildCache
         return $this;
     }
     /**
-     * 
+     * Cache record type.
      *
      * @return string|null
      */
@@ -120,7 +120,7 @@ class BuildCache
         return $this->type;
     }
     /**
-     * 
+     * Cache record type.
      *
      * @param string|null $type
      *
@@ -132,7 +132,7 @@ class BuildCache
         return $this;
     }
     /**
-     * 
+     * Description of the build-step that produced the build cache.
      *
      * @return string|null
      */
@@ -141,7 +141,7 @@ class BuildCache
         return $this->description;
     }
     /**
-     * 
+     * Description of the build-step that produced the build cache.
      *
      * @param string|null $description
      *
@@ -153,7 +153,7 @@ class BuildCache
         return $this;
     }
     /**
-     * 
+     * Indicates if the build cache is in use.
      *
      * @return bool|null
      */
@@ -162,7 +162,7 @@ class BuildCache
         return $this->inUse;
     }
     /**
-     * 
+     * Indicates if the build cache is in use.
      *
      * @param bool|null $inUse
      *
@@ -174,7 +174,7 @@ class BuildCache
         return $this;
     }
     /**
-     * 
+     * Indicates if the build cache is shared.
      *
      * @return bool|null
      */
@@ -183,7 +183,7 @@ class BuildCache
         return $this->shared;
     }
     /**
-     * 
+     * Indicates if the build cache is shared.
      *
      * @param bool|null $shared
      *

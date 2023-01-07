@@ -1,19 +1,19 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class SwarmUnlock extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class SwarmUnlock extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmUnlockPostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SwarmUnlockPostBody $body 
      */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\SwarmUnlockPostBody $body)
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\SwarmUnlockPostBody $body)
     {
         $this->body = $body;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -33,8 +33,8 @@ class SwarmUnlock extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException
      *
      * @return null
      */
@@ -44,10 +44,10 @@ class SwarmUnlock extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Bas
             return null;
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (503 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class PutContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class PutContainerArchive extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -33,7 +33,7 @@ class PutContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Cl
         $this->body = $inputStream;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'PUT';
@@ -64,10 +64,10 @@ class PutContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Cl
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException
      *
      * @return null
      */
@@ -77,16 +77,16 @@ class PutContainerArchive extends \TestContainersPHP\Docker\ApiClient\Runtime\Cl
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (403 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

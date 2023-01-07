@@ -2,7 +2,7 @@
 
 return [
     'directory' => 'src',
-    'namespace' => 'TestContainersPHP\\Docker\\ApiClient',
+    'namespace' => 'Tarekdj\\Docker\\ApiClient',
     'openapi-file' => 'https://docs.docker.com/engine/api/v1.41.yaml',
     'strict' => false,
     'use-fixer' => true,

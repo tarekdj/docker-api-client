@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "TestContainersPHP\\Docker\\ApiClient\\": "src/"
+            "Tarekdj\\Docker\\ApiClient\\": "src/"
         }
     },
     "scripts": {

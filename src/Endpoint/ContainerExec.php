@@ -1,22 +1,22 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerExec extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerExec extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
      * Run a command inside a running container.
      *
      * @param string $id ID or name of container
-     * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig Exec configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig Exec configuration
      */
-    public function __construct(string $id, \TestContainersPHP\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig)
+    public function __construct(string $id, \Tarekdj\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig)
     {
         $this->id = $id;
         $this->body = $execConfig;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -36,25 +36,25 @@ class ContainerExec extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (201 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\IdResponse', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\IdResponse', 'json');
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerExecNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (409 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecConflictException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerExecConflictException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

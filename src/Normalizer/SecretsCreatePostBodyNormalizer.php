@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SecretsCreatePostBodyNormalizer implements DenormalizerInterface, Normaliz
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SecretsCreatePostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SecretsCreatePostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SecretsCreatePostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SecretsCreatePostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SecretsCreatePostBodyNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SecretsCreatePostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SecretsCreatePostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -65,13 +65,13 @@ class SecretsCreatePostBodyNormalizer implements DenormalizerInterface, Normaliz
             $object->setData(null);
         }
         if (\array_key_exists('Driver', $data) && $data['Driver'] !== null) {
-            $object->setDriver($this->denormalizer->denormalize($data['Driver'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
+            $object->setDriver($this->denormalizer->denormalize($data['Driver'], 'Tarekdj\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
         }
         elseif (\array_key_exists('Driver', $data) && $data['Driver'] === null) {
             $object->setDriver(null);
         }
         if (\array_key_exists('Templating', $data) && $data['Templating'] !== null) {
-            $object->setTemplating($this->denormalizer->denormalize($data['Templating'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
+            $object->setTemplating($this->denormalizer->denormalize($data['Templating'], 'Tarekdj\\Docker\\ApiClient\\Model\\Driver', 'json', $context));
         }
         elseif (\array_key_exists('Templating', $data) && $data['Templating'] === null) {
             $object->setTemplating(null);

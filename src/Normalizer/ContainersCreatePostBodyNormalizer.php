@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class ContainersCreatePostBodyNormalizer implements DenormalizerInterface, Norma
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersCreatePostBody';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersCreatePostBody';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\ContainersCreatePostBody';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainersCreatePostBody';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class ContainersCreatePostBodyNormalizer implements DenormalizerInterface, Norma
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostBody();
+        $object = new \Tarekdj\Docker\ApiClient\Model\ContainersCreatePostBody();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -127,7 +127,7 @@ class ContainersCreatePostBodyNormalizer implements DenormalizerInterface, Norma
             $object->setCmd(null);
         }
         if (\array_key_exists('Healthcheck', $data) && $data['Healthcheck'] !== null) {
-            $object->setHealthcheck($this->denormalizer->denormalize($data['Healthcheck'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\HealthConfig', 'json', $context));
+            $object->setHealthcheck($this->denormalizer->denormalize($data['Healthcheck'], 'Tarekdj\\Docker\\ApiClient\\Model\\HealthConfig', 'json', $context));
         }
         elseif (\array_key_exists('Healthcheck', $data) && $data['Healthcheck'] === null) {
             $object->setHealthcheck(null);
@@ -225,13 +225,13 @@ class ContainersCreatePostBodyNormalizer implements DenormalizerInterface, Norma
             $object->setShell(null);
         }
         if (\array_key_exists('HostConfig', $data) && $data['HostConfig'] !== null) {
-            $object->setHostConfig($this->denormalizer->denormalize($data['HostConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\HostConfig', 'json', $context));
+            $object->setHostConfig($this->denormalizer->denormalize($data['HostConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\HostConfig', 'json', $context));
         }
         elseif (\array_key_exists('HostConfig', $data) && $data['HostConfig'] === null) {
             $object->setHostConfig(null);
         }
         if (\array_key_exists('NetworkingConfig', $data) && $data['NetworkingConfig'] !== null) {
-            $object->setNetworkingConfig($this->denormalizer->denormalize($data['NetworkingConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkingConfig', 'json', $context));
+            $object->setNetworkingConfig($this->denormalizer->denormalize($data['NetworkingConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkingConfig', 'json', $context));
         }
         elseif (\array_key_exists('NetworkingConfig', $data) && $data['NetworkingConfig'] === null) {
             $object->setNetworkingConfig(null);

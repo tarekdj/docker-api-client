@@ -1,15 +1,15 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class PluginPull extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class PluginPull extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
     * Pulls and installs a plugin. After the plugin is installed, it can be
     enabled using the [`POST /plugins/{name}/enable` endpoint](#operation/PostPluginsEnable).
     
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\PluginPrivilege[] $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\PluginPrivilege[] $body 
     * @param array $queryParameters {
     *     @var string $remote Remote reference for plugin to install.
     
@@ -35,7 +35,7 @@ class PluginPull extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -74,7 +74,7 @@ class PluginPull extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginPullInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\PluginPullInternalServerErrorException
      *
      * @return null
      */
@@ -84,7 +84,7 @@ class PluginPull extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Base
             return null;
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\PluginPullInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\PluginPullInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

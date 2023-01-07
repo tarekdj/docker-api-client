@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskStatusNormalizer implements DenormalizerInterface, NormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskStatus';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatus';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskStatus';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatus';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskStatusNormalizer implements DenormalizerInterface, NormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskStatus();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskStatus();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -67,7 +67,7 @@ class TaskStatusNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setErr(null);
         }
         if (\array_key_exists('ContainerStatus', $data) && $data['ContainerStatus'] !== null) {
-            $object->setContainerStatus($this->denormalizer->denormalize($data['ContainerStatus'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskStatusContainerStatus', 'json', $context));
+            $object->setContainerStatus($this->denormalizer->denormalize($data['ContainerStatus'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatusContainerStatus', 'json', $context));
         }
         elseif (\array_key_exists('ContainerStatus', $data) && $data['ContainerStatus'] === null) {
             $object->setContainerStatus(null);

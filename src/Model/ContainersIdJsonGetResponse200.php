@@ -1,6 +1,6 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Model;
+namespace Tarekdj\Docker\ApiClient\Model;
 
 class ContainersIdJsonGetResponse200
 {
@@ -149,10 +149,18 @@ class ContainersIdJsonGetResponse200
      */
     protected $mounts;
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @var ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @var ContainerConfig|null
+    */
     protected $config;
     /**
      * NetworkSettings exposes the network settings in the API
@@ -656,21 +664,37 @@ class ContainersIdJsonGetResponse200
         return $this;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @return ContainerConfig|null
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @return ContainerConfig|null
+    */
     public function getConfig() : ?ContainerConfig
     {
         return $this->config;
     }
     /**
-     * Configuration for a container that is portable between hosts.
-     *
-     * @param ContainerConfig|null $config
-     *
-     * @return self
-     */
+    * Configuration for a container that is portable between hosts.
+    
+    When used as `ContainerConfig` field in an image, `ContainerConfig` is an
+    optional field containing the configuration of the container that was last
+    committed when creating the image.
+    
+    Previous versions of Docker builder used this field to store build cache,
+    and it is not in active use anymore.
+    
+    *
+    * @param ContainerConfig|null $config
+    *
+    * @return self
+    */
     public function setConfig(?ContainerConfig $config) : self
     {
         $this->config = $config;

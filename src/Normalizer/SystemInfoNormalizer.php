@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemInfo';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemInfo';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemInfo';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemInfo';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\SystemInfo();
+        $object = new \Tarekdj\Docker\ApiClient\Model\SystemInfo();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -105,7 +105,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setDockerRootDir(null);
         }
         if (\array_key_exists('Plugins', $data) && $data['Plugins'] !== null) {
-            $object->setPlugins($this->denormalizer->denormalize($data['Plugins'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginsInfo', 'json', $context));
+            $object->setPlugins($this->denormalizer->denormalize($data['Plugins'], 'Tarekdj\\Docker\\ApiClient\\Model\\PluginsInfo', 'json', $context));
         }
         elseif (\array_key_exists('Plugins', $data) && $data['Plugins'] === null) {
             $object->setPlugins(null);
@@ -285,7 +285,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setIndexServerAddress(null);
         }
         if (\array_key_exists('RegistryConfig', $data) && $data['RegistryConfig'] !== null) {
-            $object->setRegistryConfig($this->denormalizer->denormalize($data['RegistryConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\RegistryServiceConfig', 'json', $context));
+            $object->setRegistryConfig($this->denormalizer->denormalize($data['RegistryConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\RegistryServiceConfig', 'json', $context));
         }
         elseif (\array_key_exists('RegistryConfig', $data) && $data['RegistryConfig'] === null) {
             $object->setRegistryConfig(null);
@@ -293,7 +293,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
         if (\array_key_exists('GenericResources', $data) && $data['GenericResources'] !== null) {
             $values_2 = array();
             foreach ($data['GenericResources'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'TestContainersPHP\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItem', 'json', $context);
             }
             $object->setGenericResources($values_2);
         }
@@ -361,7 +361,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
         if (\array_key_exists('Runtimes', $data) && $data['Runtimes'] !== null) {
             $values_4 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['Runtimes'] as $key => $value_4) {
-                $values_4[$key] = $this->denormalizer->denormalize($value_4, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Runtime', 'json', $context);
+                $values_4[$key] = $this->denormalizer->denormalize($value_4, 'Tarekdj\\Docker\\ApiClient\\Model\\Runtime', 'json', $context);
             }
             $object->setRuntimes($values_4);
         }
@@ -375,7 +375,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setDefaultRuntime(null);
         }
         if (\array_key_exists('Swarm', $data) && $data['Swarm'] !== null) {
-            $object->setSwarm($this->denormalizer->denormalize($data['Swarm'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\SwarmInfo', 'json', $context));
+            $object->setSwarm($this->denormalizer->denormalize($data['Swarm'], 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInfo', 'json', $context));
         }
         elseif (\array_key_exists('Swarm', $data) && $data['Swarm'] === null) {
             $object->setSwarm(null);
@@ -399,19 +399,19 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setInitBinary(null);
         }
         if (\array_key_exists('ContainerdCommit', $data) && $data['ContainerdCommit'] !== null) {
-            $object->setContainerdCommit($this->denormalizer->denormalize($data['ContainerdCommit'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
+            $object->setContainerdCommit($this->denormalizer->denormalize($data['ContainerdCommit'], 'Tarekdj\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
         }
         elseif (\array_key_exists('ContainerdCommit', $data) && $data['ContainerdCommit'] === null) {
             $object->setContainerdCommit(null);
         }
         if (\array_key_exists('RuncCommit', $data) && $data['RuncCommit'] !== null) {
-            $object->setRuncCommit($this->denormalizer->denormalize($data['RuncCommit'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
+            $object->setRuncCommit($this->denormalizer->denormalize($data['RuncCommit'], 'Tarekdj\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
         }
         elseif (\array_key_exists('RuncCommit', $data) && $data['RuncCommit'] === null) {
             $object->setRuncCommit(null);
         }
         if (\array_key_exists('InitCommit', $data) && $data['InitCommit'] !== null) {
-            $object->setInitCommit($this->denormalizer->denormalize($data['InitCommit'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
+            $object->setInitCommit($this->denormalizer->denormalize($data['InitCommit'], 'Tarekdj\\Docker\\ApiClient\\Model\\Commit', 'json', $context));
         }
         elseif (\array_key_exists('InitCommit', $data) && $data['InitCommit'] === null) {
             $object->setInitCommit(null);
@@ -435,7 +435,7 @@ class SystemInfoNormalizer implements DenormalizerInterface, NormalizerInterface
         if (\array_key_exists('DefaultAddressPools', $data) && $data['DefaultAddressPools'] !== null) {
             $values_6 = array();
             foreach ($data['DefaultAddressPools'] as $value_6) {
-                $values_6[] = $this->denormalizer->denormalize($value_6, 'TestContainersPHP\\Docker\\ApiClient\\Model\\SystemInfoDefaultAddressPoolsItem', 'json', $context);
+                $values_6[] = $this->denormalizer->denormalize($value_6, 'Tarekdj\\Docker\\ApiClient\\Model\\SystemInfoDefaultAddressPoolsItem', 'json', $context);
             }
             $object->setDefaultAddressPools($values_6);
         }

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class DistributionInspectNormalizer implements DenormalizerInterface, Normalizer
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\DistributionInspect';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\DistributionInspect';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\DistributionInspect';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\DistributionInspect';
     }
     /**
      * @return mixed
@@ -38,12 +38,12 @@ class DistributionInspectNormalizer implements DenormalizerInterface, Normalizer
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\DistributionInspect();
+        $object = new \Tarekdj\Docker\ApiClient\Model\DistributionInspect();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('Descriptor', $data) && $data['Descriptor'] !== null) {
-            $object->setDescriptor($this->denormalizer->denormalize($data['Descriptor'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\OCIDescriptor', 'json', $context));
+            $object->setDescriptor($this->denormalizer->denormalize($data['Descriptor'], 'Tarekdj\\Docker\\ApiClient\\Model\\OCIDescriptor', 'json', $context));
         }
         elseif (\array_key_exists('Descriptor', $data) && $data['Descriptor'] === null) {
             $object->setDescriptor(null);
@@ -51,7 +51,7 @@ class DistributionInspectNormalizer implements DenormalizerInterface, Normalizer
         if (\array_key_exists('Platforms', $data) && $data['Platforms'] !== null) {
             $values = array();
             foreach ($data['Platforms'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\OCIPlatform', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\OCIPlatform', 'json', $context);
             }
             $object->setPlatforms($values);
         }

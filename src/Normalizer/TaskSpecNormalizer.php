@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecNormalizer implements DenormalizerInterface, NormalizerInterface, 
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpec';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpec';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpec';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpec';
     }
     /**
      * @return mixed
@@ -38,42 +38,42 @@ class TaskSpecNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpec();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpec();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('PluginSpec', $data) && $data['PluginSpec'] !== null) {
-            $object->setPluginSpec($this->denormalizer->denormalize($data['PluginSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec', 'json', $context));
+            $object->setPluginSpec($this->denormalizer->denormalize($data['PluginSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec', 'json', $context));
         }
         elseif (\array_key_exists('PluginSpec', $data) && $data['PluginSpec'] === null) {
             $object->setPluginSpec(null);
         }
         if (\array_key_exists('ContainerSpec', $data) && $data['ContainerSpec'] !== null) {
-            $object->setContainerSpec($this->denormalizer->denormalize($data['ContainerSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec', 'json', $context));
+            $object->setContainerSpec($this->denormalizer->denormalize($data['ContainerSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpec', 'json', $context));
         }
         elseif (\array_key_exists('ContainerSpec', $data) && $data['ContainerSpec'] === null) {
             $object->setContainerSpec(null);
         }
         if (\array_key_exists('NetworkAttachmentSpec', $data) && $data['NetworkAttachmentSpec'] !== null) {
-            $object->setNetworkAttachmentSpec($this->denormalizer->denormalize($data['NetworkAttachmentSpec'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecNetworkAttachmentSpec', 'json', $context));
+            $object->setNetworkAttachmentSpec($this->denormalizer->denormalize($data['NetworkAttachmentSpec'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecNetworkAttachmentSpec', 'json', $context));
         }
         elseif (\array_key_exists('NetworkAttachmentSpec', $data) && $data['NetworkAttachmentSpec'] === null) {
             $object->setNetworkAttachmentSpec(null);
         }
         if (\array_key_exists('Resources', $data) && $data['Resources'] !== null) {
-            $object->setResources($this->denormalizer->denormalize($data['Resources'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecResources', 'json', $context));
+            $object->setResources($this->denormalizer->denormalize($data['Resources'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecResources', 'json', $context));
         }
         elseif (\array_key_exists('Resources', $data) && $data['Resources'] === null) {
             $object->setResources(null);
         }
         if (\array_key_exists('RestartPolicy', $data) && $data['RestartPolicy'] !== null) {
-            $object->setRestartPolicy($this->denormalizer->denormalize($data['RestartPolicy'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecRestartPolicy', 'json', $context));
+            $object->setRestartPolicy($this->denormalizer->denormalize($data['RestartPolicy'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecRestartPolicy', 'json', $context));
         }
         elseif (\array_key_exists('RestartPolicy', $data) && $data['RestartPolicy'] === null) {
             $object->setRestartPolicy(null);
         }
         if (\array_key_exists('Placement', $data) && $data['Placement'] !== null) {
-            $object->setPlacement($this->denormalizer->denormalize($data['Placement'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPlacement', 'json', $context));
+            $object->setPlacement($this->denormalizer->denormalize($data['Placement'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPlacement', 'json', $context));
         }
         elseif (\array_key_exists('Placement', $data) && $data['Placement'] === null) {
             $object->setPlacement(null);
@@ -93,7 +93,7 @@ class TaskSpecNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if (\array_key_exists('Networks', $data) && $data['Networks'] !== null) {
             $values = array();
             foreach ($data['Networks'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig', 'json', $context);
             }
             $object->setNetworks($values);
         }
@@ -101,7 +101,7 @@ class TaskSpecNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $object->setNetworks(null);
         }
         if (\array_key_exists('LogDriver', $data) && $data['LogDriver'] !== null) {
-            $object->setLogDriver($this->denormalizer->denormalize($data['LogDriver'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecLogDriver', 'json', $context));
+            $object->setLogDriver($this->denormalizer->denormalize($data['LogDriver'], 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecLogDriver', 'json', $context));
         }
         elseif (\array_key_exists('LogDriver', $data) && $data['LogDriver'] === null) {
             $object->setLogDriver(null);

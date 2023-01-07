@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient;
+namespace Tarekdj\Docker\ApiClient;
 
-class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
+class Client extends \Tarekdj\Docker\ApiClient\Runtime\Client\Client
 {
     /**
     * Returns a list of containers. For details on the format, see the
@@ -45,35 +45,52 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerListBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerListBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerListInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainerSummary[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainerSummary[]|\Psr\Http\Message\ResponseInterface
     */
     public function containerList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerList($queryParameters), $fetch);
     }
     /**
     * 
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostBody $body Container to create
+    * @param \Tarekdj\Docker\ApiClient\Model\ContainersCreatePostBody $body Container to create
     * @param array $queryParameters {
     *     @var string $name Assign the specified name to the container. Must match
     `/?[a-zA-Z0-9][a-zA-Z0-9_.-]+`.
     
+    *     @var string $platform Platform in the format `os[/arch[/variant]]` used for image lookup.
+    
+    When specified, the daemon checks if the requested image is present
+    in the local image cache with the given OS and Architecture, and
+    otherwise returns a `404` status.
+    
+    If the option is not set, the host's native OS and Architecture are
+    used to look up the image in the image cache. However, if no platform
+    is passed and the given image does exist in the local image cache,
+    but its OS or architecture does not match, the container is created
+    with the available image, and a warning is added to the `Warnings`
+    field in the response, for example;
+    
+       WARNING: The requested image's platform (linux/arm64/v8) does not
+                match the detected host platform (linux/amd64) and no
+                specific platform was requested
+    
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateConflictException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateConflictException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerCreateInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostResponse201|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersCreatePostResponse201|\Psr\Http\Message\ResponseInterface
     */
-    public function containerCreate(\TestContainersPHP\Docker\ApiClient\Model\ContainersCreatePostBody $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function containerCreate(\Tarekdj\Docker\ApiClient\Model\ContainersCreatePostBody $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerCreate($body, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerCreate($body, $queryParameters), $fetch);
     }
     /**
      * Return low-level information about a container.
@@ -83,14 +100,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var bool $size Return the size of container as fields `SizeRw` and `SizeRootFs`
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersIdJsonGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersIdJsonGetResponse200|\Psr\Http\Message\ResponseInterface
      */
     public function containerInspect(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerInspect($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerInspect($id, $queryParameters), $fetch);
     }
     /**
     * On Unix systems, this is done by running the `ps` command. This endpoint
@@ -102,14 +119,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var string $ps_args The arguments to pass to `ps`. For example, `aux`
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerTopNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerTopInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerTopNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerTopInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersIdTopGetResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersIdTopGetResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function containerTop(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerTop($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerTop($id, $queryParameters), $fetch);
     }
     /**
     * Get `stdout` and `stderr` logs from a container.
@@ -131,14 +148,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerLogsNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerLogsInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerLogs(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerLogs($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerLogs($id, $queryParameters), $fetch);
     }
     /**
     * Returns which files in a container's filesystem have been added, deleted,
@@ -151,28 +168,28 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *
     * @param string $id ID or name of the container
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerChangesNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerChangesInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerChangesNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerChangesInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersIdChangesGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersIdChangesGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
     */
     public function containerChanges(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerChanges($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerChanges($id), $fetch);
     }
     /**
      * Export the contents of a container as a tarball.
      *
      * @param string $id ID or name of the container
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExportNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExportInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExportNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExportInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerExport(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerExport($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerExport($id), $fetch);
     }
     /**
     * This endpoint returns a live stream of a container’s resource usage
@@ -213,14 +230,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStatsNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStatsInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStatsNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStatsInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerStats(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerStats($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerStats($id, $queryParameters), $fetch);
     }
     /**
      * Resize the TTY for a container.
@@ -231,14 +248,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var int $w Width of the TTY session in characters
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerResizeNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerResizeInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerResizeNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerResizeInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerResize(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerResize($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerResize($id, $queryParameters), $fetch);
     }
     /**
     * 
@@ -251,14 +268,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStartNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStartInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStartNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStartInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerStart(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerStart($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerStart($id, $queryParameters), $fetch);
     }
     /**
      * 
@@ -268,14 +285,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var int $t Number of seconds to wait before killing the container
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStopNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerStopInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStopNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerStopInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerStop(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerStop($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerStop($id, $queryParameters), $fetch);
     }
     /**
      * 
@@ -285,14 +302,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var int $t Number of seconds to wait before killing the container
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerRestartNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerRestartInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerRestartNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerRestartInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerRestart(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerRestart($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerRestart($id, $queryParameters), $fetch);
     }
     /**
     * Send a POSIX signal to a container, defaulting to killing to the
@@ -304,15 +321,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var string $signal Signal to send to the container as an integer or string (e.g. `SIGINT`)
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillConflictException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillConflictException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerKill(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerKill($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerKill($id, $queryParameters), $fetch);
     }
     /**
     * Change various configuration options of a container without having to
@@ -320,16 +337,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     *
     * @param string $id ID or name of the container
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update 
+    * @param \Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update 
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUpdateInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostResponse200|\Psr\Http\Message\ResponseInterface
     */
-    public function containerUpdate(string $id, \TestContainersPHP\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update, string $fetch = self::FETCH_OBJECT)
+    public function containerUpdate(string $id, \Tarekdj\Docker\ApiClient\Model\ContainersIdUpdatePostBody $update, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerUpdate($id, $update), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerUpdate($id, $update), $fetch);
     }
     /**
      * 
@@ -339,15 +356,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var string $name New name for the container
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerRenameNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerRenameConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerRenameInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerRenameNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerRenameConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerRenameInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerRename(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerRename($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerRename($id, $queryParameters), $fetch);
     }
     /**
     * Use the freezer cgroup to suspend all processes in a container.
@@ -360,28 +377,28 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *
     * @param string $id ID or name of the container
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerPauseNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerPauseInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerPauseNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerPauseInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerPause(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerPause($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerPause($id), $fetch);
     }
     /**
      * Resume a container which has been paused.
      *
      * @param string $id ID or name of the container
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerUnpauseInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerUnpause(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerUnpause($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerUnpause($id), $fetch);
     }
     /**
     * Attach to a container to read its output or send it input. You can attach
@@ -391,7 +408,7 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     Either the `stream` or `logs` parameter must be `true` for this endpoint
     to do anything.
     
-    See the [documentation for the `docker attach` command](engine/reference/commandline/attach/)
+    See the [documentation for the `docker attach` command](/engine/reference/commandline/attach/)
     for more details.
     
     ### Hijacking
@@ -501,15 +518,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $stderr Attach to `stderr`
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerAttach(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerAttach($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerAttach($id, $queryParameters), $fetch);
     }
     /**
     * 
@@ -524,15 +541,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $stream Return stream
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerAttachWebsocket(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerAttachWebsocket($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerAttachWebsocket($id, $queryParameters), $fetch);
     }
     /**
     * Block until a container stops, then returns the exit code.
@@ -545,15 +562,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerWaitInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainerWaitResponse|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainerWaitResponse|\Psr\Http\Message\ResponseInterface
     */
     public function containerWait(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerWait($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerWait($id, $queryParameters), $fetch);
     }
     /**
      * 
@@ -565,16 +582,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var bool $link Remove the specified link associated with the container.
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerDeleteInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerDelete(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerDelete($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerDelete($id, $queryParameters), $fetch);
     }
     /**
      * Get a tar archive of a resource in the filesystem of container id.
@@ -584,15 +601,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var string $path Resource in the container’s filesystem to archive.
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function containerArchive(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerArchive($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerArchive($id, $queryParameters), $fetch);
     }
     /**
     * A response header `X-Docker-Container-Path-Stat` is returned, containing
@@ -605,15 +622,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var string $path Resource in the container’s filesystem to archive.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInfoBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInfoNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerArchiveInfoInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInfoBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInfoNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerArchiveInfoInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function containerArchiveInfo(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerArchiveInfo($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerArchiveInfo($id, $queryParameters), $fetch);
     }
     /**
     * Upload a tar archive to be extracted to a path in the filesystem of container id.
@@ -637,16 +654,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveForbiddenException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PutContainerArchiveInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function putContainerArchive(string $id, $inputStream, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PutContainerArchive($id, $inputStream, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PutContainerArchive($id, $inputStream, $queryParameters), $fetch);
     }
     /**
     * 
@@ -660,13 +677,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerPruneInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerPruneInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ContainersPrunePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ContainersPrunePostResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function containerPrune(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerPrune($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerPrune($queryParameters), $fetch);
     }
     /**
     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
@@ -687,18 +704,18 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $digests Show digest information as a `RepoDigests` field on each image.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageListInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImageSummary[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ImageSummary[]|\Psr\Http\Message\ResponseInterface
     */
     public function imageList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageList($queryParameters), $fetch);
     }
     /**
     * Build an image from a tar archive with a `Dockerfile` in it.
     
-    The `Dockerfile` specifies how the image is built from the tar archive. It is typically in the archive's root, but can be at a different path or have a different name by specifying the `dockerfile` parameter. [See the `Dockerfile` reference for more information](engine/reference/builder/).
+    The `Dockerfile` specifies how the image is built from the tar archive. It is typically in the archive's root, but can be at a different path or have a different name by specifying the `dockerfile` parameter. [See the `Dockerfile` reference for more information](/engine/reference/builder/).
     
     The Docker daemon performs a preliminary validation of the `Dockerfile` before starting the build, and returns an error if the syntax is incorrect. After that, each instruction is run one-by-one until the ID of the new image is output.
     
@@ -727,7 +744,7 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     For example, the build arg `FOO=bar` would become `{"FOO":"bar"}` in JSON. This would result in the query parameter `buildargs={"FOO":"bar"}`. Note that `{"FOO":"bar"}` should be URI component encoded.
     
-    [Read more about the buildargs instruction.](engine/reference/builder/#arg)
+    [Read more about the buildargs instruction.](/engine/reference/builder/#arg)
     
     *     @var int $shmsize Size of `/dev/shm` in bytes. The size must be greater than 0. If omitted the system uses 64MB.
     *     @var bool $squash Squash the resulting images layers into a single layer. *(Experimental release only.)*
@@ -764,14 +781,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageBuildBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageBuildInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imageBuild($inputStream, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageBuild($inputStream, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageBuild($inputStream, $queryParameters, $headerParameters), $fetch);
     }
     /**
     * 
@@ -795,13 +812,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\BuildPruneInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\BuildPruneInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\BuildPrunePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\BuildPrunePostResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function buildPrune(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\BuildPrune($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\BuildPrune($queryParameters), $fetch);
     }
     /**
     * Create an image by either pulling it from a registry or importing it.
@@ -830,42 +847,42 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCreateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCreateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCreateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCreateInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imageCreate(string $inputImage, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageCreate($inputImage, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageCreate($inputImage, $queryParameters, $headerParameters), $fetch);
     }
     /**
      * Return low-level information about an image.
      *
      * @param string $name Image name or id
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImageInspect|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ImageInspect|\Psr\Http\Message\ResponseInterface
      */
     public function imageInspect(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageInspect($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageInspect($name), $fetch);
     }
     /**
      * Return parent layers of an image.
      *
      * @param string $name Image name or ID
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageHistoryNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageHistoryInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageHistoryNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageHistoryInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImagesNameHistoryGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ImagesNameHistoryGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
      */
     public function imageHistory(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageHistory($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageHistory($name), $fetch);
     }
     /**
     * Push an image to a registry.
@@ -889,14 +906,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImagePushNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImagePushInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImagePushNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImagePushInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imagePush(string $name, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImagePush($name, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImagePush($name, $queryParameters, $headerParameters), $fetch);
     }
     /**
      * Tag an image so that it becomes part of a repository.
@@ -907,16 +924,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var string $tag The name of the new tag.
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageTagBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageTagNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageTagConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageTagInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageTagBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageTagNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageTagConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageTagInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function imageTag(string $name, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageTag($name, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageTag($name, $queryParameters), $fetch);
     }
     /**
     * Remove an image, along with any untagged parent images that were
@@ -932,15 +949,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $noprune Do not delete untagged parent images
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageDeleteNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageDeleteConflictException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageDeleteInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageDeleteNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageDeleteConflictException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageDeleteInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImageDeleteResponseItem[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ImageDeleteResponseItem[]|\Psr\Http\Message\ResponseInterface
     */
     public function imageDelete(string $name, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageDelete($name, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageDelete($name, $queryParameters), $fetch);
     }
     /**
     * Search for an image on Docker Hub.
@@ -956,13 +973,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageSearchInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageSearchInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImagesSearchGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ImagesSearchGetResponse200Item[]|\Psr\Http\Message\ResponseInterface
     */
     public function imageSearch(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageSearch($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageSearch($queryParameters), $fetch);
     }
     /**
     * 
@@ -978,73 +995,73 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImagePruneInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImagePruneInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ImagesPrunePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ImagesPrunePostResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function imagePrune(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImagePrune($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImagePrune($queryParameters), $fetch);
     }
     /**
     * Validate credentials for a registry and, if available, get an identity
     token for accessing the registry without password.
     
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\AuthConfig $authConfig Authentication to check
+    * @param \Tarekdj\Docker\ApiClient\Model\AuthConfig $authConfig Authentication to check
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemAuthInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SystemAuthInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\AuthPostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\AuthPostResponse200|\Psr\Http\Message\ResponseInterface
     */
-    public function systemAuth(\TestContainersPHP\Docker\ApiClient\Model\AuthConfig $authConfig, string $fetch = self::FETCH_OBJECT)
+    public function systemAuth(\Tarekdj\Docker\ApiClient\Model\AuthConfig $authConfig, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemAuth($authConfig), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemAuth($authConfig), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemInfoInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemInfoInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\SystemInfo|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\SystemInfo|\Psr\Http\Message\ResponseInterface
      */
     public function systemInfo(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemInfo(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemInfo(), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemVersionInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemVersionInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\SystemVersion|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\SystemVersion|\Psr\Http\Message\ResponseInterface
      */
     public function systemVersion(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemVersion(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemVersion(), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemPingInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemPingInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function systemPing(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemPing(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemPing(), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemPingHeadInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function systemPingHead(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemPingHead(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemPingHead(), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\ContainerConfig $containerConfig The container configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\ContainerConfig $containerConfig The container configuration
      * @param array $queryParameters {
      *     @var string $container The ID or name of the container to commit
      *     @var string $repo Repository name for the created image
@@ -1055,14 +1072,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var string $changes `Dockerfile` instructions to apply while committing
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCommitNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ImageCommitInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function imageCommit(\TestContainersPHP\Docker\ApiClient\Model\ContainerConfig $containerConfig, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function imageCommit(\Tarekdj\Docker\ApiClient\Model\ContainerConfig $containerConfig, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageCommit($containerConfig, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageCommit($containerConfig, $queryParameters), $fetch);
     }
     /**
     * Stream real-time events from the server.
@@ -1112,24 +1129,24 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SystemEventsBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SystemEventsInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\EventMessage|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\EventMessage|\Psr\Http\Message\ResponseInterface
     */
     public function systemEvents(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemEvents($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemEvents($queryParameters), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SystemDataUsageInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemDataUsageInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\SystemDfGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\SystemDfGetResponse200|\Psr\Http\Message\ResponseInterface
      */
     public function systemDataUsage(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SystemDataUsage(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SystemDataUsage(), $fetch);
     }
     /**
     * Get a tarball containing all images and metadata for a repository.
@@ -1159,13 +1176,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *
     * @param string $name Image name or ID
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageGetInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageGetInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imageGet(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageGet($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageGet($name), $fetch);
     }
     /**
     * Get a tarball containing all images and metadata for several image
@@ -1184,13 +1201,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var array $names Image names to filter by
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageGetAllInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imageGetAll(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageGetAll($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageGetAll($queryParameters), $fetch);
     }
     /**
     * Load a set of images and tags into a repository.
@@ -1203,29 +1220,29 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $quiet Suppress progress details during load.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ImageLoadInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function imageLoad($imagesTarball, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ImageLoad($imagesTarball, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ImageLoad($imagesTarball, $queryParameters), $fetch);
     }
     /**
      * Run a command inside a running container.
      *
      * @param string $id ID or name of container
-     * @param \TestContainersPHP\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig Exec configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig Exec configuration
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerExecInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function containerExec(string $id, \TestContainersPHP\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig, string $fetch = self::FETCH_OBJECT)
+    public function containerExec(string $id, \Tarekdj\Docker\ApiClient\Model\ContainersIdExecPostBody $execConfig, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ContainerExec($id, $execConfig), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ContainerExec($id, $execConfig), $fetch);
     }
     /**
     * Starts a previously set up exec instance. If detach is true, this endpoint
@@ -1234,16 +1251,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     *
     * @param string $id Exec instance ID
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig 
+    * @param \Tarekdj\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig 
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecStartNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecStartConflictException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ExecStartNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ExecStartConflictException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
-    public function execStart(string $id, \TestContainersPHP\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig, string $fetch = self::FETCH_OBJECT)
+    public function execStart(string $id, \Tarekdj\Docker\ApiClient\Model\ExecIdStartPostBody $execStartConfig, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ExecStart($id, $execStartConfig), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ExecStart($id, $execStartConfig), $fetch);
     }
     /**
     * Resize the TTY session used by an exec instance. This endpoint only works
@@ -1256,29 +1273,29 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var int $w Width of the TTY session in characters
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecResizeBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecResizeNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecResizeInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ExecResizeBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ExecResizeNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ExecResizeInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function execResize(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ExecResize($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ExecResize($id, $queryParameters), $fetch);
     }
     /**
      * Return low-level information about an exec instance.
      *
      * @param string $id Exec instance ID
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ExecInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ExecInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ExecInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\ExecIdJsonGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\ExecIdJsonGetResponse200|\Psr\Http\Message\ResponseInterface
      */
     public function execInspect(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ExecInspect($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ExecInspect($id), $fetch);
     }
     /**
     * 
@@ -1298,26 +1315,26 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeListInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\VolumesGetResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\VolumesGetResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function volumeList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\VolumeList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\VolumeList($queryParameters), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig Volume configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig Volume configuration
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Volume|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Volume|\Psr\Http\Message\ResponseInterface
      */
-    public function volumeCreate(\TestContainersPHP\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig, string $fetch = self::FETCH_OBJECT)
+    public function volumeCreate(\Tarekdj\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\VolumeCreate($volumeConfig), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\VolumeCreate($volumeConfig), $fetch);
     }
     /**
      * Instruct the driver to remove the volume.
@@ -1327,29 +1344,29 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var bool $force Force the removal of the volume
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeDeleteConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeDeleteConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeDeleteInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function volumeDelete(string $name, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\VolumeDelete($name, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\VolumeDelete($name, $queryParameters), $fetch);
     }
     /**
      * 
      *
      * @param string $name Volume name or ID
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Volume|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Volume|\Psr\Http\Message\ResponseInterface
      */
     public function volumeInspect(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\VolumeInspect($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\VolumeInspect($name), $fetch);
     }
     /**
     * 
@@ -1362,13 +1379,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumePruneInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\VolumePruneInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\VolumesPrunePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\VolumesPrunePostResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function volumePrune(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\VolumePrune($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\VolumePrune($queryParameters), $fetch);
     }
     /**
     * Returns a list of networks. For details on the format, see the
@@ -1398,28 +1415,28 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkListInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Network[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Network[]|\Psr\Http\Message\ResponseInterface
     */
     public function networkList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkList($queryParameters), $fetch);
     }
     /**
      * 
      *
      * @param string $id Network ID or name
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDeleteInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function networkDelete(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkDelete($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkDelete($id), $fetch);
     }
     /**
      * 
@@ -1430,61 +1447,61 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var string $scope Filter the network by scope (swarm, global, or local)
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Network|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Network|\Psr\Http\Message\ResponseInterface
      */
     public function networkInspect(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkInspect($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkInspect($id, $queryParameters), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\NetworksCreatePostBody $networkConfig Network configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\NetworksCreatePostBody $networkConfig Network configuration
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkCreateForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkCreateNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkCreateForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkCreateNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkCreateInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\NetworksCreatePostResponse201|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\NetworksCreatePostResponse201|\Psr\Http\Message\ResponseInterface
      */
-    public function networkCreate(\TestContainersPHP\Docker\ApiClient\Model\NetworksCreatePostBody $networkConfig, string $fetch = self::FETCH_OBJECT)
+    public function networkCreate(\Tarekdj\Docker\ApiClient\Model\NetworksCreatePostBody $networkConfig, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkCreate($networkConfig), $fetch);
-    }
-    /**
-     * 
-     *
-     * @param string $id Network ID or name
-     * @param \TestContainersPHP\Docker\ApiClient\Model\NetworksIdConnectPostBody $container 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException
-     *
-     * @return null|\Psr\Http\Message\ResponseInterface
-     */
-    public function networkConnect(string $id, \TestContainersPHP\Docker\ApiClient\Model\NetworksIdConnectPostBody $container, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkConnect($id, $container), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkCreate($networkConfig), $fetch);
     }
     /**
      * 
      *
      * @param string $id Network ID or name
-     * @param \TestContainersPHP\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container 
+     * @param \Tarekdj\Docker\ApiClient\Model\NetworksIdConnectPostBody $container 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkConnectInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
-    public function networkDisconnect(string $id, \TestContainersPHP\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container, string $fetch = self::FETCH_OBJECT)
+    public function networkConnect(string $id, \Tarekdj\Docker\ApiClient\Model\NetworksIdConnectPostBody $container, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkDisconnect($id, $container), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkConnect($id, $container), $fetch);
+    }
+    /**
+     * 
+     *
+     * @param string $id Network ID or name
+     * @param \Tarekdj\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectForbiddenException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkDisconnectInternalServerErrorException
+     *
+     * @return null|\Psr\Http\Message\ResponseInterface
+     */
+    public function networkDisconnect(string $id, \Tarekdj\Docker\ApiClient\Model\NetworksIdDisconnectPostBody $container, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkDisconnect($id, $container), $fetch);
     }
     /**
     * 
@@ -1498,13 +1515,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NetworkPruneInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NetworkPruneInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\NetworksPrunePostResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\NetworksPrunePostResponse200|\Psr\Http\Message\ResponseInterface
     */
     public function networkPrune(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NetworkPrune($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NetworkPrune($queryParameters), $fetch);
     }
     /**
     * Returns information about installed plugins.
@@ -1520,13 +1537,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginListInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Plugin[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Plugin[]|\Psr\Http\Message\ResponseInterface
     */
     public function pluginList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginList($queryParameters), $fetch);
     }
     /**
     * 
@@ -1537,20 +1554,20 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\GetPluginPrivilegesInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\GetPluginPrivilegesInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\PluginPrivilege[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\PluginPrivilege[]|\Psr\Http\Message\ResponseInterface
     */
     public function getPluginPrivileges(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\GetPluginPrivileges($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\GetPluginPrivileges($queryParameters), $fetch);
     }
     /**
     * Pulls and installs a plugin. After the plugin is installed, it can be
     enabled using the [`POST /plugins/{name}/enable` endpoint](#operation/PostPluginsEnable).
     
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\PluginPrivilege[] $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\PluginPrivilege[] $body 
     * @param array $queryParameters {
     *     @var string $remote Remote reference for plugin to install.
     
@@ -1570,13 +1587,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginPullInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginPullInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginPull(array $body, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginPull($body, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginPull($body, $queryParameters, $headerParameters), $fetch);
     }
     /**
     * 
@@ -1585,14 +1602,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     default if omitted.
     
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginInspectNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginInspectInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginInspectNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginInspectInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Plugin|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Plugin|\Psr\Http\Message\ResponseInterface
     */
     public function pluginInspect(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginInspect($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginInspect($name), $fetch);
     }
     /**
     * 
@@ -1606,14 +1623,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginDeleteNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginDeleteInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginDeleteNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginDeleteInternalServerErrorException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Plugin|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Plugin|\Psr\Http\Message\ResponseInterface
     */
     public function pluginDelete(string $name, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginDelete($name, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginDelete($name, $queryParameters), $fetch);
     }
     /**
     * 
@@ -1625,14 +1642,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var int $timeout Set the HTTP client timeout (in seconds)
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginEnableNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginEnableInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginEnable(string $name, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginEnable($name, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginEnable($name, $queryParameters), $fetch);
     }
     /**
     * 
@@ -1641,14 +1658,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     default if omitted.
     
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginDisableNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginDisableInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginDisableNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginDisableInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginDisable(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginDisable($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginDisable($name), $fetch);
     }
     /**
     * 
@@ -1656,7 +1673,7 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     * @param string $name The name of the plugin. The `:latest` tag is optional, and is the
     default if omitted.
     
-    * @param \TestContainersPHP\Docker\ApiClient\Model\PluginPrivilege[] $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\PluginPrivilege[] $body 
     * @param array $queryParameters {
     *     @var string $remote Remote reference to upgrade to.
     
@@ -1672,14 +1689,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginUpgradeInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginUpgrade(string $name, array $body, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginUpgrade($name, $body, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginUpgrade($name, $body, $queryParameters, $headerParameters), $fetch);
     }
     /**
     * 
@@ -1691,13 +1708,13 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginCreateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginCreateInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginCreate($tarContext, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginCreate($tarContext, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginCreate($tarContext, $queryParameters), $fetch);
     }
     /**
     * Push a plugin to the registry.
@@ -1707,14 +1724,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     default if omitted.
     
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginPushNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginPushInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginPushNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginPushInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginPush(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginPush($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginPush($name), $fetch);
     }
     /**
     * 
@@ -1724,14 +1741,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * @param array $body 
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginSetNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\PluginSetInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginSetNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\PluginSetInternalServerErrorException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function pluginSet(string $name, array $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\PluginSet($name, $body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\PluginSet($name, $body), $fetch);
     }
     /**
     * 
@@ -1749,14 +1766,14 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeListInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeListServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeListServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Node[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Node[]|\Psr\Http\Message\ResponseInterface
     */
     public function nodeList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NodeList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NodeList($queryParameters), $fetch);
     }
     /**
      * 
@@ -1766,94 +1783,94 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var bool $force Force remove a node from the swarm
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeDeleteInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeDeleteServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeDeleteServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function nodeDelete(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NodeDelete($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NodeDelete($id, $queryParameters), $fetch);
     }
     /**
      * 
      *
      * @param string $id The ID or name of the node
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\NodeInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Node|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Node|\Psr\Http\Message\ResponseInterface
      */
     public function nodeInspect(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NodeInspect($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NodeInspect($id), $fetch);
     }
     /**
     * 
     *
     * @param string $id The ID of the node
-    * @param \TestContainersPHP\Docker\ApiClient\Model\NodeSpec $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\NodeSpec $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the node object being updated. This is required
     to avoid conflicting writes.
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\NodeUpdateServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
-    public function nodeUpdate(string $id, \TestContainersPHP\Docker\ApiClient\Model\NodeSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function nodeUpdate(string $id, \Tarekdj\Docker\ApiClient\Model\NodeSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\NodeUpdate($id, $body, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\NodeUpdate($id, $body, $queryParameters), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Swarm|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Swarm|\Psr\Http\Message\ResponseInterface
      */
     public function swarmInspect(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmInspect(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmInspect(), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmInitPostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SwarmInitPostBody $body 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInitBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInitInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmInitServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInitBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInitInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmInitServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
-    public function swarmInit(\TestContainersPHP\Docker\ApiClient\Model\SwarmInitPostBody $body, string $fetch = self::FETCH_OBJECT)
+    public function swarmInit(\Tarekdj\Docker\ApiClient\Model\SwarmInitPostBody $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmInit($body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmInit($body), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmJoinPostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SwarmJoinPostBody $body 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmJoinServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
-    public function swarmJoin(\TestContainersPHP\Docker\ApiClient\Model\SwarmJoinPostBody $body, string $fetch = self::FETCH_OBJECT)
+    public function swarmJoin(\Tarekdj\Docker\ApiClient\Model\SwarmJoinPostBody $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmJoin($body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmJoin($body), $fetch);
     }
     /**
     * 
@@ -1864,19 +1881,19 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmLeaveServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function swarmLeave(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmLeave($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmLeave($queryParameters), $fetch);
     }
     /**
     * 
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmSpec $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\SwarmSpec $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the swarm object being updated. This is
     required to avoid conflicting writes.
@@ -1886,40 +1903,40 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     *     @var bool $rotateManagerUnlockKey Rotate the manager unlock key.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUpdateServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
-    public function swarmUpdate(\TestContainersPHP\Docker\ApiClient\Model\SwarmSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function swarmUpdate(\Tarekdj\Docker\ApiClient\Model\SwarmSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmUpdate($body, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmUpdate($body, $queryParameters), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockkeyInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockkeyServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockkeyInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockkeyServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\SwarmUnlockkeyGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\SwarmUnlockkeyGetResponse200|\Psr\Http\Message\ResponseInterface
      */
     public function swarmUnlockkey(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmUnlockkey(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmUnlockkey(), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SwarmUnlockPostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SwarmUnlockPostBody $body 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SwarmUnlockServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
-    public function swarmUnlock(\TestContainersPHP\Docker\ApiClient\Model\SwarmUnlockPostBody $body, string $fetch = self::FETCH_OBJECT)
+    public function swarmUnlock(\Tarekdj\Docker\ApiClient\Model\SwarmUnlockPostBody $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SwarmUnlock($body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SwarmUnlock($body), $fetch);
     }
     /**
     * 
@@ -1939,19 +1956,19 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceListInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceListServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceListServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Service[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Service[]|\Psr\Http\Message\ResponseInterface
     */
     public function serviceList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceList($queryParameters), $fetch);
     }
     /**
     * 
     *
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ServicesCreatePostBody $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\ServicesCreatePostBody $body 
     * @param array $headerParameters {
     *     @var string $X-Registry-Auth A base64url-encoded auth configuration for pulling from private
     registries.
@@ -1961,32 +1978,32 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceCreateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceCreateForbiddenException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceCreateConflictException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceCreateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceCreateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceCreateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceCreateForbiddenException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceCreateConflictException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceCreateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceCreateServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ServicesCreatePostResponse201|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ServicesCreatePostResponse201|\Psr\Http\Message\ResponseInterface
     */
-    public function serviceCreate(\TestContainersPHP\Docker\ApiClient\Model\ServicesCreatePostBody $body, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function serviceCreate(\Tarekdj\Docker\ApiClient\Model\ServicesCreatePostBody $body, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceCreate($body, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceCreate($body, $headerParameters), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID or name of service.
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceDeleteInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceDeleteServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceDeleteServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function serviceDelete(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceDelete($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceDelete($id), $fetch);
     }
     /**
      * 
@@ -1996,21 +2013,21 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
      *     @var bool $insertDefaults Fill empty fields with default values.
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Service|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Service|\Psr\Http\Message\ResponseInterface
      */
     public function serviceInspect(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceInspect($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceInspect($id, $queryParameters), $fetch);
     }
     /**
     * 
     *
     * @param string $id ID or name of service.
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body 
+    * @param \Tarekdj\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body 
     * @param array $queryParameters {
     *     @var int $version The version number of the service object being updated. This is
     required to avoid conflicting writes.
@@ -2035,16 +2052,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceUpdateServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\ServiceUpdateResponse|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\ServiceUpdateResponse|\Psr\Http\Message\ResponseInterface
     */
-    public function serviceUpdate(string $id, \TestContainersPHP\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function serviceUpdate(string $id, \Tarekdj\Docker\ApiClient\Model\ServicesIdUpdatePostBody $body, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceUpdate($id, $body, $queryParameters, $headerParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceUpdate($id, $body, $queryParameters, $headerParameters), $fetch);
     }
     /**
     * Get `stdout` and `stderr` logs from a service. See also
@@ -2067,15 +2084,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceLogsNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceLogsInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ServiceLogsServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceLogsNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceLogsInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ServiceLogsServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function serviceLogs(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ServiceLogs($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ServiceLogs($id, $queryParameters), $fetch);
     }
     /**
     * 
@@ -2095,29 +2112,29 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskListInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskListServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\TaskListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\TaskListServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Task[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Task[]|\Psr\Http\Message\ResponseInterface
     */
     public function taskList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\TaskList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\TaskList($queryParameters), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID of the task
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\TaskInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Task|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Task|\Psr\Http\Message\ResponseInterface
      */
     public function taskInspect(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\TaskInspect($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\TaskInspect($id), $fetch);
     }
     /**
     * Get `stdout` and `stderr` logs from a task.
@@ -2140,15 +2157,15 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\TaskLogsServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
     public function taskLogs(string $id, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\TaskLogs($id, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\TaskLogs($id, $queryParameters), $fetch);
     }
     /**
     * 
@@ -2166,65 +2183,65 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretListInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretListServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretListServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Secret[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Secret[]|\Psr\Http\Message\ResponseInterface
     */
     public function secretList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SecretList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SecretList($queryParameters), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\SecretsCreatePostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\SecretsCreatePostBody $body 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretCreateConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretCreateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretCreateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretCreateConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretCreateServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function secretCreate(\TestContainersPHP\Docker\ApiClient\Model\SecretsCreatePostBody $body, string $fetch = self::FETCH_OBJECT)
+    public function secretCreate(\Tarekdj\Docker\ApiClient\Model\SecretsCreatePostBody $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SecretCreate($body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SecretCreate($body), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID of the secret
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretDeleteInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretDeleteServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretDeleteServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function secretDelete(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SecretDelete($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SecretDelete($id), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID of the secret
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SecretInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Secret|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Secret|\Psr\Http\Message\ResponseInterface
      */
     public function secretInspect(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SecretInspect($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SecretInspect($id), $fetch);
     }
     /**
     * 
     *
     * @param string $id The ID or name of the secret
-    * @param \TestContainersPHP\Docker\ApiClient\Model\SecretSpec $body The spec of the secret to update. Currently, only the Labels field
+    * @param \Tarekdj\Docker\ApiClient\Model\SecretSpec $body The spec of the secret to update. Currently, only the Labels field
     can be updated. All other fields must remain unchanged from the
     [SecretInspect endpoint](#operation/SecretInspect) response values.
     
@@ -2234,16 +2251,16 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SecretUpdateServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
-    public function secretUpdate(string $id, \TestContainersPHP\Docker\ApiClient\Model\SecretSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function secretUpdate(string $id, \Tarekdj\Docker\ApiClient\Model\SecretSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\SecretUpdate($id, $body, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\SecretUpdate($id, $body, $queryParameters), $fetch);
     }
     /**
     * 
@@ -2261,65 +2278,65 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigListInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigListServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigListInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigListServiceUnavailableException
     *
-    * @return null|\TestContainersPHP\Docker\ApiClient\Model\Config[]|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\Config[]|\Psr\Http\Message\ResponseInterface
     */
     public function configList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ConfigList($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ConfigList($queryParameters), $fetch);
     }
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\ConfigsCreatePostBody $body 
+     * @param \Tarekdj\Docker\ApiClient\Model\ConfigsCreatePostBody $body 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigCreateConflictException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigCreateInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigCreateServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigCreateConflictException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigCreateServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\IdResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function configCreate(\TestContainersPHP\Docker\ApiClient\Model\ConfigsCreatePostBody $body, string $fetch = self::FETCH_OBJECT)
+    public function configCreate(\Tarekdj\Docker\ApiClient\Model\ConfigsCreatePostBody $body, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ConfigCreate($body), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ConfigCreate($body), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID of the config
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigDeleteNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigDeleteInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigDeleteServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigDeleteNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigDeleteInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigDeleteServiceUnavailableException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function configDelete(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ConfigDelete($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ConfigDelete($id), $fetch);
     }
     /**
      * 
      *
      * @param string $id ID of the config
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigInspectNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigInspectInternalServerErrorException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigInspectServiceUnavailableException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigInspectNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigInspectServiceUnavailableException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Config|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Config|\Psr\Http\Message\ResponseInterface
      */
     public function configInspect(string $id, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ConfigInspect($id), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ConfigInspect($id), $fetch);
     }
     /**
     * 
     *
     * @param string $id The ID or name of the config
-    * @param \TestContainersPHP\Docker\ApiClient\Model\ConfigSpec $body The spec of the config to update. Currently, only the Labels field
+    * @param \Tarekdj\Docker\ApiClient\Model\ConfigSpec $body The spec of the config to update. Currently, only the Labels field
     can be updated. All other fields must remain unchanged from the
     [ConfigInspect endpoint](#operation/ConfigInspect) response values.
     
@@ -2329,41 +2346,41 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
     
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateBadRequestException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateNotFoundException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException
-    * @throws \TestContainersPHP\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateBadRequestException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateNotFoundException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateInternalServerErrorException
+    * @throws \Tarekdj\Docker\ApiClient\Exception\ConfigUpdateServiceUnavailableException
     *
     * @return null|\Psr\Http\Message\ResponseInterface
     */
-    public function configUpdate(string $id, \TestContainersPHP\Docker\ApiClient\Model\ConfigSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function configUpdate(string $id, \Tarekdj\Docker\ApiClient\Model\ConfigSpec $body, array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\ConfigUpdate($id, $body, $queryParameters), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\ConfigUpdate($id, $body, $queryParameters), $fetch);
     }
     /**
      * Return image digest and platform information by contacting the registry.
      *
      * @param string $name Image name or id
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\DistributionInspectUnauthorizedException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\DistributionInspectInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\DistributionInspect|\Psr\Http\Message\ResponseInterface
+     * @return null|\Tarekdj\Docker\ApiClient\Model\DistributionInspect|\Psr\Http\Message\ResponseInterface
      */
     public function distributionInspect(string $name, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\DistributionInspect($name), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\DistributionInspect($name), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SessionBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\SessionInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SessionBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SessionInternalServerErrorException
      *
      * @return null|\Psr\Http\Message\ResponseInterface
      */
     public function session(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \TestContainersPHP\Docker\ApiClient\Endpoint\Session(), $fetch);
+        return $this->executeEndpoint(new \Tarekdj\Docker\ApiClient\Endpoint\Session(), $fetch);
     }
     public static function create($httpClient = null, array $additionalPlugins = array(), array $additionalNormalizers = array())
     {
@@ -2377,7 +2394,7 @@ class Client extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Client
         }
         $requestFactory = \Http\Discovery\Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = \Http\Discovery\Psr17FactoryDiscovery::findStreamFactory();
-        $normalizers = array(new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer(), new \TestContainersPHP\Docker\ApiClient\Normalizer\JaneObjectNormalizer());
+        $normalizers = array(new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer(), new \Tarekdj\Docker\ApiClient\Normalizer\JaneObjectNormalizer());
         if (count($additionalNormalizers) > 0) {
             $normalizers = array_merge($normalizers, $additionalNormalizers);
         }

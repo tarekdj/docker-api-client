@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class TaskSpecPluginSpecNormalizer implements DenormalizerInterface, NormalizerI
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class TaskSpecPluginSpecNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\TaskSpecPluginSpec();
+        $object = new \Tarekdj\Docker\ApiClient\Model\TaskSpecPluginSpec();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -63,7 +63,7 @@ class TaskSpecPluginSpecNormalizer implements DenormalizerInterface, NormalizerI
         if (\array_key_exists('PluginPrivilege', $data) && $data['PluginPrivilege'] !== null) {
             $values = array();
             foreach ($data['PluginPrivilege'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'TestContainersPHP\\Docker\\ApiClient\\Model\\PluginPrivilege', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'Tarekdj\\Docker\\ApiClient\\Model\\PluginPrivilege', 'json', $context);
             }
             $object->setPluginPrivilege($values);
         }

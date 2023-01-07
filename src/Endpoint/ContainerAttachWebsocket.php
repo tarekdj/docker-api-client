@@ -1,8 +1,8 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class ContainerAttachWebsocket extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class ContainerAttachWebsocket extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -23,7 +23,7 @@ class ContainerAttachWebsocket extends \TestContainersPHP\Docker\ApiClient\Runti
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -54,9 +54,9 @@ class ContainerAttachWebsocket extends \TestContainersPHP\Docker\ApiClient\Runti
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException
      *
      * @return null
      */
@@ -69,13 +69,13 @@ class ContainerAttachWebsocket extends \TestContainersPHP\Docker\ApiClient\Runti
             return null;
         }
         if (400 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketBadRequestException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (404 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketNotFoundException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\ContainerAttachWebsocketInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

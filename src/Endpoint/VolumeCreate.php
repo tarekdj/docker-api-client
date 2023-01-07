@@ -1,19 +1,19 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Endpoint;
+namespace Tarekdj\Docker\ApiClient\Endpoint;
 
-class VolumeCreate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \TestContainersPHP\Docker\ApiClient\Runtime\Client\Endpoint
+class VolumeCreate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint implements \Tarekdj\Docker\ApiClient\Runtime\Client\Endpoint
 {
     /**
      * 
      *
-     * @param \TestContainersPHP\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig Volume configuration
+     * @param \Tarekdj\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig Volume configuration
      */
-    public function __construct(\TestContainersPHP\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig)
+    public function __construct(\Tarekdj\Docker\ApiClient\Model\VolumeCreateOptions $volumeConfig)
     {
         $this->body = $volumeConfig;
     }
-    use \TestContainersPHP\Docker\ApiClient\Runtime\Client\EndpointTrait;
+    use \Tarekdj\Docker\ApiClient\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -33,17 +33,17 @@ class VolumeCreate extends \TestContainersPHP\Docker\ApiClient\Runtime\Client\Ba
     /**
      * {@inheritdoc}
      *
-     * @throws \TestContainersPHP\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException
+     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException
      *
-     * @return null|\TestContainersPHP\Docker\ApiClient\Model\Volume
+     * @return null|\Tarekdj\Docker\ApiClient\Model\Volume
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (201 === $status) {
-            return $serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\Volume', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\Volume', 'json');
         }
         if (500 === $status) {
-            throw new \TestContainersPHP\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException($serializer->deserialize($body, 'TestContainersPHP\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
+            throw new \Tarekdj\Docker\ApiClient\Exception\VolumeCreateInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
     }
     public function getAuthenticationScopes() : array

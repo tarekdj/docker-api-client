@@ -1,9 +1,9 @@
 <?php
 
-namespace TestContainersPHP\Docker\ApiClient\Normalizer;
+namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use TestContainersPHP\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -21,11 +21,11 @@ class MountVolumeOptionsNormalizer implements DenormalizerInterface, NormalizerI
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountVolumeOptions';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\MountVolumeOptions';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountVolumeOptions';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\MountVolumeOptions';
     }
     /**
      * @return mixed
@@ -38,7 +38,7 @@ class MountVolumeOptionsNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \TestContainersPHP\Docker\ApiClient\Model\MountVolumeOptions();
+        $object = new \Tarekdj\Docker\ApiClient\Model\MountVolumeOptions();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -59,7 +59,7 @@ class MountVolumeOptionsNormalizer implements DenormalizerInterface, NormalizerI
             $object->setLabels(null);
         }
         if (\array_key_exists('DriverConfig', $data) && $data['DriverConfig'] !== null) {
-            $object->setDriverConfig($this->denormalizer->denormalize($data['DriverConfig'], 'TestContainersPHP\\Docker\\ApiClient\\Model\\MountVolumeOptionsDriverConfig', 'json', $context));
+            $object->setDriverConfig($this->denormalizer->denormalize($data['DriverConfig'], 'Tarekdj\\Docker\\ApiClient\\Model\\MountVolumeOptionsDriverConfig', 'json', $context));
         }
         elseif (\array_key_exists('DriverConfig', $data) && $data['DriverConfig'] === null) {
             $object->setDriverConfig(null);
