@@ -3,7 +3,7 @@
 require_once __DIR__ . '/FakeDockerUnixSocketClient.php';
 
 use PHPUnit\Framework\TestCase;
-
+use Tarekdj\Docker\ApiClient\Client;
 
 final class ClientTest extends TestCase
 {
@@ -19,7 +19,7 @@ final class ClientTest extends TestCase
     public function testClientCreated(): void
     {
         $socketClient = new FakeDockerUnixSocketClient();
-        $docker = \Tarekdj\Docker\ApiClient\Client::create($socketClient);
+        $docker = Client::create($socketClient);
         $this->assertTrue($docker instanceof Client);
         $this->assertTrue($this->imageFound('hello-world:latest', $docker->imageList()), 'Pulled hello-world image found.');
         $docker->imageDelete('hello-world');
