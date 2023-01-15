@@ -45,10 +45,10 @@ class SwarmUpdate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint 
         $optionsResolver->setDefined(array('version', 'rotateWorkerToken', 'rotateManagerToken', 'rotateManagerUnlockKey'));
         $optionsResolver->setRequired(array('version'));
         $optionsResolver->setDefaults(array('rotateWorkerToken' => false, 'rotateManagerToken' => false, 'rotateManagerUnlockKey' => false));
-        $optionsResolver->setAllowedTypes('version', array('int'));
-        $optionsResolver->setAllowedTypes('rotateWorkerToken', array('bool'));
-        $optionsResolver->setAllowedTypes('rotateManagerToken', array('bool'));
-        $optionsResolver->setAllowedTypes('rotateManagerUnlockKey', array('bool'));
+        $optionsResolver->addAllowedTypes('version', array('int'));
+        $optionsResolver->addAllowedTypes('rotateWorkerToken', array('bool'));
+        $optionsResolver->addAllowedTypes('rotateManagerToken', array('bool'));
+        $optionsResolver->addAllowedTypes('rotateManagerUnlockKey', array('bool'));
         return $optionsResolver;
     }
     /**

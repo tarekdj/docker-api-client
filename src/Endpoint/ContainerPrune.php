@@ -43,7 +43,7 @@ class ContainerPrune extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoi
         $optionsResolver->setDefined(array('filters'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filters', array('string'));
+        $optionsResolver->addAllowedTypes('filters', array('string'));
         return $optionsResolver;
     }
     /**

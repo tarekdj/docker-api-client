@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class EndpointPortConfigNormalizer implements DenormalizerInterface, NormalizerI
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointPortConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\EndpointPortConfig';
     }
@@ -80,19 +79,19 @@ class EndpointPortConfigNormalizer implements DenormalizerInterface, NormalizerI
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getName()) {
+        if ($object->isInitialized('name') && null !== $object->getName()) {
             $data['Name'] = $object->getName();
         }
-        if (null !== $object->getProtocol()) {
+        if ($object->isInitialized('protocol') && null !== $object->getProtocol()) {
             $data['Protocol'] = $object->getProtocol();
         }
-        if (null !== $object->getTargetPort()) {
+        if ($object->isInitialized('targetPort') && null !== $object->getTargetPort()) {
             $data['TargetPort'] = $object->getTargetPort();
         }
-        if (null !== $object->getPublishedPort()) {
+        if ($object->isInitialized('publishedPort') && null !== $object->getPublishedPort()) {
             $data['PublishedPort'] = $object->getPublishedPort();
         }
-        if (null !== $object->getPublishMode()) {
+        if ($object->isInitialized('publishMode') && null !== $object->getPublishMode()) {
             $data['PublishMode'] = $object->getPublishMode();
         }
         return $data;

@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class IPAMConfig
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * 
      *
      * @var string|null
@@ -46,6 +54,7 @@ class IPAMConfig
      */
     public function setSubnet(?string $subnet) : self
     {
+        $this->initialized['subnet'] = true;
         $this->subnet = $subnet;
         return $this;
     }
@@ -67,6 +76,7 @@ class IPAMConfig
      */
     public function setIPRange(?string $iPRange) : self
     {
+        $this->initialized['iPRange'] = true;
         $this->iPRange = $iPRange;
         return $this;
     }
@@ -88,6 +98,7 @@ class IPAMConfig
      */
     public function setGateway(?string $gateway) : self
     {
+        $this->initialized['gateway'] = true;
         $this->gateway = $gateway;
         return $this;
     }
@@ -109,6 +120,7 @@ class IPAMConfig
      */
     public function setAuxiliaryAddresses(?iterable $auxiliaryAddresses) : self
     {
+        $this->initialized['auxiliaryAddresses'] = true;
         $this->auxiliaryAddresses = $auxiliaryAddresses;
         return $this;
     }

@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class PluginsInfoNormalizer implements DenormalizerInterface, NormalizerInterfac
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\PluginsInfo';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\PluginsInfo';
     }
@@ -90,28 +89,28 @@ class PluginsInfoNormalizer implements DenormalizerInterface, NormalizerInterfac
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getVolume()) {
+        if ($object->isInitialized('volume') && null !== $object->getVolume()) {
             $values = array();
             foreach ($object->getVolume() as $value) {
                 $values[] = $value;
             }
             $data['Volume'] = $values;
         }
-        if (null !== $object->getNetwork()) {
+        if ($object->isInitialized('network') && null !== $object->getNetwork()) {
             $values_1 = array();
             foreach ($object->getNetwork() as $value_1) {
                 $values_1[] = $value_1;
             }
             $data['Network'] = $values_1;
         }
-        if (null !== $object->getAuthorization()) {
+        if ($object->isInitialized('authorization') && null !== $object->getAuthorization()) {
             $values_2 = array();
             foreach ($object->getAuthorization() as $value_2) {
                 $values_2[] = $value_2;
             }
             $data['Authorization'] = $values_2;
         }
-        if (null !== $object->getLog()) {
+        if ($object->isInitialized('log') && null !== $object->getLog()) {
             $values_3 = array();
             foreach ($object->getLog() as $value_3) {
                 $values_3[] = $value_3;

@@ -44,7 +44,7 @@ class ContainerWait extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoin
         $optionsResolver->setDefined(array('condition'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('condition' => 'not-running'));
-        $optionsResolver->setAllowedTypes('condition', array('string'));
+        $optionsResolver->addAllowedTypes('condition', array('string'));
         return $optionsResolver;
     }
     /**

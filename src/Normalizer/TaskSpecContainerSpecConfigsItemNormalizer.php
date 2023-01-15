@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecContainerSpecConfigsItemNormalizer implements DenormalizerInterfac
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItem';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecConfigsItem';
     }
@@ -74,16 +73,16 @@ class TaskSpecContainerSpecConfigsItemNormalizer implements DenormalizerInterfac
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getFile()) {
+        if ($object->isInitialized('file') && null !== $object->getFile()) {
             $data['File'] = $this->normalizer->normalize($object->getFile(), 'json', $context);
         }
-        if (null !== $object->getRuntime()) {
+        if ($object->isInitialized('runtime') && null !== $object->getRuntime()) {
             $data['Runtime'] = $object->getRuntime();
         }
-        if (null !== $object->getConfigID()) {
+        if ($object->isInitialized('configID') && null !== $object->getConfigID()) {
             $data['ConfigID'] = $object->getConfigID();
         }
-        if (null !== $object->getConfigName()) {
+        if ($object->isInitialized('configName') && null !== $object->getConfigName()) {
             $data['ConfigName'] = $object->getConfigName();
         }
         return $data;

@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class CreateImageInfoNormalizer implements DenormalizerInterface, NormalizerInte
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\CreateImageInfo';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\CreateImageInfo';
     }
@@ -54,6 +53,12 @@ class CreateImageInfoNormalizer implements DenormalizerInterface, NormalizerInte
         elseif (\array_key_exists('error', $data) && $data['error'] === null) {
             $object->setError(null);
         }
+        if (\array_key_exists('errorDetail', $data) && $data['errorDetail'] !== null) {
+            $object->setErrorDetail($this->denormalizer->denormalize($data['errorDetail'], 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorDetail', 'json', $context));
+        }
+        elseif (\array_key_exists('errorDetail', $data) && $data['errorDetail'] === null) {
+            $object->setErrorDetail(null);
+        }
         if (\array_key_exists('status', $data) && $data['status'] !== null) {
             $object->setStatus($data['status']);
         }
@@ -80,19 +85,22 @@ class CreateImageInfoNormalizer implements DenormalizerInterface, NormalizerInte
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getId()) {
+        if ($object->isInitialized('id') && null !== $object->getId()) {
             $data['id'] = $object->getId();
         }
-        if (null !== $object->getError()) {
+        if ($object->isInitialized('error') && null !== $object->getError()) {
             $data['error'] = $object->getError();
         }
-        if (null !== $object->getStatus()) {
+        if ($object->isInitialized('errorDetail') && null !== $object->getErrorDetail()) {
+            $data['errorDetail'] = $this->normalizer->normalize($object->getErrorDetail(), 'json', $context);
+        }
+        if ($object->isInitialized('status') && null !== $object->getStatus()) {
             $data['status'] = $object->getStatus();
         }
-        if (null !== $object->getProgress()) {
+        if ($object->isInitialized('progress') && null !== $object->getProgress()) {
             $data['progress'] = $object->getProgress();
         }
-        if (null !== $object->getProgressDetail()) {
+        if ($object->isInitialized('progressDetail') && null !== $object->getProgressDetail()) {
             $data['progressDetail'] = $this->normalizer->normalize($object->getProgressDetail(), 'json', $context);
         }
         return $data;

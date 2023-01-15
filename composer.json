@@ -4,10 +4,9 @@
     "type": "library",
     "description": "A Docker API PHP client",
     "require": {
-        "jane-php/open-api-runtime": "^7.2"
+        "jane-php/open-api-runtime": "^7.4"
     },
     "require-dev": {
-        "jane-php/open-api-2": "^7.2",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {

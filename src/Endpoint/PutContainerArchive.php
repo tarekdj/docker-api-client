@@ -56,9 +56,9 @@ class PutContainerArchive extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseE
         $optionsResolver->setDefined(array('path', 'noOverwriteDirNonDir', 'copyUIDGID'));
         $optionsResolver->setRequired(array('path'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('path', array('string'));
-        $optionsResolver->setAllowedTypes('noOverwriteDirNonDir', array('string'));
-        $optionsResolver->setAllowedTypes('copyUIDGID', array('string'));
+        $optionsResolver->addAllowedTypes('path', array('string'));
+        $optionsResolver->addAllowedTypes('noOverwriteDirNonDir', array('string'));
+        $optionsResolver->addAllowedTypes('copyUIDGID', array('string'));
         return $optionsResolver;
     }
     /**

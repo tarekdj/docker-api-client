@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspect';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ImageInspect';
     }
@@ -178,72 +177,72 @@ class ImageInspectNormalizer implements DenormalizerInterface, NormalizerInterfa
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getId()) {
+        if ($object->isInitialized('id') && null !== $object->getId()) {
             $data['Id'] = $object->getId();
         }
-        if (null !== $object->getRepoTags()) {
+        if ($object->isInitialized('repoTags') && null !== $object->getRepoTags()) {
             $values = array();
             foreach ($object->getRepoTags() as $value) {
                 $values[] = $value;
             }
             $data['RepoTags'] = $values;
         }
-        if (null !== $object->getRepoDigests()) {
+        if ($object->isInitialized('repoDigests') && null !== $object->getRepoDigests()) {
             $values_1 = array();
             foreach ($object->getRepoDigests() as $value_1) {
                 $values_1[] = $value_1;
             }
             $data['RepoDigests'] = $values_1;
         }
-        if (null !== $object->getParent()) {
+        if ($object->isInitialized('parent') && null !== $object->getParent()) {
             $data['Parent'] = $object->getParent();
         }
-        if (null !== $object->getComment()) {
+        if ($object->isInitialized('comment') && null !== $object->getComment()) {
             $data['Comment'] = $object->getComment();
         }
-        if (null !== $object->getCreated()) {
+        if ($object->isInitialized('created') && null !== $object->getCreated()) {
             $data['Created'] = $object->getCreated();
         }
-        if (null !== $object->getContainer()) {
+        if ($object->isInitialized('container') && null !== $object->getContainer()) {
             $data['Container'] = $object->getContainer();
         }
-        if (null !== $object->getContainerConfig()) {
+        if ($object->isInitialized('containerConfig') && null !== $object->getContainerConfig()) {
             $data['ContainerConfig'] = $this->normalizer->normalize($object->getContainerConfig(), 'json', $context);
         }
-        if (null !== $object->getDockerVersion()) {
+        if ($object->isInitialized('dockerVersion') && null !== $object->getDockerVersion()) {
             $data['DockerVersion'] = $object->getDockerVersion();
         }
-        if (null !== $object->getAuthor()) {
+        if ($object->isInitialized('author') && null !== $object->getAuthor()) {
             $data['Author'] = $object->getAuthor();
         }
-        if (null !== $object->getConfig()) {
+        if ($object->isInitialized('config') && null !== $object->getConfig()) {
             $data['Config'] = $this->normalizer->normalize($object->getConfig(), 'json', $context);
         }
-        if (null !== $object->getArchitecture()) {
+        if ($object->isInitialized('architecture') && null !== $object->getArchitecture()) {
             $data['Architecture'] = $object->getArchitecture();
         }
-        if (null !== $object->getVariant()) {
+        if ($object->isInitialized('variant') && null !== $object->getVariant()) {
             $data['Variant'] = $object->getVariant();
         }
-        if (null !== $object->getOs()) {
+        if ($object->isInitialized('os') && null !== $object->getOs()) {
             $data['Os'] = $object->getOs();
         }
-        if (null !== $object->getOsVersion()) {
+        if ($object->isInitialized('osVersion') && null !== $object->getOsVersion()) {
             $data['OsVersion'] = $object->getOsVersion();
         }
-        if (null !== $object->getSize()) {
+        if ($object->isInitialized('size') && null !== $object->getSize()) {
             $data['Size'] = $object->getSize();
         }
-        if (null !== $object->getVirtualSize()) {
+        if ($object->isInitialized('virtualSize') && null !== $object->getVirtualSize()) {
             $data['VirtualSize'] = $object->getVirtualSize();
         }
-        if (null !== $object->getGraphDriver()) {
+        if ($object->isInitialized('graphDriver') && null !== $object->getGraphDriver()) {
             $data['GraphDriver'] = $this->normalizer->normalize($object->getGraphDriver(), 'json', $context);
         }
-        if (null !== $object->getRootFS()) {
+        if ($object->isInitialized('rootFS') && null !== $object->getRootFS()) {
             $data['RootFS'] = $this->normalizer->normalize($object->getRootFS(), 'json', $context);
         }
-        if (null !== $object->getMetadata()) {
+        if ($object->isInitialized('metadata') && null !== $object->getMetadata()) {
             $data['Metadata'] = $this->normalizer->normalize($object->getMetadata(), 'json', $context);
         }
         return $data;

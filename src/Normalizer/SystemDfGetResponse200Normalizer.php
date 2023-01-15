@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SystemDfGetResponse200';
     }
@@ -96,31 +95,31 @@ class SystemDfGetResponse200Normalizer implements DenormalizerInterface, Normali
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getLayersSize()) {
+        if ($object->isInitialized('layersSize') && null !== $object->getLayersSize()) {
             $data['LayersSize'] = $object->getLayersSize();
         }
-        if (null !== $object->getImages()) {
+        if ($object->isInitialized('images') && null !== $object->getImages()) {
             $values = array();
             foreach ($object->getImages() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
             $data['Images'] = $values;
         }
-        if (null !== $object->getContainers()) {
+        if ($object->isInitialized('containers') && null !== $object->getContainers()) {
             $values_1 = array();
             foreach ($object->getContainers() as $value_1) {
                 $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
             }
             $data['Containers'] = $values_1;
         }
-        if (null !== $object->getVolumes()) {
+        if ($object->isInitialized('volumes') && null !== $object->getVolumes()) {
             $values_2 = array();
             foreach ($object->getVolumes() as $value_2) {
                 $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
             }
             $data['Volumes'] = $values_2;
         }
-        if (null !== $object->getBuildCache()) {
+        if ($object->isInitialized('buildCache') && null !== $object->getBuildCache()) {
             $values_3 = array();
             foreach ($object->getBuildCache() as $value_3) {
                 $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);

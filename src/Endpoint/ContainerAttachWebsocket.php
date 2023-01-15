@@ -46,9 +46,9 @@ class ContainerAttachWebsocket extends \Tarekdj\Docker\ApiClient\Runtime\Client\
         $optionsResolver->setDefined(array('detachKeys', 'logs', 'stream'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('logs' => false, 'stream' => false));
-        $optionsResolver->setAllowedTypes('detachKeys', array('string'));
-        $optionsResolver->setAllowedTypes('logs', array('bool'));
-        $optionsResolver->setAllowedTypes('stream', array('bool'));
+        $optionsResolver->addAllowedTypes('detachKeys', array('string'));
+        $optionsResolver->addAllowedTypes('logs', array('bool'));
+        $optionsResolver->addAllowedTypes('stream', array('bool'));
         return $optionsResolver;
     }
     /**

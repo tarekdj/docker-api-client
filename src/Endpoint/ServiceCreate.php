@@ -45,7 +45,7 @@ class ServiceCreate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoin
         $optionsResolver->setDefined(array('X-Registry-Auth'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('X-Registry-Auth', array('string'));
+        $optionsResolver->addAllowedTypes('X-Registry-Auth', array('string'));
         return $optionsResolver;
     }
     /**

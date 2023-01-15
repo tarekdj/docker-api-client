@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class VolumesPrunePostResponse200
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * Volumes that were deleted
      *
      * @var string[]|null
@@ -34,6 +42,7 @@ class VolumesPrunePostResponse200
      */
     public function setVolumesDeleted(?array $volumesDeleted) : self
     {
+        $this->initialized['volumesDeleted'] = true;
         $this->volumesDeleted = $volumesDeleted;
         return $this;
     }
@@ -55,6 +64,7 @@ class VolumesPrunePostResponse200
      */
     public function setSpaceReclaimed(?int $spaceReclaimed) : self
     {
+        $this->initialized['spaceReclaimed'] = true;
         $this->spaceReclaimed = $spaceReclaimed;
         return $this;
     }

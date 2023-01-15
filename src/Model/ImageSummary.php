@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ImageSummary
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
     * ID is the content-addressable ID of an image.
     
     This identifier is a content-addressable digest calculated from the
@@ -33,7 +41,7 @@ class ImageSummary
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -145,6 +153,7 @@ class ImageSummary
     */
     public function setId(?string $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -176,6 +185,7 @@ class ImageSummary
     */
     public function setParentId(?string $parentId) : self
     {
+        $this->initialized['parentId'] = true;
         $this->parentId = $parentId;
         return $this;
     }
@@ -183,7 +193,7 @@ class ImageSummary
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -198,7 +208,7 @@ class ImageSummary
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -209,6 +219,7 @@ class ImageSummary
     */
     public function setRepoTags(?array $repoTags) : self
     {
+        $this->initialized['repoTags'] = true;
         $this->repoTags = $repoTags;
         return $this;
     }
@@ -244,6 +255,7 @@ class ImageSummary
     */
     public function setRepoDigests(?array $repoDigests) : self
     {
+        $this->initialized['repoDigests'] = true;
         $this->repoDigests = $repoDigests;
         return $this;
     }
@@ -269,6 +281,7 @@ class ImageSummary
     */
     public function setCreated(?int $created) : self
     {
+        $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
@@ -290,6 +303,7 @@ class ImageSummary
      */
     public function setSize(?int $size) : self
     {
+        $this->initialized['size'] = true;
         $this->size = $size;
         return $this;
     }
@@ -321,6 +335,7 @@ class ImageSummary
     */
     public function setSharedSize(?int $sharedSize) : self
     {
+        $this->initialized['sharedSize'] = true;
         $this->sharedSize = $sharedSize;
         return $this;
     }
@@ -360,6 +375,7 @@ class ImageSummary
     */
     public function setVirtualSize(?int $virtualSize) : self
     {
+        $this->initialized['virtualSize'] = true;
         $this->virtualSize = $virtualSize;
         return $this;
     }
@@ -381,6 +397,7 @@ class ImageSummary
      */
     public function setLabels(?iterable $labels) : self
     {
+        $this->initialized['labels'] = true;
         $this->labels = $labels;
         return $this;
     }
@@ -412,6 +429,7 @@ class ImageSummary
     */
     public function setContainers(?int $containers) : self
     {
+        $this->initialized['containers'] = true;
         $this->containers = $containers;
         return $this;
     }

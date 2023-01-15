@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ExecIdJsonGetResponse200Normalizer implements DenormalizerInterface, Norma
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ExecIdJsonGetResponse200';
     }
@@ -116,37 +115,37 @@ class ExecIdJsonGetResponse200Normalizer implements DenormalizerInterface, Norma
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getCanRemove()) {
+        if ($object->isInitialized('canRemove') && null !== $object->getCanRemove()) {
             $data['CanRemove'] = $object->getCanRemove();
         }
-        if (null !== $object->getDetachKeys()) {
+        if ($object->isInitialized('detachKeys') && null !== $object->getDetachKeys()) {
             $data['DetachKeys'] = $object->getDetachKeys();
         }
-        if (null !== $object->getID()) {
+        if ($object->isInitialized('iD') && null !== $object->getID()) {
             $data['ID'] = $object->getID();
         }
-        if (null !== $object->getRunning()) {
+        if ($object->isInitialized('running') && null !== $object->getRunning()) {
             $data['Running'] = $object->getRunning();
         }
-        if (null !== $object->getExitCode()) {
+        if ($object->isInitialized('exitCode') && null !== $object->getExitCode()) {
             $data['ExitCode'] = $object->getExitCode();
         }
-        if (null !== $object->getProcessConfig()) {
+        if ($object->isInitialized('processConfig') && null !== $object->getProcessConfig()) {
             $data['ProcessConfig'] = $this->normalizer->normalize($object->getProcessConfig(), 'json', $context);
         }
-        if (null !== $object->getOpenStdin()) {
+        if ($object->isInitialized('openStdin') && null !== $object->getOpenStdin()) {
             $data['OpenStdin'] = $object->getOpenStdin();
         }
-        if (null !== $object->getOpenStderr()) {
+        if ($object->isInitialized('openStderr') && null !== $object->getOpenStderr()) {
             $data['OpenStderr'] = $object->getOpenStderr();
         }
-        if (null !== $object->getOpenStdout()) {
+        if ($object->isInitialized('openStdout') && null !== $object->getOpenStdout()) {
             $data['OpenStdout'] = $object->getOpenStdout();
         }
-        if (null !== $object->getContainerID()) {
+        if ($object->isInitialized('containerID') && null !== $object->getContainerID()) {
             $data['ContainerID'] = $object->getContainerID();
         }
-        if (null !== $object->getPid()) {
+        if ($object->isInitialized('pid') && null !== $object->getPid()) {
             $data['Pid'] = $object->getPid();
         }
         return $data;

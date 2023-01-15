@@ -41,7 +41,7 @@ class ContainerRename extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpo
         $optionsResolver->setDefined(array('name'));
         $optionsResolver->setRequired(array('name'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('name', array('string'));
+        $optionsResolver->addAllowedTypes('name', array('string'));
         return $optionsResolver;
     }
     /**

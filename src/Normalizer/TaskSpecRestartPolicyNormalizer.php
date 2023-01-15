@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecRestartPolicyNormalizer implements DenormalizerInterface, Normaliz
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecRestartPolicy';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecRestartPolicy';
     }
@@ -74,16 +73,16 @@ class TaskSpecRestartPolicyNormalizer implements DenormalizerInterface, Normaliz
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getCondition()) {
+        if ($object->isInitialized('condition') && null !== $object->getCondition()) {
             $data['Condition'] = $object->getCondition();
         }
-        if (null !== $object->getDelay()) {
+        if ($object->isInitialized('delay') && null !== $object->getDelay()) {
             $data['Delay'] = $object->getDelay();
         }
-        if (null !== $object->getMaxAttempts()) {
+        if ($object->isInitialized('maxAttempts') && null !== $object->getMaxAttempts()) {
             $data['MaxAttempts'] = $object->getMaxAttempts();
         }
-        if (null !== $object->getWindow()) {
+        if ($object->isInitialized('window') && null !== $object->getWindow()) {
             $data['Window'] = $object->getWindow();
         }
         return $data;

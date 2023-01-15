@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class EventMessageNormalizer implements DenormalizerInterface, NormalizerInterfa
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\EventMessage';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\EventMessage';
     }
@@ -86,22 +85,22 @@ class EventMessageNormalizer implements DenormalizerInterface, NormalizerInterfa
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getType()) {
+        if ($object->isInitialized('type') && null !== $object->getType()) {
             $data['Type'] = $object->getType();
         }
-        if (null !== $object->getAction()) {
+        if ($object->isInitialized('action') && null !== $object->getAction()) {
             $data['Action'] = $object->getAction();
         }
-        if (null !== $object->getActor()) {
+        if ($object->isInitialized('actor') && null !== $object->getActor()) {
             $data['Actor'] = $this->normalizer->normalize($object->getActor(), 'json', $context);
         }
-        if (null !== $object->getScope()) {
+        if ($object->isInitialized('scope') && null !== $object->getScope()) {
             $data['scope'] = $object->getScope();
         }
-        if (null !== $object->getTime()) {
+        if ($object->isInitialized('time') && null !== $object->getTime()) {
             $data['time'] = $object->getTime();
         }
-        if (null !== $object->getTimeNano()) {
+        if ($object->isInitialized('timeNano') && null !== $object->getTimeNano()) {
             $data['timeNano'] = $object->getTimeNano();
         }
         return $data;

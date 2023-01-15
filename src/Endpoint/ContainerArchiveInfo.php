@@ -44,7 +44,7 @@ class ContainerArchiveInfo extends \Tarekdj\Docker\ApiClient\Runtime\Client\Base
         $optionsResolver->setDefined(array('path'));
         $optionsResolver->setRequired(array('path'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('path', array('string'));
+        $optionsResolver->addAllowedTypes('path', array('string'));
         return $optionsResolver;
     }
     /**

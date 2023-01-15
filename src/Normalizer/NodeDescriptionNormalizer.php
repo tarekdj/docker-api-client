@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class NodeDescriptionNormalizer implements DenormalizerInterface, NormalizerInte
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NodeDescription';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NodeDescription';
     }
@@ -80,19 +79,19 @@ class NodeDescriptionNormalizer implements DenormalizerInterface, NormalizerInte
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getHostname()) {
+        if ($object->isInitialized('hostname') && null !== $object->getHostname()) {
             $data['Hostname'] = $object->getHostname();
         }
-        if (null !== $object->getPlatform()) {
+        if ($object->isInitialized('platform') && null !== $object->getPlatform()) {
             $data['Platform'] = $this->normalizer->normalize($object->getPlatform(), 'json', $context);
         }
-        if (null !== $object->getResources()) {
+        if ($object->isInitialized('resources') && null !== $object->getResources()) {
             $data['Resources'] = $this->normalizer->normalize($object->getResources(), 'json', $context);
         }
-        if (null !== $object->getEngine()) {
+        if ($object->isInitialized('engine') && null !== $object->getEngine()) {
             $data['Engine'] = $this->normalizer->normalize($object->getEngine(), 'json', $context);
         }
-        if (null !== $object->getTLSInfo()) {
+        if ($object->isInitialized('tLSInfo') && null !== $object->getTLSInfo()) {
             $data['TLSInfo'] = $this->normalizer->normalize($object->getTLSInfo(), 'json', $context);
         }
         return $data;

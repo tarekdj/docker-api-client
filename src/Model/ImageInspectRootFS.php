@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ImageInspectRootFS
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * 
      *
      * @var string|null
@@ -34,6 +42,7 @@ class ImageInspectRootFS
      */
     public function setType(?string $type) : self
     {
+        $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
@@ -55,6 +64,7 @@ class ImageInspectRootFS
      */
     public function setLayers(?array $layers) : self
     {
+        $this->initialized['layers'] = true;
         $this->layers = $layers;
         return $this;
     }

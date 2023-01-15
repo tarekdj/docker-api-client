@@ -318,7 +318,8 @@ class Client extends \Tarekdj\Docker\ApiClient\Runtime\Client\Client
     *
     * @param string $id ID or name of the container
     * @param array $queryParameters {
-    *     @var string $signal Signal to send to the container as an integer or string (e.g. `SIGINT`)
+    *     @var string $signal Signal to send to the container as an integer or string (e.g. `SIGINT`).
+    
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Tarekdj\Docker\ApiClient\Exception\ContainerKillNotFoundException
@@ -1010,6 +1011,7 @@ class Client extends \Tarekdj\Docker\ApiClient\Runtime\Client\Client
     *
     * @param \Tarekdj\Docker\ApiClient\Model\AuthConfig $authConfig Authentication to check
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+    * @throws \Tarekdj\Docker\ApiClient\Exception\SystemAuthUnauthorizedException
     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemAuthInternalServerErrorException
     *
     * @return null|\Tarekdj\Docker\ApiClient\Model\AuthPostResponse200|\Psr\Http\Message\ResponseInterface
@@ -1317,7 +1319,7 @@ class Client extends \Tarekdj\Docker\ApiClient\Runtime\Client\Client
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeListInternalServerErrorException
     *
-    * @return null|\Tarekdj\Docker\ApiClient\Model\VolumesGetResponse200|\Psr\Http\Message\ResponseInterface
+    * @return null|\Tarekdj\Docker\ApiClient\Model\VolumeListResponse|\Psr\Http\Message\ResponseInterface
     */
     public function volumeList(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {

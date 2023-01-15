@@ -42,7 +42,7 @@ class PluginCreate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint
         $optionsResolver->setDefined(array('name'));
         $optionsResolver->setRequired(array('name'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('name', array('string'));
+        $optionsResolver->addAllowedTypes('name', array('string'));
         return $optionsResolver;
     }
     /**

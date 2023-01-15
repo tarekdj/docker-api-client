@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\BuildInfo';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\BuildInfo';
     }
@@ -98,28 +97,28 @@ class BuildInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getId()) {
+        if ($object->isInitialized('id') && null !== $object->getId()) {
             $data['id'] = $object->getId();
         }
-        if (null !== $object->getStream()) {
+        if ($object->isInitialized('stream') && null !== $object->getStream()) {
             $data['stream'] = $object->getStream();
         }
-        if (null !== $object->getError()) {
+        if ($object->isInitialized('error') && null !== $object->getError()) {
             $data['error'] = $object->getError();
         }
-        if (null !== $object->getErrorDetail()) {
+        if ($object->isInitialized('errorDetail') && null !== $object->getErrorDetail()) {
             $data['errorDetail'] = $this->normalizer->normalize($object->getErrorDetail(), 'json', $context);
         }
-        if (null !== $object->getStatus()) {
+        if ($object->isInitialized('status') && null !== $object->getStatus()) {
             $data['status'] = $object->getStatus();
         }
-        if (null !== $object->getProgress()) {
+        if ($object->isInitialized('progress') && null !== $object->getProgress()) {
             $data['progress'] = $object->getProgress();
         }
-        if (null !== $object->getProgressDetail()) {
+        if ($object->isInitialized('progressDetail') && null !== $object->getProgressDetail()) {
             $data['progressDetail'] = $this->normalizer->normalize($object->getProgressDetail(), 'json', $context);
         }
-        if (null !== $object->getAux()) {
+        if ($object->isInitialized('aux') && null !== $object->getAux()) {
             $data['aux'] = $this->normalizer->normalize($object->getAux(), 'json', $context);
         }
         return $data;

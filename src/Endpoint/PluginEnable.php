@@ -43,7 +43,7 @@ class PluginEnable extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint
         $optionsResolver->setDefined(array('timeout'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('timeout' => 0));
-        $optionsResolver->setAllowedTypes('timeout', array('int'));
+        $optionsResolver->addAllowedTypes('timeout', array('int'));
         return $optionsResolver;
     }
     /**

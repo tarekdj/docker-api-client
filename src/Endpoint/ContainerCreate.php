@@ -59,8 +59,8 @@ class ContainerCreate extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpo
         $optionsResolver->setDefined(array('name', 'platform'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('platform' => ''));
-        $optionsResolver->setAllowedTypes('name', array('string'));
-        $optionsResolver->setAllowedTypes('platform', array('string'));
+        $optionsResolver->addAllowedTypes('name', array('string'));
+        $optionsResolver->addAllowedTypes('platform', array('string'));
         return $optionsResolver;
     }
     /**

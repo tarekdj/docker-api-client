@@ -49,7 +49,7 @@ class TaskList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint imp
         $optionsResolver->setDefined(array('filters'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filters', array('string'));
+        $optionsResolver->addAllowedTypes('filters', array('string'));
         return $optionsResolver;
     }
     /**

@@ -48,7 +48,7 @@ class ImageGetAll extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint 
         $optionsResolver->setDefined(array('names'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('names', array('array'));
+        $optionsResolver->addAllowedTypes('names', array('array'));
         return $optionsResolver;
     }
     /**

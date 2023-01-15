@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class MountNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Mount';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Mount';
     }
@@ -98,28 +97,28 @@ class MountNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getTarget()) {
+        if ($object->isInitialized('target') && null !== $object->getTarget()) {
             $data['Target'] = $object->getTarget();
         }
-        if (null !== $object->getSource()) {
+        if ($object->isInitialized('source') && null !== $object->getSource()) {
             $data['Source'] = $object->getSource();
         }
-        if (null !== $object->getType()) {
+        if ($object->isInitialized('type') && null !== $object->getType()) {
             $data['Type'] = $object->getType();
         }
-        if (null !== $object->getReadOnly()) {
+        if ($object->isInitialized('readOnly') && null !== $object->getReadOnly()) {
             $data['ReadOnly'] = $object->getReadOnly();
         }
-        if (null !== $object->getConsistency()) {
+        if ($object->isInitialized('consistency') && null !== $object->getConsistency()) {
             $data['Consistency'] = $object->getConsistency();
         }
-        if (null !== $object->getBindOptions()) {
+        if ($object->isInitialized('bindOptions') && null !== $object->getBindOptions()) {
             $data['BindOptions'] = $this->normalizer->normalize($object->getBindOptions(), 'json', $context);
         }
-        if (null !== $object->getVolumeOptions()) {
+        if ($object->isInitialized('volumeOptions') && null !== $object->getVolumeOptions()) {
             $data['VolumeOptions'] = $this->normalizer->normalize($object->getVolumeOptions(), 'json', $context);
         }
-        if (null !== $object->getTmpfsOptions()) {
+        if ($object->isInitialized('tmpfsOptions') && null !== $object->getTmpfsOptions()) {
             $data['TmpfsOptions'] = $this->normalizer->normalize($object->getTmpfsOptions(), 'json', $context);
         }
         return $data;

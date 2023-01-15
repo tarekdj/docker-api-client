@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class NetworkAttachmentConfigNormalizer implements DenormalizerInterface, Normal
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkAttachmentConfig';
     }
@@ -76,17 +75,17 @@ class NetworkAttachmentConfigNormalizer implements DenormalizerInterface, Normal
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getTarget()) {
+        if ($object->isInitialized('target') && null !== $object->getTarget()) {
             $data['Target'] = $object->getTarget();
         }
-        if (null !== $object->getAliases()) {
+        if ($object->isInitialized('aliases') && null !== $object->getAliases()) {
             $values = array();
             foreach ($object->getAliases() as $value) {
                 $values[] = $value;
             }
             $data['Aliases'] = $values;
         }
-        if (null !== $object->getDriverOpts()) {
+        if ($object->isInitialized('driverOpts') && null !== $object->getDriverOpts()) {
             $values_1 = array();
             foreach ($object->getDriverOpts() as $key => $value_1) {
                 $values_1[$key] = $value_1;

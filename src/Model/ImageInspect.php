@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ImageInspect
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
     * ID is the content-addressable ID of an image.
     
     This identifier is a content-addressable digest calculated from the
@@ -22,7 +30,7 @@ class ImageInspect
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -225,6 +233,7 @@ class ImageInspect
     */
     public function setId(?string $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -232,7 +241,7 @@ class ImageInspect
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -247,7 +256,7 @@ class ImageInspect
     * List of image names/tags in the local image cache that reference this
     image.
     
-    Multiple image tags can refer to the same imagem and this list may be
+    Multiple image tags can refer to the same image, and this list may be
     empty if no tags reference the image, in which case the image is
     "untagged", in which case it can still be referenced by its ID.
     
@@ -258,6 +267,7 @@ class ImageInspect
     */
     public function setRepoTags(?array $repoTags) : self
     {
+        $this->initialized['repoTags'] = true;
         $this->repoTags = $repoTags;
         return $this;
     }
@@ -293,6 +303,7 @@ class ImageInspect
     */
     public function setRepoDigests(?array $repoDigests) : self
     {
+        $this->initialized['repoDigests'] = true;
         $this->repoDigests = $repoDigests;
         return $this;
     }
@@ -324,6 +335,7 @@ class ImageInspect
     */
     public function setParent(?string $parent) : self
     {
+        $this->initialized['parent'] = true;
         $this->parent = $parent;
         return $this;
     }
@@ -345,6 +357,7 @@ class ImageInspect
      */
     public function setComment(?string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
@@ -370,6 +383,7 @@ class ImageInspect
     */
     public function setCreated(?string $created) : self
     {
+        $this->initialized['created'] = true;
         $this->created = $created;
         return $this;
     }
@@ -397,6 +411,7 @@ class ImageInspect
     */
     public function setContainer(?string $container) : self
     {
+        $this->initialized['container'] = true;
         $this->container = $container;
         return $this;
     }
@@ -434,6 +449,7 @@ class ImageInspect
     */
     public function setContainerConfig(?ContainerConfig $containerConfig) : self
     {
+        $this->initialized['containerConfig'] = true;
         $this->containerConfig = $containerConfig;
         return $this;
     }
@@ -461,6 +477,7 @@ class ImageInspect
     */
     public function setDockerVersion(?string $dockerVersion) : self
     {
+        $this->initialized['dockerVersion'] = true;
         $this->dockerVersion = $dockerVersion;
         return $this;
     }
@@ -486,6 +503,7 @@ class ImageInspect
     */
     public function setAuthor(?string $author) : self
     {
+        $this->initialized['author'] = true;
         $this->author = $author;
         return $this;
     }
@@ -523,6 +541,7 @@ class ImageInspect
     */
     public function setConfig(?ContainerConfig $config) : self
     {
+        $this->initialized['config'] = true;
         $this->config = $config;
         return $this;
     }
@@ -544,6 +563,7 @@ class ImageInspect
      */
     public function setArchitecture(?string $architecture) : self
     {
+        $this->initialized['architecture'] = true;
         $this->architecture = $architecture;
         return $this;
     }
@@ -565,6 +585,7 @@ class ImageInspect
      */
     public function setVariant(?string $variant) : self
     {
+        $this->initialized['variant'] = true;
         $this->variant = $variant;
         return $this;
     }
@@ -586,6 +607,7 @@ class ImageInspect
      */
     public function setOs(?string $os) : self
     {
+        $this->initialized['os'] = true;
         $this->os = $os;
         return $this;
     }
@@ -611,6 +633,7 @@ class ImageInspect
     */
     public function setOsVersion(?string $osVersion) : self
     {
+        $this->initialized['osVersion'] = true;
         $this->osVersion = $osVersion;
         return $this;
     }
@@ -632,6 +655,7 @@ class ImageInspect
      */
     public function setSize(?int $size) : self
     {
+        $this->initialized['size'] = true;
         $this->size = $size;
         return $this;
     }
@@ -671,6 +695,7 @@ class ImageInspect
     */
     public function setVirtualSize(?int $virtualSize) : self
     {
+        $this->initialized['virtualSize'] = true;
         $this->virtualSize = $virtualSize;
         return $this;
     }
@@ -696,6 +721,7 @@ class ImageInspect
     */
     public function setGraphDriver(?GraphDriverData $graphDriver) : self
     {
+        $this->initialized['graphDriver'] = true;
         $this->graphDriver = $graphDriver;
         return $this;
     }
@@ -717,6 +743,7 @@ class ImageInspect
      */
     public function setRootFS(?ImageInspectRootFS $rootFS) : self
     {
+        $this->initialized['rootFS'] = true;
         $this->rootFS = $rootFS;
         return $this;
     }
@@ -742,6 +769,7 @@ class ImageInspect
     */
     public function setMetadata(?ImageInspectMetadata $metadata) : self
     {
+        $this->initialized['metadata'] = true;
         $this->metadata = $metadata;
         return $this;
     }

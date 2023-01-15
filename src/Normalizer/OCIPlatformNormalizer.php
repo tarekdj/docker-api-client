@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class OCIPlatformNormalizer implements DenormalizerInterface, NormalizerInterfac
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\OCIPlatform';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\OCIPlatform';
     }
@@ -84,23 +83,23 @@ class OCIPlatformNormalizer implements DenormalizerInterface, NormalizerInterfac
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getArchitecture()) {
+        if ($object->isInitialized('architecture') && null !== $object->getArchitecture()) {
             $data['architecture'] = $object->getArchitecture();
         }
-        if (null !== $object->getOs()) {
+        if ($object->isInitialized('os') && null !== $object->getOs()) {
             $data['os'] = $object->getOs();
         }
-        if (null !== $object->getOsVersion()) {
+        if ($object->isInitialized('osVersion') && null !== $object->getOsVersion()) {
             $data['os.version'] = $object->getOsVersion();
         }
-        if (null !== $object->getOsFeatures()) {
+        if ($object->isInitialized('osFeatures') && null !== $object->getOsFeatures()) {
             $values = array();
             foreach ($object->getOsFeatures() as $value) {
                 $values[] = $value;
             }
             $data['os.features'] = $values;
         }
-        if (null !== $object->getVariant()) {
+        if ($object->isInitialized('variant') && null !== $object->getVariant()) {
             $data['variant'] = $object->getVariant();
         }
         return $data;

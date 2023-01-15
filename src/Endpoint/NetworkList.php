@@ -59,7 +59,7 @@ class NetworkList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint 
         $optionsResolver->setDefined(array('filters'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filters', array('string'));
+        $optionsResolver->addAllowedTypes('filters', array('string'));
         return $optionsResolver;
     }
     /**

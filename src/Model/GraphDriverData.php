@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class GraphDriverData
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * Name of the storage driver.
      *
      * @var string|null
@@ -38,6 +46,7 @@ class GraphDriverData
      */
     public function setName(?string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -67,6 +76,7 @@ class GraphDriverData
     */
     public function setData(?iterable $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
