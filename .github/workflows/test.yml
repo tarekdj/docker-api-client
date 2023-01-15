@@ -17,6 +17,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Setup PHP 8
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        extensions: none
+
     - name: check docker version && pull hello-world image.
       run: docker -v && docker pull hello-world
 
