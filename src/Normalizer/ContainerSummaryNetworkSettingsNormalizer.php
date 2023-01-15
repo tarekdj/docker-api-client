@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ContainerSummaryNetworkSettingsNormalizer implements DenormalizerInterface
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerSummaryNetworkSettings';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ContainerSummaryNetworkSettings';
     }
@@ -60,7 +59,7 @@ class ContainerSummaryNetworkSettingsNormalizer implements DenormalizerInterface
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getNetworks()) {
+        if ($object->isInitialized('networks') && null !== $object->getNetworks()) {
             $values = array();
             foreach ($object->getNetworks() as $key => $value) {
                 $values[$key] = $this->normalizer->normalize($value, 'json', $context);

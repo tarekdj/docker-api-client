@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecContainerSpecDNSConfigNormalizer implements DenormalizerInterface,
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecDNSConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecDNSConfig';
     }
@@ -80,21 +79,21 @@ class TaskSpecContainerSpecDNSConfigNormalizer implements DenormalizerInterface,
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getNameservers()) {
+        if ($object->isInitialized('nameservers') && null !== $object->getNameservers()) {
             $values = array();
             foreach ($object->getNameservers() as $value) {
                 $values[] = $value;
             }
             $data['Nameservers'] = $values;
         }
-        if (null !== $object->getSearch()) {
+        if ($object->isInitialized('search') && null !== $object->getSearch()) {
             $values_1 = array();
             foreach ($object->getSearch() as $value_1) {
                 $values_1[] = $value_1;
             }
             $data['Search'] = $values_1;
         }
-        if (null !== $object->getOptions()) {
+        if ($object->isInitialized('options') && null !== $object->getOptions()) {
             $values_2 = array();
             foreach ($object->getOptions() as $value_2) {
                 $values_2[] = $value_2;

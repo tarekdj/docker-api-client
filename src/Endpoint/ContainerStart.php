@@ -44,7 +44,7 @@ class ContainerStart extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoi
         $optionsResolver->setDefined(array('detachKeys'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('detachKeys', array('string'));
+        $optionsResolver->addAllowedTypes('detachKeys', array('string'));
         return $optionsResolver;
     }
     /**

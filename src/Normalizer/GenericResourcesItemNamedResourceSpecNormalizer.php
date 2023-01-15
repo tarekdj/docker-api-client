@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class GenericResourcesItemNamedResourceSpecNormalizer implements DenormalizerInt
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItemNamedResourceSpec';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\GenericResourcesItemNamedResourceSpec';
     }
@@ -62,10 +61,10 @@ class GenericResourcesItemNamedResourceSpecNormalizer implements DenormalizerInt
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getKind()) {
+        if ($object->isInitialized('kind') && null !== $object->getKind()) {
             $data['Kind'] = $object->getKind();
         }
-        if (null !== $object->getValue()) {
+        if ($object->isInitialized('value') && null !== $object->getValue()) {
             $data['Value'] = $object->getValue();
         }
         return $data;

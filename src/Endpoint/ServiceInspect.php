@@ -41,7 +41,7 @@ class ServiceInspect extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoi
         $optionsResolver->setDefined(array('insertDefaults'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('insertDefaults' => false));
-        $optionsResolver->setAllowedTypes('insertDefaults', array('bool'));
+        $optionsResolver->addAllowedTypes('insertDefaults', array('bool'));
         return $optionsResolver;
     }
     /**

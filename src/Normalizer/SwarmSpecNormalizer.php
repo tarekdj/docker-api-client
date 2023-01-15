@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class SwarmSpecNormalizer implements DenormalizerInterface, NormalizerInterface,
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpec';
     }
@@ -102,32 +101,32 @@ class SwarmSpecNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getName()) {
+        if ($object->isInitialized('name') && null !== $object->getName()) {
             $data['Name'] = $object->getName();
         }
-        if (null !== $object->getLabels()) {
+        if ($object->isInitialized('labels') && null !== $object->getLabels()) {
             $values = array();
             foreach ($object->getLabels() as $key => $value) {
                 $values[$key] = $value;
             }
             $data['Labels'] = $values;
         }
-        if (null !== $object->getOrchestration()) {
+        if ($object->isInitialized('orchestration') && null !== $object->getOrchestration()) {
             $data['Orchestration'] = $this->normalizer->normalize($object->getOrchestration(), 'json', $context);
         }
-        if (null !== $object->getRaft()) {
+        if ($object->isInitialized('raft') && null !== $object->getRaft()) {
             $data['Raft'] = $this->normalizer->normalize($object->getRaft(), 'json', $context);
         }
-        if (null !== $object->getDispatcher()) {
+        if ($object->isInitialized('dispatcher') && null !== $object->getDispatcher()) {
             $data['Dispatcher'] = $this->normalizer->normalize($object->getDispatcher(), 'json', $context);
         }
-        if (null !== $object->getCAConfig()) {
+        if ($object->isInitialized('cAConfig') && null !== $object->getCAConfig()) {
             $data['CAConfig'] = $this->normalizer->normalize($object->getCAConfig(), 'json', $context);
         }
-        if (null !== $object->getEncryptionConfig()) {
+        if ($object->isInitialized('encryptionConfig') && null !== $object->getEncryptionConfig()) {
             $data['EncryptionConfig'] = $this->normalizer->normalize($object->getEncryptionConfig(), 'json', $context);
         }
-        if (null !== $object->getTaskDefaults()) {
+        if ($object->isInitialized('taskDefaults') && null !== $object->getTaskDefaults()) {
             $data['TaskDefaults'] = $this->normalizer->normalize($object->getTaskDefaults(), 'json', $context);
         }
         return $data;

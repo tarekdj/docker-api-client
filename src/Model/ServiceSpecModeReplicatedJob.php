@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ServiceSpecModeReplicatedJob
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * The maximum number of replicas to run simultaneously.
      *
      * @var int|null
@@ -36,6 +44,7 @@ class ServiceSpecModeReplicatedJob
      */
     public function setMaxConcurrent(?int $maxConcurrent) : self
     {
+        $this->initialized['maxConcurrent'] = true;
         $this->maxConcurrent = $maxConcurrent;
         return $this;
     }
@@ -61,6 +70,7 @@ class ServiceSpecModeReplicatedJob
     */
     public function setTotalCompletions(?int $totalCompletions) : self
     {
+        $this->initialized['totalCompletions'] = true;
         $this->totalCompletions = $totalCompletions;
         return $this;
     }

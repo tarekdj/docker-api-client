@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecContainerSpecPrivilegesNormalizer implements DenormalizerInterface
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivileges';
     }
@@ -62,10 +61,10 @@ class TaskSpecContainerSpecPrivilegesNormalizer implements DenormalizerInterface
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getCredentialSpec()) {
+        if ($object->isInitialized('credentialSpec') && null !== $object->getCredentialSpec()) {
             $data['CredentialSpec'] = $this->normalizer->normalize($object->getCredentialSpec(), 'json', $context);
         }
-        if (null !== $object->getSELinuxContext()) {
+        if ($object->isInitialized('sELinuxContext') && null !== $object->getSELinuxContext()) {
             $data['SELinuxContext'] = $this->normalizer->normalize($object->getSELinuxContext(), 'json', $context);
         }
         return $data;

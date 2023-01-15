@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ContainerWaitExitError
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * Details of an error
      *
      * @var string|null
@@ -28,6 +36,7 @@ class ContainerWaitExitError
      */
     public function setMessage(?string $message) : self
     {
+        $this->initialized['message'] = true;
         $this->message = $message;
         return $this;
     }

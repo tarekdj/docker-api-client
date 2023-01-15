@@ -35,6 +35,7 @@ class SystemAuth extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint i
     /**
      * {@inheritdoc}
      *
+     * @throws \Tarekdj\Docker\ApiClient\Exception\SystemAuthUnauthorizedException
      * @throws \Tarekdj\Docker\ApiClient\Exception\SystemAuthInternalServerErrorException
      *
      * @return null|\Tarekdj\Docker\ApiClient\Model\AuthPostResponse200
@@ -46,6 +47,9 @@ class SystemAuth extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint i
         }
         if (204 === $status) {
             return null;
+        }
+        if (401 === $status) {
+            throw new \Tarekdj\Docker\ApiClient\Exception\SystemAuthUnauthorizedException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));
         }
         if (500 === $status) {
             throw new \Tarekdj\Docker\ApiClient\Exception\SystemAuthInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));

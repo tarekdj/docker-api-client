@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ResourceObjectNormalizer implements DenormalizerInterface, NormalizerInter
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ResourceObject';
     }
@@ -72,13 +71,13 @@ class ResourceObjectNormalizer implements DenormalizerInterface, NormalizerInter
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getNanoCPUs()) {
+        if ($object->isInitialized('nanoCPUs') && null !== $object->getNanoCPUs()) {
             $data['NanoCPUs'] = $object->getNanoCPUs();
         }
-        if (null !== $object->getMemoryBytes()) {
+        if ($object->isInitialized('memoryBytes') && null !== $object->getMemoryBytes()) {
             $data['MemoryBytes'] = $object->getMemoryBytes();
         }
-        if (null !== $object->getGenericResources()) {
+        if ($object->isInitialized('genericResources') && null !== $object->getGenericResources()) {
             $values = array();
             foreach ($object->getGenericResources() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);

@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInfo';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmInfo';
     }
@@ -108,35 +107,35 @@ class SwarmInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getNodeID()) {
+        if ($object->isInitialized('nodeID') && null !== $object->getNodeID()) {
             $data['NodeID'] = $object->getNodeID();
         }
-        if (null !== $object->getNodeAddr()) {
+        if ($object->isInitialized('nodeAddr') && null !== $object->getNodeAddr()) {
             $data['NodeAddr'] = $object->getNodeAddr();
         }
-        if (null !== $object->getLocalNodeState()) {
+        if ($object->isInitialized('localNodeState') && null !== $object->getLocalNodeState()) {
             $data['LocalNodeState'] = $object->getLocalNodeState();
         }
-        if (null !== $object->getControlAvailable()) {
+        if ($object->isInitialized('controlAvailable') && null !== $object->getControlAvailable()) {
             $data['ControlAvailable'] = $object->getControlAvailable();
         }
-        if (null !== $object->getError()) {
+        if ($object->isInitialized('error') && null !== $object->getError()) {
             $data['Error'] = $object->getError();
         }
-        if (null !== $object->getRemoteManagers()) {
+        if ($object->isInitialized('remoteManagers') && null !== $object->getRemoteManagers()) {
             $values = array();
             foreach ($object->getRemoteManagers() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
             $data['RemoteManagers'] = $values;
         }
-        if (null !== $object->getNodes()) {
+        if ($object->isInitialized('nodes') && null !== $object->getNodes()) {
             $data['Nodes'] = $object->getNodes();
         }
-        if (null !== $object->getManagers()) {
+        if ($object->isInitialized('managers') && null !== $object->getManagers()) {
             $data['Managers'] = $object->getManagers();
         }
-        if (null !== $object->getCluster()) {
+        if ($object->isInitialized('cluster') && null !== $object->getCluster()) {
             $data['Cluster'] = $this->normalizer->normalize($object->getCluster(), 'json', $context);
         }
         return $data;

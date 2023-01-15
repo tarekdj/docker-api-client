@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ServiceSpecRollbackConfigNormalizer implements DenormalizerInterface, Norm
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecRollbackConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecRollbackConfig';
     }
@@ -39,6 +38,9 @@ class ServiceSpecRollbackConfigNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new \Tarekdj\Docker\ApiClient\Model\ServiceSpecRollbackConfig();
+        if (\array_key_exists('MaxFailureRatio', $data) && \is_int($data['MaxFailureRatio'])) {
+            $data['MaxFailureRatio'] = (double) $data['MaxFailureRatio'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -86,22 +88,22 @@ class ServiceSpecRollbackConfigNormalizer implements DenormalizerInterface, Norm
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getParallelism()) {
+        if ($object->isInitialized('parallelism') && null !== $object->getParallelism()) {
             $data['Parallelism'] = $object->getParallelism();
         }
-        if (null !== $object->getDelay()) {
+        if ($object->isInitialized('delay') && null !== $object->getDelay()) {
             $data['Delay'] = $object->getDelay();
         }
-        if (null !== $object->getFailureAction()) {
+        if ($object->isInitialized('failureAction') && null !== $object->getFailureAction()) {
             $data['FailureAction'] = $object->getFailureAction();
         }
-        if (null !== $object->getMonitor()) {
+        if ($object->isInitialized('monitor') && null !== $object->getMonitor()) {
             $data['Monitor'] = $object->getMonitor();
         }
-        if (null !== $object->getMaxFailureRatio()) {
+        if ($object->isInitialized('maxFailureRatio') && null !== $object->getMaxFailureRatio()) {
             $data['MaxFailureRatio'] = $object->getMaxFailureRatio();
         }
-        if (null !== $object->getOrder()) {
+        if ($object->isInitialized('order') && null !== $object->getOrder()) {
             $data['Order'] = $object->getOrder();
         }
         return $data;

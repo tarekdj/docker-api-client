@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class IndexInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\IndexInfo';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\IndexInfo';
     }
@@ -78,20 +77,20 @@ class IndexInfoNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getName()) {
+        if ($object->isInitialized('name') && null !== $object->getName()) {
             $data['Name'] = $object->getName();
         }
-        if (null !== $object->getMirrors()) {
+        if ($object->isInitialized('mirrors') && null !== $object->getMirrors()) {
             $values = array();
             foreach ($object->getMirrors() as $value) {
                 $values[] = $value;
             }
             $data['Mirrors'] = $values;
         }
-        if (null !== $object->getSecure()) {
+        if ($object->isInitialized('secure') && null !== $object->getSecure()) {
             $data['Secure'] = $object->getSecure();
         }
-        if (null !== $object->getOfficial()) {
+        if ($object->isInitialized('official') && null !== $object->getOfficial()) {
             $data['Official'] = $object->getOfficial();
         }
         return $data;

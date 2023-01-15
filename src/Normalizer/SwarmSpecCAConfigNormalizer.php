@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class SwarmSpecCAConfigNormalizer implements DenormalizerInterface, NormalizerIn
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecCAConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecCAConfig';
     }
@@ -84,23 +83,23 @@ class SwarmSpecCAConfigNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getNodeCertExpiry()) {
+        if ($object->isInitialized('nodeCertExpiry') && null !== $object->getNodeCertExpiry()) {
             $data['NodeCertExpiry'] = $object->getNodeCertExpiry();
         }
-        if (null !== $object->getExternalCAs()) {
+        if ($object->isInitialized('externalCAs') && null !== $object->getExternalCAs()) {
             $values = array();
             foreach ($object->getExternalCAs() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
             $data['ExternalCAs'] = $values;
         }
-        if (null !== $object->getSigningCACert()) {
+        if ($object->isInitialized('signingCACert') && null !== $object->getSigningCACert()) {
             $data['SigningCACert'] = $object->getSigningCACert();
         }
-        if (null !== $object->getSigningCAKey()) {
+        if ($object->isInitialized('signingCAKey') && null !== $object->getSigningCAKey()) {
             $data['SigningCAKey'] = $object->getSigningCAKey();
         }
-        if (null !== $object->getForceRotate()) {
+        if ($object->isInitialized('forceRotate') && null !== $object->getForceRotate()) {
             $data['ForceRotate'] = $object->getForceRotate();
         }
         return $data;

@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecContainerSpecPrivilegesCredentialSpecNormalizer implements Denorma
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesCredentialSpec';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecContainerSpecPrivilegesCredentialSpec';
     }
@@ -68,13 +67,13 @@ class TaskSpecContainerSpecPrivilegesCredentialSpecNormalizer implements Denorma
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getConfig()) {
+        if ($object->isInitialized('config') && null !== $object->getConfig()) {
             $data['Config'] = $object->getConfig();
         }
-        if (null !== $object->getFile()) {
+        if ($object->isInitialized('file') && null !== $object->getFile()) {
             $data['File'] = $object->getFile();
         }
-        if (null !== $object->getRegistry()) {
+        if ($object->isInitialized('registry') && null !== $object->getRegistry()) {
             $data['Registry'] = $object->getRegistry();
         }
         return $data;

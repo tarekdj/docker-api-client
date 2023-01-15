@@ -41,7 +41,7 @@ class ContainerStop extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoin
         $optionsResolver->setDefined(array('t'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('t', array('int'));
+        $optionsResolver->addAllowedTypes('t', array('int'));
         return $optionsResolver;
     }
     /**

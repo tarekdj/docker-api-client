@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class SwarmSpecRaftNormalizer implements DenormalizerInterface, NormalizerInterf
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecRaft';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\SwarmSpecRaft';
     }
@@ -80,19 +79,19 @@ class SwarmSpecRaftNormalizer implements DenormalizerInterface, NormalizerInterf
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getSnapshotInterval()) {
+        if ($object->isInitialized('snapshotInterval') && null !== $object->getSnapshotInterval()) {
             $data['SnapshotInterval'] = $object->getSnapshotInterval();
         }
-        if (null !== $object->getKeepOldSnapshots()) {
+        if ($object->isInitialized('keepOldSnapshots') && null !== $object->getKeepOldSnapshots()) {
             $data['KeepOldSnapshots'] = $object->getKeepOldSnapshots();
         }
-        if (null !== $object->getLogEntriesForSlowFollowers()) {
+        if ($object->isInitialized('logEntriesForSlowFollowers') && null !== $object->getLogEntriesForSlowFollowers()) {
             $data['LogEntriesForSlowFollowers'] = $object->getLogEntriesForSlowFollowers();
         }
-        if (null !== $object->getElectionTick()) {
+        if ($object->isInitialized('electionTick') && null !== $object->getElectionTick()) {
             $data['ElectionTick'] = $object->getElectionTick();
         }
-        if (null !== $object->getHeartbeatTick()) {
+        if ($object->isInitialized('heartbeatTick') && null !== $object->getHeartbeatTick()) {
             $data['HeartbeatTick'] = $object->getHeartbeatTick();
         }
         return $data;

@@ -2,8 +2,16 @@
 
 namespace Tarekdj\Docker\ApiClient\Model;
 
-class VolumesGetResponse200
+class VolumeListResponse
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * List of volumes
      *
@@ -34,6 +42,7 @@ class VolumesGetResponse200
      */
     public function setVolumes(?array $volumes) : self
     {
+        $this->initialized['volumes'] = true;
         $this->volumes = $volumes;
         return $this;
     }
@@ -55,6 +64,7 @@ class VolumesGetResponse200
      */
     public function setWarnings(?array $warnings) : self
     {
+        $this->initialized['warnings'] = true;
         $this->warnings = $warnings;
         return $this;
     }

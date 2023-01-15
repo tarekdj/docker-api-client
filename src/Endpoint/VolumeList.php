@@ -49,7 +49,7 @@ class VolumeList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint i
         $optionsResolver->setDefined(array('filters'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filters', array('string'));
+        $optionsResolver->addAllowedTypes('filters', array('string'));
         return $optionsResolver;
     }
     /**
@@ -57,12 +57,12 @@ class VolumeList extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint i
      *
      * @throws \Tarekdj\Docker\ApiClient\Exception\VolumeListInternalServerErrorException
      *
-     * @return null|\Tarekdj\Docker\ApiClient\Model\VolumesGetResponse200
+     * @return null|\Tarekdj\Docker\ApiClient\Model\VolumeListResponse
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
-            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\VolumesGetResponse200', 'json');
+            return $serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\VolumeListResponse', 'json');
         }
         if (500 === $status) {
             throw new \Tarekdj\Docker\ApiClient\Exception\VolumeListInternalServerErrorException($serializer->deserialize($body, 'Tarekdj\\Docker\\ApiClient\\Model\\ErrorResponse', 'json'));

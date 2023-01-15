@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class DeviceMappingNormalizer implements DenormalizerInterface, NormalizerInterf
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\DeviceMapping';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\DeviceMapping';
     }
@@ -68,13 +67,13 @@ class DeviceMappingNormalizer implements DenormalizerInterface, NormalizerInterf
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPathOnHost()) {
+        if ($object->isInitialized('pathOnHost') && null !== $object->getPathOnHost()) {
             $data['PathOnHost'] = $object->getPathOnHost();
         }
-        if (null !== $object->getPathInContainer()) {
+        if ($object->isInitialized('pathInContainer') && null !== $object->getPathInContainer()) {
             $data['PathInContainer'] = $object->getPathInContainer();
         }
-        if (null !== $object->getCgroupPermissions()) {
+        if ($object->isInitialized('cgroupPermissions') && null !== $object->getCgroupPermissions()) {
             $data['CgroupPermissions'] = $object->getCgroupPermissions();
         }
         return $data;

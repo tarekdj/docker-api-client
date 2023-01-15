@@ -43,7 +43,7 @@ class ImageLoad extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint im
         $optionsResolver->setDefined(array('quiet'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('quiet' => false));
-        $optionsResolver->setAllowedTypes('quiet', array('bool'));
+        $optionsResolver->addAllowedTypes('quiet', array('bool'));
         return $optionsResolver;
     }
     /**

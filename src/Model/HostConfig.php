@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class HostConfig
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
     * An integer value representing this container's relative CPU weight
     versus other containers.
     
@@ -632,6 +640,7 @@ class HostConfig
     */
     public function setCpuShares(?int $cpuShares) : self
     {
+        $this->initialized['cpuShares'] = true;
         $this->cpuShares = $cpuShares;
         return $this;
     }
@@ -653,6 +662,7 @@ class HostConfig
      */
     public function setMemory(?int $memory) : self
     {
+        $this->initialized['memory'] = true;
         $this->memory = $memory;
         return $this;
     }
@@ -682,6 +692,7 @@ class HostConfig
     */
     public function setCgroupParent(?string $cgroupParent) : self
     {
+        $this->initialized['cgroupParent'] = true;
         $this->cgroupParent = $cgroupParent;
         return $this;
     }
@@ -703,6 +714,7 @@ class HostConfig
      */
     public function setBlkioWeight(?int $blkioWeight) : self
     {
+        $this->initialized['blkioWeight'] = true;
         $this->blkioWeight = $blkioWeight;
         return $this;
     }
@@ -734,6 +746,7 @@ class HostConfig
     */
     public function setBlkioWeightDevice(?array $blkioWeightDevice) : self
     {
+        $this->initialized['blkioWeightDevice'] = true;
         $this->blkioWeightDevice = $blkioWeightDevice;
         return $this;
     }
@@ -765,6 +778,7 @@ class HostConfig
     */
     public function setBlkioDeviceReadBps(?array $blkioDeviceReadBps) : self
     {
+        $this->initialized['blkioDeviceReadBps'] = true;
         $this->blkioDeviceReadBps = $blkioDeviceReadBps;
         return $this;
     }
@@ -796,6 +810,7 @@ class HostConfig
     */
     public function setBlkioDeviceWriteBps(?array $blkioDeviceWriteBps) : self
     {
+        $this->initialized['blkioDeviceWriteBps'] = true;
         $this->blkioDeviceWriteBps = $blkioDeviceWriteBps;
         return $this;
     }
@@ -827,6 +842,7 @@ class HostConfig
     */
     public function setBlkioDeviceReadIOps(?array $blkioDeviceReadIOps) : self
     {
+        $this->initialized['blkioDeviceReadIOps'] = true;
         $this->blkioDeviceReadIOps = $blkioDeviceReadIOps;
         return $this;
     }
@@ -858,6 +874,7 @@ class HostConfig
     */
     public function setBlkioDeviceWriteIOps(?array $blkioDeviceWriteIOps) : self
     {
+        $this->initialized['blkioDeviceWriteIOps'] = true;
         $this->blkioDeviceWriteIOps = $blkioDeviceWriteIOps;
         return $this;
     }
@@ -879,6 +896,7 @@ class HostConfig
      */
     public function setCpuPeriod(?int $cpuPeriod) : self
     {
+        $this->initialized['cpuPeriod'] = true;
         $this->cpuPeriod = $cpuPeriod;
         return $this;
     }
@@ -900,6 +918,7 @@ class HostConfig
      */
     public function setCpuQuota(?int $cpuQuota) : self
     {
+        $this->initialized['cpuQuota'] = true;
         $this->cpuQuota = $cpuQuota;
         return $this;
     }
@@ -925,6 +944,7 @@ class HostConfig
     */
     public function setCpuRealtimePeriod(?int $cpuRealtimePeriod) : self
     {
+        $this->initialized['cpuRealtimePeriod'] = true;
         $this->cpuRealtimePeriod = $cpuRealtimePeriod;
         return $this;
     }
@@ -950,6 +970,7 @@ class HostConfig
     */
     public function setCpuRealtimeRuntime(?int $cpuRealtimeRuntime) : self
     {
+        $this->initialized['cpuRealtimeRuntime'] = true;
         $this->cpuRealtimeRuntime = $cpuRealtimeRuntime;
         return $this;
     }
@@ -971,6 +992,7 @@ class HostConfig
      */
     public function setCpusetCpus(?string $cpusetCpus) : self
     {
+        $this->initialized['cpusetCpus'] = true;
         $this->cpusetCpus = $cpusetCpus;
         return $this;
     }
@@ -996,6 +1018,7 @@ class HostConfig
     */
     public function setCpusetMems(?string $cpusetMems) : self
     {
+        $this->initialized['cpusetMems'] = true;
         $this->cpusetMems = $cpusetMems;
         return $this;
     }
@@ -1017,6 +1040,7 @@ class HostConfig
      */
     public function setDevices(?array $devices) : self
     {
+        $this->initialized['devices'] = true;
         $this->devices = $devices;
         return $this;
     }
@@ -1038,6 +1062,7 @@ class HostConfig
      */
     public function setDeviceCgroupRules(?array $deviceCgroupRules) : self
     {
+        $this->initialized['deviceCgroupRules'] = true;
         $this->deviceCgroupRules = $deviceCgroupRules;
         return $this;
     }
@@ -1059,6 +1084,7 @@ class HostConfig
      */
     public function setDeviceRequests(?array $deviceRequests) : self
     {
+        $this->initialized['deviceRequests'] = true;
         $this->deviceRequests = $deviceRequests;
         return $this;
     }
@@ -1092,6 +1118,7 @@ class HostConfig
     */
     public function setKernelMemory(?int $kernelMemory) : self
     {
+        $this->initialized['kernelMemory'] = true;
         $this->kernelMemory = $kernelMemory;
         return $this;
     }
@@ -1113,6 +1140,7 @@ class HostConfig
      */
     public function setKernelMemoryTCP(?int $kernelMemoryTCP) : self
     {
+        $this->initialized['kernelMemoryTCP'] = true;
         $this->kernelMemoryTCP = $kernelMemoryTCP;
         return $this;
     }
@@ -1134,6 +1162,7 @@ class HostConfig
      */
     public function setMemoryReservation(?int $memoryReservation) : self
     {
+        $this->initialized['memoryReservation'] = true;
         $this->memoryReservation = $memoryReservation;
         return $this;
     }
@@ -1159,6 +1188,7 @@ class HostConfig
     */
     public function setMemorySwap(?int $memorySwap) : self
     {
+        $this->initialized['memorySwap'] = true;
         $this->memorySwap = $memorySwap;
         return $this;
     }
@@ -1184,6 +1214,7 @@ class HostConfig
     */
     public function setMemorySwappiness(?int $memorySwappiness) : self
     {
+        $this->initialized['memorySwappiness'] = true;
         $this->memorySwappiness = $memorySwappiness;
         return $this;
     }
@@ -1205,6 +1236,7 @@ class HostConfig
      */
     public function setNanoCpus(?int $nanoCpus) : self
     {
+        $this->initialized['nanoCpus'] = true;
         $this->nanoCpus = $nanoCpus;
         return $this;
     }
@@ -1226,6 +1258,7 @@ class HostConfig
      */
     public function setOomKillDisable(?bool $oomKillDisable) : self
     {
+        $this->initialized['oomKillDisable'] = true;
         $this->oomKillDisable = $oomKillDisable;
         return $this;
     }
@@ -1253,6 +1286,7 @@ class HostConfig
     */
     public function setInit(?bool $init) : self
     {
+        $this->initialized['init'] = true;
         $this->init = $init;
         return $this;
     }
@@ -1278,6 +1312,7 @@ class HostConfig
     */
     public function setPidsLimit(?int $pidsLimit) : self
     {
+        $this->initialized['pidsLimit'] = true;
         $this->pidsLimit = $pidsLimit;
         return $this;
     }
@@ -1309,6 +1344,7 @@ class HostConfig
     */
     public function setUlimits(?array $ulimits) : self
     {
+        $this->initialized['ulimits'] = true;
         $this->ulimits = $ulimits;
         return $this;
     }
@@ -1340,6 +1376,7 @@ class HostConfig
     */
     public function setCpuCount(?int $cpuCount) : self
     {
+        $this->initialized['cpuCount'] = true;
         $this->cpuCount = $cpuCount;
         return $this;
     }
@@ -1371,6 +1408,7 @@ class HostConfig
     */
     public function setCpuPercent(?int $cpuPercent) : self
     {
+        $this->initialized['cpuPercent'] = true;
         $this->cpuPercent = $cpuPercent;
         return $this;
     }
@@ -1392,6 +1430,7 @@ class HostConfig
      */
     public function setIOMaximumIOps(?int $iOMaximumIOps) : self
     {
+        $this->initialized['iOMaximumIOps'] = true;
         $this->iOMaximumIOps = $iOMaximumIOps;
         return $this;
     }
@@ -1417,6 +1456,7 @@ class HostConfig
     */
     public function setIOMaximumBandwidth(?int $iOMaximumBandwidth) : self
     {
+        $this->initialized['iOMaximumBandwidth'] = true;
         $this->iOMaximumBandwidth = $iOMaximumBandwidth;
         return $this;
     }
@@ -1514,6 +1554,7 @@ class HostConfig
     */
     public function setBinds(?array $binds) : self
     {
+        $this->initialized['binds'] = true;
         $this->binds = $binds;
         return $this;
     }
@@ -1535,6 +1576,7 @@ class HostConfig
      */
     public function setContainerIDFile(?string $containerIDFile) : self
     {
+        $this->initialized['containerIDFile'] = true;
         $this->containerIDFile = $containerIDFile;
         return $this;
     }
@@ -1556,6 +1598,7 @@ class HostConfig
      */
     public function setLogConfig(?HostConfigLogConfig $logConfig) : self
     {
+        $this->initialized['logConfig'] = true;
         $this->logConfig = $logConfig;
         return $this;
     }
@@ -1585,6 +1628,7 @@ class HostConfig
     */
     public function setNetworkMode(?string $networkMode) : self
     {
+        $this->initialized['networkMode'] = true;
         $this->networkMode = $networkMode;
         return $this;
     }
@@ -1618,6 +1662,7 @@ class HostConfig
     */
     public function setPortBindings(?iterable $portBindings) : self
     {
+        $this->initialized['portBindings'] = true;
         $this->portBindings = $portBindings;
         return $this;
     }
@@ -1649,6 +1694,7 @@ class HostConfig
     */
     public function setRestartPolicy(?RestartPolicy $restartPolicy) : self
     {
+        $this->initialized['restartPolicy'] = true;
         $this->restartPolicy = $restartPolicy;
         return $this;
     }
@@ -1674,6 +1720,7 @@ class HostConfig
     */
     public function setAutoRemove(?bool $autoRemove) : self
     {
+        $this->initialized['autoRemove'] = true;
         $this->autoRemove = $autoRemove;
         return $this;
     }
@@ -1695,6 +1742,7 @@ class HostConfig
      */
     public function setVolumeDriver(?string $volumeDriver) : self
     {
+        $this->initialized['volumeDriver'] = true;
         $this->volumeDriver = $volumeDriver;
         return $this;
     }
@@ -1720,6 +1768,7 @@ class HostConfig
     */
     public function setVolumesFrom(?array $volumesFrom) : self
     {
+        $this->initialized['volumesFrom'] = true;
         $this->volumesFrom = $volumesFrom;
         return $this;
     }
@@ -1741,6 +1790,7 @@ class HostConfig
      */
     public function setMounts(?array $mounts) : self
     {
+        $this->initialized['mounts'] = true;
         $this->mounts = $mounts;
         return $this;
     }
@@ -1766,6 +1816,7 @@ class HostConfig
     */
     public function setCapAdd(?array $capAdd) : self
     {
+        $this->initialized['capAdd'] = true;
         $this->capAdd = $capAdd;
         return $this;
     }
@@ -1791,6 +1842,7 @@ class HostConfig
     */
     public function setCapDrop(?array $capDrop) : self
     {
+        $this->initialized['capDrop'] = true;
         $this->capDrop = $capDrop;
         return $this;
     }
@@ -1826,6 +1878,7 @@ class HostConfig
     */
     public function setCgroupnsMode(?string $cgroupnsMode) : self
     {
+        $this->initialized['cgroupnsMode'] = true;
         $this->cgroupnsMode = $cgroupnsMode;
         return $this;
     }
@@ -1847,6 +1900,7 @@ class HostConfig
      */
     public function setDns(?array $dns) : self
     {
+        $this->initialized['dns'] = true;
         $this->dns = $dns;
         return $this;
     }
@@ -1868,6 +1922,7 @@ class HostConfig
      */
     public function setDnsOptions(?array $dnsOptions) : self
     {
+        $this->initialized['dnsOptions'] = true;
         $this->dnsOptions = $dnsOptions;
         return $this;
     }
@@ -1889,6 +1944,7 @@ class HostConfig
      */
     public function setDnsSearch(?array $dnsSearch) : self
     {
+        $this->initialized['dnsSearch'] = true;
         $this->dnsSearch = $dnsSearch;
         return $this;
     }
@@ -1914,6 +1970,7 @@ class HostConfig
     */
     public function setExtraHosts(?array $extraHosts) : self
     {
+        $this->initialized['extraHosts'] = true;
         $this->extraHosts = $extraHosts;
         return $this;
     }
@@ -1935,6 +1992,7 @@ class HostConfig
      */
     public function setGroupAdd(?array $groupAdd) : self
     {
+        $this->initialized['groupAdd'] = true;
         $this->groupAdd = $groupAdd;
         return $this;
     }
@@ -1976,6 +2034,7 @@ class HostConfig
     */
     public function setIpcMode(?string $ipcMode) : self
     {
+        $this->initialized['ipcMode'] = true;
         $this->ipcMode = $ipcMode;
         return $this;
     }
@@ -1997,6 +2056,7 @@ class HostConfig
      */
     public function setCgroup(?string $cgroup) : self
     {
+        $this->initialized['cgroup'] = true;
         $this->cgroup = $cgroup;
         return $this;
     }
@@ -2018,6 +2078,7 @@ class HostConfig
      */
     public function setLinks(?array $links) : self
     {
+        $this->initialized['links'] = true;
         $this->links = $links;
         return $this;
     }
@@ -2043,6 +2104,7 @@ class HostConfig
     */
     public function setOomScoreAdj(?int $oomScoreAdj) : self
     {
+        $this->initialized['oomScoreAdj'] = true;
         $this->oomScoreAdj = $oomScoreAdj;
         return $this;
     }
@@ -2074,6 +2136,7 @@ class HostConfig
     */
     public function setPidMode(?string $pidMode) : self
     {
+        $this->initialized['pidMode'] = true;
         $this->pidMode = $pidMode;
         return $this;
     }
@@ -2095,6 +2158,7 @@ class HostConfig
      */
     public function setPrivileged(?bool $privileged) : self
     {
+        $this->initialized['privileged'] = true;
         $this->privileged = $privileged;
         return $this;
     }
@@ -2136,6 +2200,7 @@ class HostConfig
     */
     public function setPublishAllPorts(?bool $publishAllPorts) : self
     {
+        $this->initialized['publishAllPorts'] = true;
         $this->publishAllPorts = $publishAllPorts;
         return $this;
     }
@@ -2157,6 +2222,7 @@ class HostConfig
      */
     public function setReadonlyRootfs(?bool $readonlyRootfs) : self
     {
+        $this->initialized['readonlyRootfs'] = true;
         $this->readonlyRootfs = $readonlyRootfs;
         return $this;
     }
@@ -2182,6 +2248,7 @@ class HostConfig
     */
     public function setSecurityOpt(?array $securityOpt) : self
     {
+        $this->initialized['securityOpt'] = true;
         $this->securityOpt = $securityOpt;
         return $this;
     }
@@ -2203,6 +2270,7 @@ class HostConfig
      */
     public function setStorageOpt(?iterable $storageOpt) : self
     {
+        $this->initialized['storageOpt'] = true;
         $this->storageOpt = $storageOpt;
         return $this;
     }
@@ -2236,6 +2304,7 @@ class HostConfig
     */
     public function setTmpfs(?iterable $tmpfs) : self
     {
+        $this->initialized['tmpfs'] = true;
         $this->tmpfs = $tmpfs;
         return $this;
     }
@@ -2257,6 +2326,7 @@ class HostConfig
      */
     public function setUTSMode(?string $uTSMode) : self
     {
+        $this->initialized['uTSMode'] = true;
         $this->uTSMode = $uTSMode;
         return $this;
     }
@@ -2282,6 +2352,7 @@ class HostConfig
     */
     public function setUsernsMode(?string $usernsMode) : self
     {
+        $this->initialized['usernsMode'] = true;
         $this->usernsMode = $usernsMode;
         return $this;
     }
@@ -2303,6 +2374,7 @@ class HostConfig
      */
     public function setShmSize(?int $shmSize) : self
     {
+        $this->initialized['shmSize'] = true;
         $this->shmSize = $shmSize;
         return $this;
     }
@@ -2336,6 +2408,7 @@ class HostConfig
     */
     public function setSysctls(?iterable $sysctls) : self
     {
+        $this->initialized['sysctls'] = true;
         $this->sysctls = $sysctls;
         return $this;
     }
@@ -2357,6 +2430,7 @@ class HostConfig
      */
     public function setRuntime(?string $runtime) : self
     {
+        $this->initialized['runtime'] = true;
         $this->runtime = $runtime;
         return $this;
     }
@@ -2378,6 +2452,7 @@ class HostConfig
      */
     public function setConsoleSize(?array $consoleSize) : self
     {
+        $this->initialized['consoleSize'] = true;
         $this->consoleSize = $consoleSize;
         return $this;
     }
@@ -2399,6 +2474,7 @@ class HostConfig
      */
     public function setIsolation(?string $isolation) : self
     {
+        $this->initialized['isolation'] = true;
         $this->isolation = $isolation;
         return $this;
     }
@@ -2424,6 +2500,7 @@ class HostConfig
     */
     public function setMaskedPaths(?array $maskedPaths) : self
     {
+        $this->initialized['maskedPaths'] = true;
         $this->maskedPaths = $maskedPaths;
         return $this;
     }
@@ -2449,6 +2526,7 @@ class HostConfig
     */
     public function setReadonlyPaths(?array $readonlyPaths) : self
     {
+        $this->initialized['readonlyPaths'] = true;
         $this->readonlyPaths = $readonlyPaths;
         return $this;
     }

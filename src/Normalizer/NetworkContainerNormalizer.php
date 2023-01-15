@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class NetworkContainerNormalizer implements DenormalizerInterface, NormalizerInt
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkContainer';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\NetworkContainer';
     }
@@ -80,19 +79,19 @@ class NetworkContainerNormalizer implements DenormalizerInterface, NormalizerInt
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getName()) {
+        if ($object->isInitialized('name') && null !== $object->getName()) {
             $data['Name'] = $object->getName();
         }
-        if (null !== $object->getEndpointID()) {
+        if ($object->isInitialized('endpointID') && null !== $object->getEndpointID()) {
             $data['EndpointID'] = $object->getEndpointID();
         }
-        if (null !== $object->getMacAddress()) {
+        if ($object->isInitialized('macAddress') && null !== $object->getMacAddress()) {
             $data['MacAddress'] = $object->getMacAddress();
         }
-        if (null !== $object->getIPv4Address()) {
+        if ($object->isInitialized('iPv4Address') && null !== $object->getIPv4Address()) {
             $data['IPv4Address'] = $object->getIPv4Address();
         }
-        if (null !== $object->getIPv6Address()) {
+        if ($object->isInitialized('iPv6Address') && null !== $object->getIPv6Address()) {
             $data['IPv6Address'] = $object->getIPv6Address();
         }
         return $data;

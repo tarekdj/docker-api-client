@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class TaskSpecLogDriver
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * 
      *
      * @var string|null
@@ -34,6 +42,7 @@ class TaskSpecLogDriver
      */
     public function setName(?string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -55,6 +64,7 @@ class TaskSpecLogDriver
      */
     public function setOptions(?iterable $options) : self
     {
+        $this->initialized['options'] = true;
         $this->options = $options;
         return $this;
     }

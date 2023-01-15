@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\Volume';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\Volume';
     }
@@ -119,10 +118,10 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
         $data['Name'] = $object->getName();
         $data['Driver'] = $object->getDriver();
         $data['Mountpoint'] = $object->getMountpoint();
-        if (null !== $object->getCreatedAt()) {
+        if ($object->isInitialized('createdAt') && null !== $object->getCreatedAt()) {
             $data['CreatedAt'] = $object->getCreatedAt();
         }
-        if (null !== $object->getStatus()) {
+        if ($object->isInitialized('status') && null !== $object->getStatus()) {
             $values = array();
             foreach ($object->getStatus() as $key => $value) {
                 $values[$key] = $value;
@@ -140,7 +139,7 @@ class VolumeNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $values_2[$key_2] = $value_2;
         }
         $data['Options'] = $values_2;
-        if (null !== $object->getUsageData()) {
+        if ($object->isInitialized('usageData') && null !== $object->getUsageData()) {
             $data['UsageData'] = $this->normalizer->normalize($object->getUsageData(), 'json', $context);
         }
         return $data;

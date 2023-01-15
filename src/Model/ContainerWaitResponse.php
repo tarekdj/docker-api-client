@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ContainerWaitResponse
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * Exit code of the container
      *
      * @var int|null
@@ -34,6 +42,7 @@ class ContainerWaitResponse
      */
     public function setStatusCode(?int $statusCode) : self
     {
+        $this->initialized['statusCode'] = true;
         $this->statusCode = $statusCode;
         return $this;
     }
@@ -55,6 +64,7 @@ class ContainerWaitResponse
      */
     public function setError(?ContainerWaitExitError $error) : self
     {
+        $this->initialized['error'] = true;
         $this->error = $error;
         return $this;
     }

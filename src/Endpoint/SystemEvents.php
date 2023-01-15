@@ -79,9 +79,9 @@ class SystemEvents extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint
         $optionsResolver->setDefined(array('since', 'until', 'filters'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('since', array('string'));
-        $optionsResolver->setAllowedTypes('until', array('string'));
-        $optionsResolver->setAllowedTypes('filters', array('string'));
+        $optionsResolver->addAllowedTypes('since', array('string'));
+        $optionsResolver->addAllowedTypes('until', array('string'));
+        $optionsResolver->addAllowedTypes('filters', array('string'));
         return $optionsResolver;
     }
     /**

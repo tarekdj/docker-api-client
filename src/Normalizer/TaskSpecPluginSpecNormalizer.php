@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskSpecPluginSpecNormalizer implements DenormalizerInterface, NormalizerI
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskSpecPluginSpec';
     }
@@ -78,16 +77,16 @@ class TaskSpecPluginSpecNormalizer implements DenormalizerInterface, NormalizerI
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getName()) {
+        if ($object->isInitialized('name') && null !== $object->getName()) {
             $data['Name'] = $object->getName();
         }
-        if (null !== $object->getRemote()) {
+        if ($object->isInitialized('remote') && null !== $object->getRemote()) {
             $data['Remote'] = $object->getRemote();
         }
-        if (null !== $object->getDisabled()) {
+        if ($object->isInitialized('disabled') && null !== $object->getDisabled()) {
             $data['Disabled'] = $object->getDisabled();
         }
-        if (null !== $object->getPluginPrivilege()) {
+        if ($object->isInitialized('pluginPrivilege') && null !== $object->getPluginPrivilege()) {
             $values = array();
             foreach ($object->getPluginPrivilege() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);

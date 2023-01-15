@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class HealthConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\HealthConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\HealthConfig';
     }
@@ -84,23 +83,23 @@ class HealthConfigNormalizer implements DenormalizerInterface, NormalizerInterfa
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getTest()) {
+        if ($object->isInitialized('test') && null !== $object->getTest()) {
             $values = array();
             foreach ($object->getTest() as $value) {
                 $values[] = $value;
             }
             $data['Test'] = $values;
         }
-        if (null !== $object->getInterval()) {
+        if ($object->isInitialized('interval') && null !== $object->getInterval()) {
             $data['Interval'] = $object->getInterval();
         }
-        if (null !== $object->getTimeout()) {
+        if ($object->isInitialized('timeout') && null !== $object->getTimeout()) {
             $data['Timeout'] = $object->getTimeout();
         }
-        if (null !== $object->getRetries()) {
+        if ($object->isInitialized('retries') && null !== $object->getRetries()) {
             $data['Retries'] = $object->getRetries();
         }
-        if (null !== $object->getStartPeriod()) {
+        if ($object->isInitialized('startPeriod') && null !== $object->getStartPeriod()) {
             $data['StartPeriod'] = $object->getStartPeriod();
         }
         return $data;

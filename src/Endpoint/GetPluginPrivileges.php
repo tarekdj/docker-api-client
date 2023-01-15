@@ -40,7 +40,7 @@ class GetPluginPrivileges extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseE
         $optionsResolver->setDefined(array('remote'));
         $optionsResolver->setRequired(array('remote'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('remote', array('string'));
+        $optionsResolver->addAllowedTypes('remote', array('string'));
         return $optionsResolver;
     }
     /**

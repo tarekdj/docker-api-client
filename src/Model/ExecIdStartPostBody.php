@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class ExecIdStartPostBody
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * Detach from the command.
      *
      * @var bool|null
@@ -34,6 +42,7 @@ class ExecIdStartPostBody
      */
     public function setDetach(?bool $detach) : self
     {
+        $this->initialized['detach'] = true;
         $this->detach = $detach;
         return $this;
     }
@@ -55,6 +64,7 @@ class ExecIdStartPostBody
      */
     public function setTty(?bool $tty) : self
     {
+        $this->initialized['tty'] = true;
         $this->tty = $tty;
         return $this;
     }

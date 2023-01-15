@@ -12,7 +12,8 @@ class ContainerKill extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoin
     *
     * @param string $id ID or name of the container
     * @param array $queryParameters {
-    *     @var string $signal Signal to send to the container as an integer or string (e.g. `SIGINT`)
+    *     @var string $signal Signal to send to the container as an integer or string (e.g. `SIGINT`).
+    
     * }
     */
     public function __construct(string $id, array $queryParameters = array())
@@ -43,7 +44,7 @@ class ContainerKill extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoin
         $optionsResolver->setDefined(array('signal'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('signal' => 'SIGKILL'));
-        $optionsResolver->setAllowedTypes('signal', array('string'));
+        $optionsResolver->addAllowedTypes('signal', array('string'));
         return $optionsResolver;
     }
     /**

@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class TaskStatusContainerStatusNormalizer implements DenormalizerInterface, Norm
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatusContainerStatus';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\TaskStatusContainerStatus';
     }
@@ -68,13 +67,13 @@ class TaskStatusContainerStatusNormalizer implements DenormalizerInterface, Norm
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getContainerID()) {
+        if ($object->isInitialized('containerID') && null !== $object->getContainerID()) {
             $data['ContainerID'] = $object->getContainerID();
         }
-        if (null !== $object->getPID()) {
+        if ($object->isInitialized('pID') && null !== $object->getPID()) {
             $data['PID'] = $object->getPID();
         }
-        if (null !== $object->getExitCode()) {
+        if ($object->isInitialized('exitCode') && null !== $object->getExitCode()) {
             $data['ExitCode'] = $object->getExitCode();
         }
         return $data;

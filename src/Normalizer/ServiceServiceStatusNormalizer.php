@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ServiceServiceStatusNormalizer implements DenormalizerInterface, Normalize
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceServiceStatus';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceServiceStatus';
     }
@@ -68,13 +67,13 @@ class ServiceServiceStatusNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getRunningTasks()) {
+        if ($object->isInitialized('runningTasks') && null !== $object->getRunningTasks()) {
             $data['RunningTasks'] = $object->getRunningTasks();
         }
-        if (null !== $object->getDesiredTasks()) {
+        if ($object->isInitialized('desiredTasks') && null !== $object->getDesiredTasks()) {
             $data['DesiredTasks'] = $object->getDesiredTasks();
         }
-        if (null !== $object->getCompletedTasks()) {
+        if ($object->isInitialized('completedTasks') && null !== $object->getCompletedTasks()) {
             $data['CompletedTasks'] = $object->getCompletedTasks();
         }
         return $data;

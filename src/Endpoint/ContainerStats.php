@@ -72,8 +72,8 @@ class ContainerStats extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoi
         $optionsResolver->setDefined(array('stream', 'one-shot'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('stream' => true, 'one-shot' => false));
-        $optionsResolver->setAllowedTypes('stream', array('bool'));
-        $optionsResolver->setAllowedTypes('one-shot', array('bool'));
+        $optionsResolver->addAllowedTypes('stream', array('bool'));
+        $optionsResolver->addAllowedTypes('one-shot', array('bool'));
         return $optionsResolver;
     }
     /**

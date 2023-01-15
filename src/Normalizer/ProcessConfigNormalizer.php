@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ProcessConfigNormalizer implements DenormalizerInterface, NormalizerInterf
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ProcessConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ProcessConfig';
     }
@@ -84,19 +83,19 @@ class ProcessConfigNormalizer implements DenormalizerInterface, NormalizerInterf
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPrivileged()) {
+        if ($object->isInitialized('privileged') && null !== $object->getPrivileged()) {
             $data['privileged'] = $object->getPrivileged();
         }
-        if (null !== $object->getUser()) {
+        if ($object->isInitialized('user') && null !== $object->getUser()) {
             $data['user'] = $object->getUser();
         }
-        if (null !== $object->getTty()) {
+        if ($object->isInitialized('tty') && null !== $object->getTty()) {
             $data['tty'] = $object->getTty();
         }
-        if (null !== $object->getEntrypoint()) {
+        if ($object->isInitialized('entrypoint') && null !== $object->getEntrypoint()) {
             $data['entrypoint'] = $object->getEntrypoint();
         }
-        if (null !== $object->getArguments()) {
+        if ($object->isInitialized('arguments') && null !== $object->getArguments()) {
             $values = array();
             foreach ($object->getArguments() as $value) {
                 $values[] = $value;

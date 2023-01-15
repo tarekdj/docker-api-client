@@ -5,6 +5,14 @@ namespace Tarekdj\Docker\ApiClient\Model;
 class CreateImageInfo
 {
     /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
      * 
      *
      * @var string|null
@@ -16,6 +24,12 @@ class CreateImageInfo
      * @var string|null
      */
     protected $error;
+    /**
+     * 
+     *
+     * @var ErrorDetail|null
+     */
+    protected $errorDetail;
     /**
      * 
      *
@@ -52,6 +66,7 @@ class CreateImageInfo
      */
     public function setId(?string $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -73,7 +88,30 @@ class CreateImageInfo
      */
     public function setError(?string $error) : self
     {
+        $this->initialized['error'] = true;
         $this->error = $error;
+        return $this;
+    }
+    /**
+     * 
+     *
+     * @return ErrorDetail|null
+     */
+    public function getErrorDetail() : ?ErrorDetail
+    {
+        return $this->errorDetail;
+    }
+    /**
+     * 
+     *
+     * @param ErrorDetail|null $errorDetail
+     *
+     * @return self
+     */
+    public function setErrorDetail(?ErrorDetail $errorDetail) : self
+    {
+        $this->initialized['errorDetail'] = true;
+        $this->errorDetail = $errorDetail;
         return $this;
     }
     /**
@@ -94,6 +132,7 @@ class CreateImageInfo
      */
     public function setStatus(?string $status) : self
     {
+        $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
     }
@@ -115,6 +154,7 @@ class CreateImageInfo
      */
     public function setProgress(?string $progress) : self
     {
+        $this->initialized['progress'] = true;
         $this->progress = $progress;
         return $this;
     }
@@ -136,6 +176,7 @@ class CreateImageInfo
      */
     public function setProgressDetail(?ProgressDetail $progressDetail) : self
     {
+        $this->initialized['progressDetail'] = true;
         $this->progressDetail = $progressDetail;
         return $this;
     }

@@ -56,7 +56,7 @@ class ImagePush extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint im
         $optionsResolver->setDefined(array('tag'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('tag', array('string'));
+        $optionsResolver->addAllowedTypes('tag', array('string'));
         return $optionsResolver;
     }
     protected function getHeadersOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
@@ -65,7 +65,7 @@ class ImagePush extends \Tarekdj\Docker\ApiClient\Runtime\Client\BaseEndpoint im
         $optionsResolver->setDefined(array('X-Registry-Auth'));
         $optionsResolver->setRequired(array('X-Registry-Auth'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('X-Registry-Auth', array('string'));
+        $optionsResolver->addAllowedTypes('X-Registry-Auth', array('string'));
         return $optionsResolver;
     }
     /**

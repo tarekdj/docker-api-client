@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class IPAMConfigNormalizer implements DenormalizerInterface, NormalizerInterface
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\IPAMConfig';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\IPAMConfig';
     }
@@ -78,16 +77,16 @@ class IPAMConfigNormalizer implements DenormalizerInterface, NormalizerInterface
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getSubnet()) {
+        if ($object->isInitialized('subnet') && null !== $object->getSubnet()) {
             $data['Subnet'] = $object->getSubnet();
         }
-        if (null !== $object->getIPRange()) {
+        if ($object->isInitialized('iPRange') && null !== $object->getIPRange()) {
             $data['IPRange'] = $object->getIPRange();
         }
-        if (null !== $object->getGateway()) {
+        if ($object->isInitialized('gateway') && null !== $object->getGateway()) {
             $data['Gateway'] = $object->getGateway();
         }
-        if (null !== $object->getAuxiliaryAddresses()) {
+        if ($object->isInitialized('auxiliaryAddresses') && null !== $object->getAuxiliaryAddresses()) {
             $values = array();
             foreach ($object->getAuxiliaryAddresses() as $key => $value) {
                 $values[$key] = $value;

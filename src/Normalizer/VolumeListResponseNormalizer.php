@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -11,21 +12,19 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class VolumesGetResponse200Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class VolumeListResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
-        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\VolumesGetResponse200';
+        return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\VolumeListResponse';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
-        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\VolumesGetResponse200';
+        return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\VolumeListResponse';
     }
     /**
      * @return mixed
@@ -38,7 +37,7 @@ class VolumesGetResponse200Normalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Tarekdj\Docker\ApiClient\Model\VolumesGetResponse200();
+        $object = new \Tarekdj\Docker\ApiClient\Model\VolumeListResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -70,16 +69,20 @@ class VolumesGetResponse200Normalizer implements DenormalizerInterface, Normaliz
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $values = array();
-        foreach ($object->getVolumes() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+        if ($object->isInitialized('volumes') && null !== $object->getVolumes()) {
+            $values = array();
+            foreach ($object->getVolumes() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+            $data['Volumes'] = $values;
         }
-        $data['Volumes'] = $values;
-        $values_1 = array();
-        foreach ($object->getWarnings() as $value_1) {
-            $values_1[] = $value_1;
+        if ($object->isInitialized('warnings') && null !== $object->getWarnings()) {
+            $values_1 = array();
+            foreach ($object->getWarnings() as $value_1) {
+                $values_1[] = $value_1;
+            }
+            $data['Warnings'] = $values_1;
         }
-        $data['Warnings'] = $values_1;
         return $data;
     }
 }

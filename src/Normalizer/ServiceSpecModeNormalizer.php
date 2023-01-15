@@ -4,6 +4,7 @@ namespace Tarekdj\Docker\ApiClient\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Tarekdj\Docker\ApiClient\Runtime\Normalizer\CheckArray;
+use Tarekdj\Docker\ApiClient\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,14 +17,12 @@ class ServiceSpecModeNormalizer implements DenormalizerInterface, NormalizerInte
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    /**
-     * @return bool
-     */
-    public function supportsDenormalization($data, $type, $format = null)
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecMode';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Tarekdj\\Docker\\ApiClient\\Model\\ServiceSpecMode';
     }
@@ -74,16 +73,16 @@ class ServiceSpecModeNormalizer implements DenormalizerInterface, NormalizerInte
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getReplicated()) {
+        if ($object->isInitialized('replicated') && null !== $object->getReplicated()) {
             $data['Replicated'] = $this->normalizer->normalize($object->getReplicated(), 'json', $context);
         }
-        if (null !== $object->getGlobal()) {
+        if ($object->isInitialized('global') && null !== $object->getGlobal()) {
             $data['Global'] = $object->getGlobal();
         }
-        if (null !== $object->getReplicatedJob()) {
+        if ($object->isInitialized('replicatedJob') && null !== $object->getReplicatedJob()) {
             $data['ReplicatedJob'] = $this->normalizer->normalize($object->getReplicatedJob(), 'json', $context);
         }
-        if (null !== $object->getGlobalJob()) {
+        if ($object->isInitialized('globalJob') && null !== $object->getGlobalJob()) {
             $data['GlobalJob'] = $object->getGlobalJob();
         }
         return $data;
